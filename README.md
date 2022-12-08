@@ -1,4 +1,4 @@
-# CAE: performance data monitoring tool
+# CAE: Performance Data Monitoring Tool
 
 This tool was developed as part of the Softwaretechnik lecture at FH Aachen University for the CAE GmbH.
 The lecture is part of the "Applied Mathematics and Computer Science" bachelor degree.
