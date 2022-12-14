@@ -16,7 +16,7 @@ class ThreadInfo:
   tid: str
   name: str
   freq: float
-  interations: int
+  iterations: int
   overruns: int
   sum_rt: float     # [s]
   data: List[ThreadData]
