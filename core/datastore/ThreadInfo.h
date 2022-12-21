@@ -6,14 +6,29 @@
 #include <list>
 #include "ThreadData.h"
 
-using string = std::string;
+using std::string;
 
+/**
+ * This class stores information of a specific thread
+ */
 class ThreadInfo {
 private:
-    std::list<ThreadData> data;
+    long m_threadId;
+    string m_name;
+    double m_freq;
+    int m_iterations;
+    int m_overruns;
+    double m_sumRt;
+    std::list<ThreadData> m_data;
 public:
-    ThreadInfo(const long& threadId, const string name, const int& freq);
-    void addData();
+    ThreadInfo(long threadId, string name, double freq);
+
+    void addData(const string& name,
+                 double sumRt,
+                 double maxRt,
+                 double avgRt,
+                 double sumVs,
+                 double sumIs);
 };
 
 
