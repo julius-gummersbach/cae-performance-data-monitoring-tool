@@ -1,0 +1,1 @@
+# add_library(datastore <source files here>)
