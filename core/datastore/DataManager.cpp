@@ -1,10 +1,8 @@
 #include <nlohmann/json.hpp>
+#include "DataManager.h"
 
 using json = nlohmann::json;
 
-class DataManager {
-public:
-    void addThreadInfo(json threadInfo) {
-        // placeholder
-    }
-};
+void DataManager::addThreadInfo(json threadInfo) {
+    // placeholder
+}
