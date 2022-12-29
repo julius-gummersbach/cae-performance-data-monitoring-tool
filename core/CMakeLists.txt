@@ -1,5 +1,5 @@
-PROJECT(CAE_Performance_Data_Monitoring_Tool)
 cmake_minimum_required(VERSION 3.0)
+project(CAE_Performance_Data_Monitoring_Tool)
 
 add_subdirectory(main)
 add_subdirectory(dataprocessing)
