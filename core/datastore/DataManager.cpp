@@ -1,18 +1,21 @@
 #include <map>
 #include <nlohmann/json.hpp>
+#include "ThreadData.h"
+#include <iostream>
 
 using json = nlohmann::json;
 using std::map;
-
-struct ThreadData {};
+using std::cout;
+using std::endl;
 
 class DataManager {
 
-    map<char*, ThreadData> map;
+  map<char*, ThreadData> map;
 
+  public :
     bool addThreadInfo(json object) {
-      // nicht lesen noch nicht implementiert
-      // verpiss dich samuel
+      cout << object << endl;
+      return true;
     }
 
 };

@@ -6,9 +6,10 @@
 
 using json = nlohmann::json;
 
-WebSocketConnector::WebSocketConnector(const DataManager &dataManager) : m_dataManager{std::move(dataManager)}{
+WebSocketConnector::WebSocketConnector(const DataManager &dataManager) :
+m_dataManager{std::move(dataManager)}{
 }
 
 void WebSocketConnector::receiveData(std::string jsonString) {
-    m_dataManager.addThreadInfo(json::parse(jsonString))
+    m_dataManager.addThreadInfo(json::parse(jsonString));
 }

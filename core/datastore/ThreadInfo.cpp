@@ -8,7 +8,10 @@ using std::isnan;
 using std::string;
 
 ThreadInfo::ThreadInfo(long threadId, string name, double freq) :
-        m_threadId{threadId}, m_name{std::move(name)}, m_freq{freq}, m_iterations{0}, m_overruns{0}, m_sumRt{0} {
+        m_threadId{threadId},
+        m_name{std::move(name)},
+        m_freq{freq}, m_iterations{0},
+        m_overruns{0}, m_sumRt{0} {
     if(!(m_freq == 60 && !isnan(m_threadId) && !isinf(m_threadId) && !m_name.empty())) {
         // todo log error and throw exception
     }
