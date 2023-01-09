@@ -1,6 +1,8 @@
 #pragma once
-#include <Minwinbase.h>
+
+#include <chrono>
 #include <string>
+
 #include "Graph.h"
 
 namespace Graph
@@ -11,6 +13,6 @@ namespace Graph
 	private:
 		//m_Datastorage//TODO
 	public:
-		Graph createGraph(std::string threadId, GraphDataType type, SYSTEMTIME startTime, SYSTEMTIME endtime);//TODO
+		Graph createGraph(std::string threadId, GraphDataType type, timePoint startTime, timePoint endtime);//TODO
 	};
 }
