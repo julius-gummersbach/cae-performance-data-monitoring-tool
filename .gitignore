@@ -51,7 +51,3 @@ out/
 modules.xml
 .idea/misc.xml
 *.ipr
-
-#visual studio
-.vs/
-CMakeSettings.json

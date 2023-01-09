@@ -1,6 +1,1 @@
-add_library(dataprocessing 
-	AtomicExpression.cpp
-	ComposedExpression.cpp
-	Graph.cpp
-	GraphCreator.cpp
-	GraphManager.cpp)
+# add_library(dataprocessing <source files here>)
