@@ -28,3 +28,5 @@ private:
 
     ThreadInfo getInfo(const json &object) const;
 };
+
+#endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_H
