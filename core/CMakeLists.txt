@@ -6,9 +6,9 @@ add_subdirectory(dataprocessing)
 add_subdirectory(datastore)
 
 # These directories must not be added to git!
-#DEBUG compile targets
+# DEBUG compile targets
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG build/debug)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG build/debug)
-#RELEASE compile targets
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_ RELEASE build/release)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_ RELEASE build/release)
+# RELEASE compile targets
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE build/release)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE build/release)
