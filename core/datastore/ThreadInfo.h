@@ -29,6 +29,8 @@ public:
                  double avgRt,
                  double sumVs,
                  double sumIs);
+
+    long getThreadId() const;
 };
 
 

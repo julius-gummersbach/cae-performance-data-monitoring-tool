@@ -39,3 +39,7 @@ void ThreadInfo::addData(const string &name,
     }
     m_data.emplace_back(name, isValid, sumRt, maxRt, avgRt, sumVs, sumIs);
 }
+
+long ThreadInfo::getThreadId() const {
+  return this->m_threadId;
+}

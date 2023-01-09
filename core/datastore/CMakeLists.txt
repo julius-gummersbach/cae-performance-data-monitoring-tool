@@ -1,7 +1,14 @@
 # add_library(datastore <source files here>)
 
-add_library(datastore DataManager.cpp ThreadInfo.cpp ThreadData.cpp WebSocketConnector.cpp)
+include_directories(${CMAKE_HOME_DIRECTORY}/../../json-develop/include)
 
-add_library(DataManager.h ThreadData.h ThreadInfo.h WebSocketConnector.h)
+add_library(datastore
+        DataManager.cpp
+        DataManager.h
+        ThreadInfo.cpp
+        ThreadInfo.h
+        ThreadData.cpp
+        ThreadData.h
+        WebSocketConnector.cpp
+        WebSocketConnector.h)
 
-include_directories(../../../json-develop/include)
