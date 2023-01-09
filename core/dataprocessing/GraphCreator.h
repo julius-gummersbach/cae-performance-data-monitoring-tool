@@ -5,8 +5,6 @@
 
 namespace Graph
 {
-	enum GraphDataType {};
-
 	class GraphCreator
 	{
 

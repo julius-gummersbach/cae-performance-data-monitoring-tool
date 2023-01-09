@@ -2,6 +2,8 @@
 //include QLineSeries//TODO
 namespace Graph
 {
+	enum GraphDataType {};
+
 	class Graph
 	{
 		enum GraphDataType {};

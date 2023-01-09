@@ -1,9 +1,11 @@
 #pragma once
 #include <Minwinbase.h>
 
-class Expression
+namespace Graph
 {
-public:
-	Graph getGraph(SYSTEMTIME startTime, SYSTEMTIME endtime);
-};
-
+	class Expression
+	{
+	public:
+		Graph getGraph(SYSTEMTIME startTime, SYSTEMTIME endtime);
+	};
+}
