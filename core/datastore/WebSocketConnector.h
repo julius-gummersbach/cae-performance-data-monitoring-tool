@@ -3,6 +3,7 @@
 
 #include <nlohmann/json.hpp>
 #include <algorithm>
+#include <string>
 #include "DataManager.h"
 
 using json = nlohmann::json;
