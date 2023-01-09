@@ -38,6 +38,9 @@
 # CMake
 cmake-build-*/
 
+# our build directory
+build/*
+
 # File-based project format
 *.iws
 
