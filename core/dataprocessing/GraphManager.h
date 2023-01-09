@@ -1,9 +1,9 @@
 #pragma once
+
 #include <vector>
-//#include <Minwinbase.h>
+
 #include "Graph.h"
 #include "Expression.h"
-//#include QLineSeries//TODO
 
 
 namespace Graph
@@ -13,11 +13,11 @@ namespace Graph
 	private:
 		std::vector<Graph> m_Graphs;
 		std::vector<Expression> m_Expressions;
-		//SYSTEMTIME m_StartTime;
-		//SYSTEMTIME m_Endtime;
+		timePoint m_StartTime;
+		timePoint m_EndTime;
 
 	public:
-		//GraphManager(SYSTEMTIME startTime,SYSTEMTIME endtime);//TODO
+		GraphManager(timePoint startTime, timePoint endtime);//TODO
 		void addGraph(Expression expression);
 		//void move(delta : TimeSpan);//TODO Time
 		//void changeInterval(SYSTEMTIME startTime,SYSTEMTIME endtime);//TODO

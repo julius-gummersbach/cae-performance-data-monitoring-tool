@@ -1,7 +1,10 @@
 #pragma once
-//include QLineSeries//TODO
+
+#include <chrono>
+
 namespace Graph
 {
+	using timePoint = std::chrono::time_point<std::chrono::system_clock, std::chrono::nanoseconds>;
 	enum GraphDataType {};
 
 	class Graph
