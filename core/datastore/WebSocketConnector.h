@@ -3,8 +3,7 @@
 
 #include <nlohmann/json.hpp>
 #include <algorithm>
-#include <string>
-#include "DataManager.cpp"
+#include "DataManager.h"
 
 using json = nlohmann::json;
 
@@ -25,6 +24,6 @@ public:
      *
      * @param jsonString the m_data received as a String
      */
-    void receiveData(std::string jsonString);
+    void receiveData(const std::string &jsonString);
 };
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_WEBSOCKETCONNECTOR_H
