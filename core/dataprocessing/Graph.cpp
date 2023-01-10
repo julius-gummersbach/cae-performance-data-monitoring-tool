@@ -1,31 +1,32 @@
 #include "Graph.h"
 
-
-Graph::Graph(dequeue<double> dataPoints, GraphDataType type)
-{
-	m_GraphDataType = type;
-	m_DataPoints = dataPoints;
-}
-
-GraphDataType Graph::getType()
-{
-	return m_GraphDataType;
-}
-
-void Graph::moveRight(Graph graph)
-{
-	foreach(int i in graph.m_DataPoints)
+namespace Graph {
+	Graph::Graph(std::deque<double>& dataPoints, GraphDataType type)
 	{
-		m_DataPoints.addLast(graph.m_DataPoints);
-		m_DataPoints.removeFirst();
+		m_GraphDataType = type;
+		m_DataPoints = std::move(dataPoints);
 	}
-}
 
-void Graph::moveLeft(Graph graph)
-{
-	foreach(int i in graph.m_DataPoints)
+	GraphDataType Graph::getType()
 	{
-		m_DataPoints.addFirst(graph.m_DataPoints);
-		m_DataPoints.removeLast();
+		return m_GraphDataType;
+	}
+
+	void Graph::moveRight(const Graph& graph)
+	{
+		for(auto& p : graph.m_DataPoints)
+		{
+			m_DataPoints.push_back(p);
+			m_DataPoints.pop_front();
+		}
+	}
+
+	void Graph::moveLeft(const Graph& graph)
+	{
+		for (auto& p : graph.m_DataPoints)
+		{
+			m_DataPoints.push_front(p);
+			m_DataPoints.pop_back();
+		}
 	}
 }

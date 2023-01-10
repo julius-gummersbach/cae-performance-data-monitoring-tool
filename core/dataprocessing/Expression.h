@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "Graph.h"
 
 namespace Graph
@@ -7,6 +9,6 @@ namespace Graph
 	class Expression
 	{
 	public:
-		Graph getGraph(timePoint startTime, timePoint endtime);
+		virtual std::shared_ptr<Graph> getGraph(timePoint startTime, timePoint endtime) = 0;
 	};
 }
