@@ -9,23 +9,20 @@
 
 namespace Graph
 {
-	using std::shared_ptr;
-
 	class GraphManager
 	{
 	private:
 		std::unordered_map<shared_ptr<Expression>, shared_ptr<Graph>> m_Graphs;
 
 		timePoint m_StartTime;
-		timePoint m_EndTime;
+		time_delta m_Duration;
 
 	public:
-		GraphManager(const timePoint& startTime, const timePoint& endtime);//TODO
+		GraphManager(const timePoint& startTime, const time_delta& duration);
+
 		void addGraph(shared_ptr<Expression> expression);
-
-		//void move(delta : TimeSpan);//TODO Time
-		//void changeInterval(SYSTEMTIME startTime,SYSTEMTIME endtime);//TODO
+		void move(time_delta delta);
+		void changeInterval(timePoint startTime, time_delta duration);
 		//QChart getChart();//TODO
-
 	};
 }
