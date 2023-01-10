@@ -1,4 +1,5 @@
 #pragma once
+#include <dequeue>
 //include QLineSeries//TODO
 namespace Graph
 {
@@ -9,13 +10,13 @@ namespace Graph
 		enum GraphDataType {};
 	private:
 		GraphDataType m_GraphDataType;
-		double m_DataPoints[];
+		dequeue<double> m_DataPoints;
 
 	public:
-		Graph(double dataPoints[], GraphDataType type);
+		Graph(dequeue<double> dataPoints, GraphDataType type);
 		GraphDataType getType();
-		void appendRight(Graph graph);
-		void appendLeft(Graph graph);
+		void moveRight(Graph graph);
+		void moveLeft(Graph graph);
 		//GLineSeries getAsQLineSeries();//TODO
 
 	};
