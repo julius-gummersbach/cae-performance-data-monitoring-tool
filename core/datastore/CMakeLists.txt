@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # add_library(datastore <source files here>)
 
 include_directories(${CMAKE_HOME_DIRECTORY}/../../json-develop/include)
