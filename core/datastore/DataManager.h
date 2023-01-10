@@ -14,19 +14,22 @@ using std::map;
 using std::vector;
 using std::cout;
 using std::endl;
-
-#endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_H
+using std::pair;
 
 class DataManager {
 public:
     void addThreadInfo(json threadInfo);
 
+    [[nodiscard]] static const pair<bool, ThreadInfo>& getDataFromId(long id) ;
+
+    const pair<bool,ThreadInfo>& operator[](long id) const;
+
 private:
-    map<long, vector<ThreadInfo>> m_threadInfos;
+    map<long, ThreadInfo> m_threadInfos;
 
-    void addThreadData(ThreadInfo &info, const json &j) const;
+    static void addThreadData(ThreadInfo &info, const json &j) ;
 
-    ThreadInfo getInfo(const json &object) const;
+    [[nodiscard]] static ThreadInfo getInfo(const json &object) ;
 };
 
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_H
