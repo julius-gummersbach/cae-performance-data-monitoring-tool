@@ -10,14 +10,14 @@ namespace Graph
 	class Graph
 	{
 	private:
-		GraphDataType m_graphDataType;
-		std::deque<double> m_dataPoints;
+		GraphDataType m_graphDataType;		// the graph type of the this object
+		std::deque<double> m_dataPoints;	// the points that make up the graph
 
 	public:
 		/**
 		* Creates a graph wrapping the points given.
 		* 
-		* @param dataPoints the points the graph is supposed to contain
+		* @param dataPoints the points that make up the graph.
 		* @param type the type of graph being created
 		*/
 		Graph(std::deque<double>& dataPoints,const GraphDataType& type);

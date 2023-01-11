@@ -12,10 +12,10 @@ namespace Graph
 	class GraphManager
 	{
 	private:
-		std::unordered_map<shared_ptr<Expression>, shared_ptr<Graph>> m_graphs;
+		std::unordered_map<shared_ptr<Expression>, shared_ptr<Graph>> m_graphs;	// all graphs this object manages
 
-		time_point m_startTime;
-		time_delta m_duration;
+		time_point m_startTime;	// a GraphManager manages graphs over a fixed period in time. This is the start of that period
+		time_delta m_duration;	// a GraphManager manages graphs over a fixed period in time. This is the duration of that period
 
 	public:
 		/**

@@ -7,9 +7,9 @@ namespace Graph
 {
 	class ComposedExpression
 	{
-		shared_ptr<Expression> m_leftExpr;
-		shared_ptr<Expression> m_rightExpr;
-		shared_ptr<GraphOperation> m_operation;
+		shared_ptr<Expression> m_leftExpr;		// left hand side of the calculation
+		shared_ptr<Expression> m_rightExpr;		// right hand side of the calculation
+		shared_ptr<GraphOperation> m_operation;	// the operation combining the two expressions
 
 	public:
 		/**
