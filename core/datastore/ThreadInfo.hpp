@@ -1,10 +1,10 @@
-#ifndef CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADINFO_H
-#define CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADINFO_H
+#ifndef CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADINFO_HPP
+#define CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADINFO_HPP
 
 
 #include <string>
 #include <list>
-#include "ThreadData.h"
+#include "ThreadData.hpp"
 
 using std::string;
 
@@ -13,7 +13,7 @@ using std::string;
  */
 class ThreadInfo {
 private:
-    long m_threadId;
+    string m_threadId;
     string m_name;
     double m_freq;
     int m_iterations;
@@ -21,7 +21,7 @@ private:
     double m_sumRt;
     std::list<ThreadData> m_data;
 public:
-    ThreadInfo(long threadId, string name, double freq);
+    ThreadInfo(string threadId, string name, double freq);
 
     void addData(const string& name,
                  double sumRt,
@@ -30,8 +30,9 @@ public:
                  double sumVs,
                  double sumIs);
 
-    long getThreadId() const;
+    [[nodiscard]] string getThreadId() const;
+
+    [[nodiscard]] string getName() const;
 };
 
-
-#endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADINFO_H
+#endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADINFO_HPP

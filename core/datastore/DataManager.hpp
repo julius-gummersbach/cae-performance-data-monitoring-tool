@@ -1,16 +1,16 @@
-#ifndef CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_H
-#define CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_H
+#ifndef CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_HPP
+#define CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_HPP
 
 #include "nlohmann/json.hpp"
-#include "ThreadInfo.h"
+#include "ThreadInfo.hpp"
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <vector>
 #include <iostream>
 
 using json = nlohmann::json;
 using std::string;
-using std::map;
+using std::unordered_map;
 using std::vector;
 using std::cout;
 using std::endl;
@@ -29,7 +29,7 @@ public:
      *
      * @param threadInfo the json library coming from the websocket connector with the ThreadInfo objects
      */
-    void addThreadInfo(json threadInfo);
+    void addThreadInfo(const json& threadInfo);
 
     /**
      * overloading of the []-operator as a way to retrieve the ThreadInfo objects from the map via a given
@@ -40,14 +40,14 @@ public:
      * successful and a ThreadInfo object with the given id was found and returned or unsuccessful and a
      * dummy ThreadInfo object is created and returned with null-values as attributes
      */
-    const pair<bool,ThreadInfo>& operator[](long id) const;
+    const pair<bool,ThreadInfo>& operator[](const string& id) const;
 
 private:
 
     /**
      * map to assign a ThreadInfo object to a long value to store the data from the websocket connector
      */
-    map<long, ThreadInfo> m_threadInfos;
+    unordered_map<string, ThreadInfo> m_threadInfos;
 
     /**
      * method to be called by the overloaded []-operator to retrieve data from the map
@@ -55,7 +55,7 @@ private:
      * @return boolean-ThreadInfo pair in which the first parameter indicates if the process was successful
      * and the second is the data object from the map or a dummy object
      */
-    [[nodiscard]] static const pair<bool, ThreadInfo>& getDataFromId(long id);
+    [[nodiscard]] static const pair<bool, ThreadInfo>& getDataFromId(const string& id);
 
     /**
      * method to get the ThreadData parameters from a json and add it to the given ThreadInfo
@@ -72,4 +72,4 @@ private:
     [[nodiscard]] static ThreadInfo getInfo(const json &object) ;
 };
 
-#endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_H
+#endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_HPP

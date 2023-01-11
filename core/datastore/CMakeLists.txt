@@ -2,11 +2,11 @@ include_directories(${CMAKE_HOME_DIRECTORY}/../../json-develop/include)
 
 add_library(datastore
         DataManager.cpp
-        DataManager.h
+        DataManager.hpp
         ThreadInfo.cpp
-        ThreadInfo.h
+        ThreadInfo.hpp
         ThreadData.cpp
-        ThreadData.h
+        ThreadData.hpp
         WebSocketConnector.cpp
-        WebSocketConnector.h)
+        WebSocketConnector.hpp)
 

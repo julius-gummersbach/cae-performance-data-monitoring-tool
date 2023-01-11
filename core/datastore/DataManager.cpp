@@ -1,6 +1,6 @@
-#include "DataManager.h"
+#include "DataManager.hpp"
 
-void DataManager::addThreadInfo(json object) {
+void DataManager::addThreadInfo(const json &object) {
   if (m_threadInfos.find(object["tid"]) == m_threadInfos.end()) {
     ThreadInfo info = getInfo(object);
     vector<json> data = object["data"];
@@ -9,19 +9,23 @@ void DataManager::addThreadInfo(json object) {
     }
     m_threadInfos.insert_or_assign(info.getThreadId(), info);
   } else {
-    vector<json> data = object["data"];
-    ThreadInfo &pInfo = m_threadInfos.at(object["tid"]);
-    for (const json &j: data) {
-      addThreadData(pInfo, j);
+    if (!m_threadInfos.at(object[tid]).getName().equal(object["name"])) {
+      vector<json> data = object["data"];
+      ThreadInfo &pInfo = m_threadInfos.at(object["tid"]);
+      for (const json &j: data) {
+        addThreadData(pInfo, j);
+      }
+    } else {
+      // TODO: warning here that id was not unique
     }
   }
 }
 
-const pair<bool, ThreadInfo> &DataManager::getDataFromId(long id) {
+const pair<bool, ThreadInfo> &DataManager::getDataFromId(const string &id) {
 
   pair<bool, ThreadInfo> p{true,
-                           ThreadInfo{rand() % 100,
-                                      "foo",
+                           ThreadInfo{"foo",
+                                      "bar",
                                       static_cast<double>(rand() % 100)}};
   return p;
 
@@ -37,31 +41,29 @@ const pair<bool, ThreadInfo> &DataManager::getDataFromId(long id) {
   */
 }
 
-const pair<bool,ThreadInfo>& DataManager::operator[](long id) const {
+const pair<bool, ThreadInfo> &DataManager::operator[](const string &id) const {
   return getDataFromId(id);
 }
 
 void DataManager::addThreadData(ThreadInfo &info, const json &j) {
-  string name = j.at("name");
-  double sum_rt = j.at("sum_rt");
-  double max_rt = j.at("max_rt");
-  double avg_rt = j.at("avg_rt");
-  double sum_vs = j.at("sum_vs");
-  double sum_is = j.at("sum_is");
-  info.addData(name, sum_rt, max_rt, avg_rt, sum_vs, sum_is);
+  string name = j["name"];
+  vector<double> sum_rt = j["sum_rt"];
+  vector<double> max_rt = j["max_rt"];
+  vector<double> avg_rt = j["avg_rt"];
+  double sum_vs = j["sum_vs"];
+  double sum_is = j["sum_is"];
+  info.addData(name, sum_rt.front(), max_rt.front(), avg_rt.front(), sum_vs, sum_is);
 }
 
 ThreadInfo DataManager::getInfo(const json &object) {
-  long tid = object.at("tid");
-  string name = object.at("name");
-  double freq = object.at("freq");
+  string tid = object["tid"];
+  string name = object["name"];
+  double freq = object["freq"];
 
   // TODO: determine what to do with these parameters
-  /*
-  int iterations = object.at("iterations");
-  int overruns = object.at("overruns");
-  double sum_rt = object.at("sum_rt");
-  */
+  // int iterations = object["iterations");
+  // int overruns = object["overruns");
+  // vector<double> sum_rt = object["sum_rt");
 
   ThreadInfo info{tid, name, freq};
   return info;

@@ -1,4 +1,4 @@
-#include "ThreadInfo.h"
+#include "ThreadInfo.hpp"
 
 #include <utility>
 #include <cmath>
@@ -7,12 +7,12 @@ using std::isinf;
 using std::isnan;
 using std::string;
 
-ThreadInfo::ThreadInfo(long threadId, string name, double freq) :
+ThreadInfo::ThreadInfo(string threadId, string name, double freq) :
         m_threadId{threadId},
         m_name{std::move(name)},
         m_freq{freq}, m_iterations{0},
         m_overruns{0}, m_sumRt{0} {
-    if(!(m_freq == 60 && !isnan(m_threadId) && !isinf(m_threadId) && !m_name.empty())) {
+    if(!(m_freq == 60 && !m_name.empty())) {
         // todo log error and throw exception
     }
 }
@@ -40,6 +40,10 @@ void ThreadInfo::addData(const string &name,
     m_data.emplace_back(name, isValid, sumRt, maxRt, avgRt, sumVs, sumIs);
 }
 
-long ThreadInfo::getThreadId() const {
+string ThreadInfo::getThreadId() const {
   return this->m_threadId;
+}
+
+string ThreadInfo::getName() const {
+  return this->m_name;
 }

@@ -1,10 +1,10 @@
-#ifndef CAE_PERFORMANCE_DATA_MONITORING_TOOL_WEBSOCKETCONNECTOR_H
-#define CAE_PERFORMANCE_DATA_MONITORING_TOOL_WEBSOCKETCONNECTOR_H
+#ifndef CAE_PERFORMANCE_DATA_MONITORING_TOOL_WEBSOCKETCONNECTOR_HPP
+#define CAE_PERFORMANCE_DATA_MONITORING_TOOL_WEBSOCKETCONNECTOR_HPP
 
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <string>
-#include "DataManager.h"
+#include "DataManager.hpp"
 
 using json = nlohmann::json;
 
@@ -27,4 +27,4 @@ public:
      */
     void receiveData(const std::string &jsonString);
 };
-#endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_WEBSOCKETCONNECTOR_H
+#endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_WEBSOCKETCONNECTOR_HPP
