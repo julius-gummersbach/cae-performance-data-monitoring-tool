@@ -13,6 +13,14 @@ namespace Graph
 	private:
 		//m_Datastorage//TODO
 	public:
-		Graph createGraph(std::string threadId, GraphDataType type, timePoint startTime, timePoint endtime);
+		/**
+		* Gets the Data from the Datastorage and creates a Graph
+		* 
+		* @param threadId to identify a Thread
+		* @param type of the Data stored
+		* @param startTime inclusive, the first point in time to be included
+		* @param endtime exclusive, the first point in time to not be included
+		*/
+		Graph createGraph(const std::string& threadId,const GraphDataType& type,const timePoint& startTime, const time_delta& duration);
 	};
 }

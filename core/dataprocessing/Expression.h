@@ -6,7 +6,7 @@
 
 namespace Graph
 {
-	class Expression
+	virtual class Expression
 	{
 	public:
 		/// <summary>
@@ -15,6 +15,6 @@ namespace Graph
 		/// <param name="startTime">inclusive, the first point in time to be included</param>
 		/// <param name="endtime">exclusive, the first point in time to not be included</param>
 		/// <returns>A shared Pointer to the generated Graph</returns>
-		virtual std::shared_ptr<Graph> getGraph(timePoint startTime, timePoint endtime) = 0;
+		virtual std::shared_ptr<Graph> getGraph(const timePoint& startTime, const time_delta& duration) = 0;
 	};
 }

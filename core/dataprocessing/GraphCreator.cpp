@@ -2,11 +2,10 @@
 
 namespace Graph
 {
-	Graph GraphCreator::createGraph(std::string threadId, GraphDataType type, timePoint startTime, timePoint endtime)
+	Graph GraphCreator::createGraph(const std::string& threadId,const GraphDataType& type,const timePoint& startTime,const const time_delta& duration)
 	{
-
-		deque<double> graphData;
+		std::deque<double> graphData{};
 		//m_DataStorage.getData();
-		return new Graph(graphData, type);
+		return Graph(graphData, type);
 	}
 }

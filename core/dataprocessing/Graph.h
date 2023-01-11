@@ -15,7 +15,7 @@ namespace Graph
 		std::deque<double> m_DataPoints;
 
 	public:
-		Graph(std::deque<double>& dataPoints, GraphDataType type);
+		Graph(std::deque<double>& dataPoints,const GraphDataType& type);
 		GraphDataType getType();
 		std::deque<double> getDataPoints();
 		void moveRight(const Graph& graph);

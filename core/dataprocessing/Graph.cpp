@@ -1,7 +1,7 @@
 #include "Graph.h"
 
 namespace Graph {
-	Graph::Graph(std::deque<double>& dataPoints, GraphDataType type)
+	Graph::Graph(std::deque<double>& dataPoints,const GraphDataType& type)
 	{
 		m_GraphDataType = type;
 		m_DataPoints = std::move(dataPoints);
