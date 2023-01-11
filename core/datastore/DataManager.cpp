@@ -9,7 +9,7 @@ void DataManager::addThreadInfo(const json &object) {
     }
     m_threadInfos.insert_or_assign(info.getThreadId(), info);
   } else {
-    if (!m_threadInfos.at(object[tid]).getName().equal(object["name"])) {
+    if (m_threadInfos.at(object[tid]).getName().equal(object["name"])) {
       vector<json> data = object["data"];
       ThreadInfo &pInfo = m_threadInfos.at(object["tid"]);
       for (const json &j: data) {
