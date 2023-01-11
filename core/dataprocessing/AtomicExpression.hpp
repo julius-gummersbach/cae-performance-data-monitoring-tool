@@ -14,7 +14,7 @@ namespace Graph
 
 	public:
 		/**
-		* Creates an Atomic Expression representin´g a single series of data
+		* Creates an Atomic Expression representing a single series of data
 		*
 		* @param threadId the ID identifying the thread represented
 		* @param type the attribute of the Thread beeing represented
@@ -23,10 +23,10 @@ namespace Graph
 		AtomicExpression(string threadID, GraphDataType type, GraphCreator creator);
 
 		/**
-		* Differs from the Base calss as it creates the Graph from the Data store using the defined GraphCreator
+		* Differs from the Base class as it creates the Graph from the Data store using the defined GraphCreator
 		*
 		* @param startTime inclusive, the first point in time to be included in the graph
-		* @param duration exclusive, the first point in time to not be included
+		* @param duration the amount of time the graph covers, startTime + duration is the first point after the calculated Graph.
 		* @return the created Graph
 		*/
 		shared_ptr<Graph> getGraph(timePoint startTime, time_delta duration);

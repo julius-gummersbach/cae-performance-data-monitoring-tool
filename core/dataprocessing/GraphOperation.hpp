@@ -5,7 +5,7 @@ namespace Graph
 {
 	class GraphOperation
 	{
-	private:
+	public:
 		/**
 		* Combines two Graphs mathematically
 		* 
@@ -13,7 +13,8 @@ namespace Graph
 		* @param secondGraph
 		* @return the combined graph
 		*/
-		virtual Graph evaluate(const Graph& firstGraph,const Graph secondGraph) = 0;
+		virtual Graph evaluate(const Graph& firstGraph,const Graph& secondGraph) = 0;
+
 	private:
 		/**
 		* Checks if the two types are compatible
