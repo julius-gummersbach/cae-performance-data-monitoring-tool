@@ -41,7 +41,6 @@ void ThreadInfo::addData(const string &name,
                 // check for logical content
                 && sumRt >= maxRt && maxRt >= avgRt * 1000; // avgRt is in ms while maxRt is in s
     if (isValid) {
-        m_iterations++; // todo is this correct?
         // todo update overruns
         m_sumRt += sumRt;
     }
