@@ -14,6 +14,6 @@ namespace Graph
 
 	public:
 		AtomicExpression(string threadID, GraphDataType type, GraphCreator creator);
-		shared_ptr<Graph> getGraph(timePoint startTime, timePoint endtime);
+		shared_ptr<Graph> getGraph(timePoint startTime, time_delta endtime);
 	};
 }

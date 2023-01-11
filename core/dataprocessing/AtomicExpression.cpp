@@ -9,7 +9,7 @@ namespace Graph
 		m_Creator{ creator }
 	{}
 
-	shared_ptr<Graph> AtomicExpression::getGraph(timePoint start, timePoint stop)
+	shared_ptr<Graph> AtomicExpression::getGraph(timePoint start, time_delta stop)
 	{
 		return m_Creator.createGraph(m_ThreadID, m_type, start, stop);
 	}

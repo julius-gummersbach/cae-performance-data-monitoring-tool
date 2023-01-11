@@ -13,6 +13,6 @@ namespace Graph
 
 	public:
 		ComposedExpression(shared_ptr<Expression> lhs, shared_ptr<Expression> rhs, shared_ptr<GraphOperation> operation);
-		shared_ptr<Graph> getGraph(timePoint startTime, timePoint endtime);
+		shared_ptr<Graph> getGraph(timePoint startTime, time_delta endtime);
 	};
 }
