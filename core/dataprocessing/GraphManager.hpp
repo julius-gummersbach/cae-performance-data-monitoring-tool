@@ -25,21 +25,21 @@ namespace Graph
 		GraphManager(const time_point& startTime, const time_delta& duration);
 
 		/**
-		* Adds a Graph to the Graphlist.
+		* Adds a graph to the graphlist.
 		*
-		* @param expression which contains all information for the Graph
+		* @param expression which contains all information for the graph
 		*/
 		void addGraph(const shared_ptr<Expression>& expression);
 
 		/**
-		* Changes the start of the time interval for all Graphs.
+		* Changes the start of the time interval for all graphs.
 		*
 		* @param delta to move the time interval by
 		*/
 		void move(const time_delta& delta);
 
 		/**
-		* Changes the start and the duration of the time interval for all Graphs.
+		* Changes the start and the duration of the time interval for all graphs.
 		*
 		* @param startTime
 		* @param duration

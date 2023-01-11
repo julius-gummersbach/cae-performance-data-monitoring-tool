@@ -18,14 +18,14 @@ namespace Graph
 		* Creates a graph wrapping the points given.
 		* 
 		* @param dataPoints the points the graph is supposed to contain
-		* @param type the type of Graph being created
+		* @param type the type of graph being created
 		*/
 		Graph(std::deque<double>& dataPoints,const GraphDataType& type);
 
 		/**
-		* returns the type of this Graph
+		* returns the type of this graph
 		* 
-		* @return GraphDataType from the Graph
+		* @return GraphDataType from the graph
 		*/
 		const GraphDataType getType() const;
 
@@ -37,18 +37,18 @@ namespace Graph
 		const std::deque<double>& getDataPoints() const;
 
 		/**
-		* Appands DataPoints from a Graph to the End and removes dataPoints at the Front.
+		* Appends data points from a graph to the end and removes data points at the front.
 		* Therefore moves forward in time.
 		*
-		* @param graph to appand to the Right
+		* @param graph to appand to the right
 		*/
 		void moveRight(const Graph& graph);
 
 		/**
-		* Appands DataPoints from a Graph to the Front and removes dataPoints at the End.
+		* Appands data points from a graph to the front and removes data points at the end.
 		* Therefore moves forward in time.
 		*
-		* @param graph to appand to the Left
+		* @param graph to appand to the left
 		*/
 		void moveLeft(const Graph& graph);
 		//GLineSeries getAsQLineSeries();//TODO
