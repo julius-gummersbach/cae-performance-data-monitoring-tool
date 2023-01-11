@@ -14,7 +14,7 @@ namespace Graph
 	private:
 		std::unordered_map<shared_ptr<Expression>, shared_ptr<Graph>> m_Graphs;
 
-		timePoint m_StartTime;
+		time_point m_StartTime;
 		time_delta m_Duration;
 
 	public:
@@ -22,7 +22,7 @@ namespace Graph
 		* @param startTime inclusive, the first point in time to be included
 		* @param duration for the time interval
 		*/
-		GraphManager(const timePoint& startTime, const time_delta& duration);
+		GraphManager(const time_point& startTime, const time_delta& duration);
 
 		/**
 		* Adds a Graph to the Graphlist.
@@ -44,7 +44,7 @@ namespace Graph
 		* @param startTime
 		* @param duration
 		*/
-		void changeInterval(const timePoint& startTime, const time_delta& duration);
+		void changeInterval(const time_point& startTime, const time_delta& duration);
 		//QChart getChart();
 	};
 }

@@ -29,6 +29,6 @@ namespace Graph
 		* @param duration the amount of time the graph covers, startTime + duration is the first point after the calculated Graph.
 		* @return the calculated Graph
 		*/
-		shared_ptr<Graph> getGraph(timePoint startTime, time_delta duration) const;
+		shared_ptr<Graph> getGraph(time_point startTime, time_delta duration) const;
 	};
 }

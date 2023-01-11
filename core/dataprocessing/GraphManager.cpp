@@ -8,7 +8,7 @@ namespace Graph
 {
 
 	// TODO
-	GraphManager::GraphManager(const timePoint& startTime, const time_delta& duration) : 
+	GraphManager::GraphManager(const time_point& startTime, const time_delta& duration) : 
 		m_StartTime{ startTime },
 		m_Duration{ duration },
 		m_Graphs{}
@@ -22,14 +22,14 @@ namespace Graph
 	}
 
 	void GraphManager::move(const time_delta& delta) {
-		timePoint intervalStart{ m_StartTime + m_Duration };
+		time_point intervalStart{ m_StartTime + m_Duration };
 
 		for (auto& elem : m_Graphs) {
 			auto graph = elem.first->getGraph(intervalStart, delta);
 			elem.second->moveRight(*graph);
 		}
 	}
-	void GraphManager::changeInterval(const timePoint& start, const time_delta& duration) {
+	void GraphManager::changeInterval(const time_point& start, const time_delta& duration) {
 		m_StartTime = start;
 		m_Duration = duration;
 
