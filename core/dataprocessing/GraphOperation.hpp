@@ -3,10 +3,10 @@
 
 namespace Graph
 {
-	virtual class GraphOperation
+	class GraphOperation
 	{
 	public:
-		shared_ptr<Graph> evaluate(shared_ptr<Graph> graph1, shared_ptr<Graph> graph2);
-		//bool checkTypeCompability(GraphDataType graph1, GraphDataType graph2);//TODO
+		virtual shared_ptr<Graph> evaluate(shared_ptr<Graph> graph1, shared_ptr<Graph> graph2) = 0;
+		virtual bool checkTypeCompability(GraphDataType graph1, GraphDataType graph2) = 0;//TODO
 	};
 }
