@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "Graph.hpp"
-#include "Expression.hpp"
+#include "Expressions/Expression.hpp"
 
 
 namespace Graph
@@ -12,39 +12,39 @@ namespace Graph
 	class GraphManager
 	{
 	private:
-		std::unordered_map<shared_ptr<Expression>, shared_ptr<Graph>> m_Graphs;
+		std::unordered_map<shared_ptr<Expression>, shared_ptr<Graph>> m_graphs;	// all graphs this object manages
 
-		timePoint m_StartTime;
-		time_delta m_Duration;
+		time_point m_startTime;	// a GraphManager manages graphs over a fixed period in time. This is the start of that period
+		time_delta m_duration;	// a GraphManager manages graphs over a fixed period in time. This is the duration of that period
 
 	public:
 		/**
 		* @param startTime inclusive, the first point in time to be included
 		* @param duration for the time interval
 		*/
-		GraphManager(const timePoint& startTime, const time_delta& duration);
+		GraphManager(const time_point& startTime, const time_delta& duration);
 
 		/**
-		* Adds a Graph to the Graphlist.
+		* Adds a graph to the graphlist.
 		*
-		* @param expression which contains all information for the Graph
+		* @param expression which contains all information for the graph
 		*/
 		void addGraph(const shared_ptr<Expression>& expression);
 
 		/**
-		* Changes the start of the time interval for all Graphs.
+		* Changes the start of the time interval for all graphs.
 		*
 		* @param delta to move the time interval by
 		*/
 		void move(const time_delta& delta);
 
 		/**
-		* Changes the start and the duration of the time interval for all Graphs.
+		* Changes the start and the duration of the time interval for all graphs.
 		*
 		* @param startTime
 		* @param duration
 		*/
-		void changeInterval(const timePoint& startTime, const time_delta& duration);
+		void changeInterval(const time_point& startTime, const time_delta& duration);
 		//QChart getChart();
 	};
 }

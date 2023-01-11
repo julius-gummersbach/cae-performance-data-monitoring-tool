@@ -10,17 +10,17 @@ namespace Graph
 	class GraphCreator
 	{
 	private:
-		//m_Datastorage//TODO
+		//m_datastorage//TODO
 	public:
 		/**
-		* Gets the Data from the Datastorage and creates a Graph
+		* Gets the data from the datastorage and creates a graph
 		* 
-		* @param threadId to identify a Thread
-		* @param type of the Data stored
+		* @param threadId to identify a thread
+		* @param type of the data stored
 		* @param startTime inclusive, the first point in time to be included
 		* @param endtime exclusive, the first point in time to not be included
-		* @return created Graph
+		* @return created graph
 		*/
-		Graph createGraph(const std::string& threadId,const GraphDataType& type,const timePoint& startTime, const time_delta& duration);
+		Graph createGraph(const std::string& threadId,const GraphDataType& type,const time_point& startTime, const time_delta& duration) const;
 	};
 }

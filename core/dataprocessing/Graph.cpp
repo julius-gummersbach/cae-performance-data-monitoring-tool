@@ -4,35 +4,35 @@ namespace Graph {
 
 	Graph::Graph(std::deque<double>& dataPoints, const GraphDataType& type)
 	{
-		m_GraphDataType = type;
-		m_DataPoints = std::move(dataPoints);
+		m_graphDataType = type;
+		m_dataPoints = std::move(dataPoints);
 	}
 
-	GraphDataType Graph::getType()
+	const GraphDataType Graph::getType() const
 	{
-		return m_GraphDataType;
+		return m_graphDataType;
 	}
 
-	std::deque<double> Graph::getDataPoints()
+	const std::deque<double>& Graph::getDataPoints() const
 	{
-		return m_DataPoints;
+		return m_dataPoints;
 	}
 
 	void Graph::moveRight(const Graph& graph)
 	{
-		for (auto& p : graph.m_DataPoints)
+		for (auto& p : graph.m_dataPoints)
 		{
-			m_DataPoints.push_back(p);
-			m_DataPoints.pop_front();
+			m_dataPoints.push_back(p);
+			m_dataPoints.pop_front();
 		}
 	}
 
 	void Graph::moveLeft(const Graph& graph)
 	{
-		for (auto& p : graph.m_DataPoints)
+		for (auto& p : graph.m_dataPoints)
 		{
-			m_DataPoints.push_front(p);
-			m_DataPoints.pop_back();
+			m_dataPoints.push_front(p);
+			m_dataPoints.pop_back();
 		}
 	}
 }
