@@ -3,10 +3,25 @@
 
 namespace Graph
 {
-	virtual class GraphOperation
+	class GraphOperation
 	{
-	public:
-		shared_ptr<Graph> evaluate(shared_ptr<Graph> graph1, shared_ptr<Graph> graph2);
-		//bool checkTypeCompability(GraphDataType graph1, GraphDataType graph2);//TODO
+	private:
+		/**
+		* Combines two Graphs mathematically
+		* 
+		* @param firstGraph 
+		* @param secondGraph
+		* @return the combined graph
+		*/
+		virtual Graph evaluate(const Graph& firstGraph,const Graph secondGraph) = 0;
+	private:
+		/**
+		* Checks if the two types are compatible
+		*
+		* @param firstGraphDataType
+		* @param secondGraphDataType
+		* @return whether or not the types are compatible
+		*/
+		virtual bool checkTypeCompatibility(const GraphDataType& firstGraphDataType, const GraphDataType& secondGraphDataType) = 0;
 	};
 }
