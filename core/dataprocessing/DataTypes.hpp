@@ -1,7 +1,7 @@
 #pragma once
 
 /* 
-* This File is supposed to contain all type definitions that are used internally.
+* This file contains all type definitions that are used internally.
 * Classes and structs are an exception to this.
 */
 

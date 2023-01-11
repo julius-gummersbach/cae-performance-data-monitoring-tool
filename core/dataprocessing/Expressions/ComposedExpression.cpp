@@ -8,10 +8,10 @@ namespace Graph {
 	{}
 
 
-	shared_ptr<Graph> ComposedExpression::getGraph(time_point strat, time_delta duration) const 
+	shared_ptr<Graph> ComposedExpression::getGraph(time_point start, time_delta duration) const 
 	{
-		auto lhs = m_leftExpr->getGraph(strat, duration);
-		auto rhs = m_rightExpr->getGraph(strat, duration);
+		auto lhs = m_leftExpr->getGraph(start, duration);
+		auto rhs = m_rightExpr->getGraph(start, duration);
 		return std::make_shared<Graph>(m_operation->evaluate(*lhs, *rhs));
 	}
 }
