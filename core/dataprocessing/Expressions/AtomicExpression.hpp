@@ -8,9 +8,9 @@ namespace Graph
 	class AtomicExpression
 	{
 	private:
-		string m_ThreadID;
+		string m_threadID;
 		GraphDataType m_type;
-		GraphCreator m_Creator;
+		GraphCreator m_creator;
 
 	public:
 		/**

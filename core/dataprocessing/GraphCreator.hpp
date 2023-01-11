@@ -10,7 +10,7 @@ namespace Graph
 	class GraphCreator
 	{
 	private:
-		//m_Datastorage//TODO
+		//m_datastorage//TODO
 	public:
 		/**
 		* Gets the Data from the Datastorage and creates a Graph

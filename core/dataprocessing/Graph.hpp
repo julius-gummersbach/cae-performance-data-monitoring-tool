@@ -10,8 +10,8 @@ namespace Graph
 	class Graph
 	{
 	private:
-		GraphDataType m_GraphDataType;
-		std::deque<double> m_DataPoints;
+		GraphDataType m_graphDataType;
+		std::deque<double> m_dataPoints;
 
 	public:
 		/**
