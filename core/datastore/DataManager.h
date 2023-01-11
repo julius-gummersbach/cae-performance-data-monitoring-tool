@@ -16,19 +16,58 @@ using std::cout;
 using std::endl;
 using std::pair;
 
+/**
+ *
+ */
 class DataManager {
+
 public:
+
+    /**
+     * method to get new incoming date from a json library and store it in the map for later use
+     *
+     * @param threadInfo the json library coming from the websocket connector with the ThreadInfo objects
+     */
     void addThreadInfo(json threadInfo);
 
-    [[nodiscard]] static const pair<bool, ThreadInfo>& getDataFromId(long id) ;
-
+    /**
+     * overloading of the []-operator as a way to retrieve the ThreadInfo objects from the map via a given
+     * id
+     *
+     * @param id id of the ThreadInfo object to retrieve
+     * @return a boolean-ThreadInfo pair in which the first boolean value indicates if the request was
+     * successful and a ThreadInfo object with the given id was found and returned or unsuccessful and a
+     * dummy ThreadInfo object is created and returned with null-values as attributes
+     */
     const pair<bool,ThreadInfo>& operator[](long id) const;
 
 private:
+
+    /**
+     * map to assign a ThreadInfo object to a long value to store the data from the websocket connector
+     */
     map<long, ThreadInfo> m_threadInfos;
 
+    /**
+     * method to be called by the overloaded []-operator to retrieve data from the map
+     * @param id id of the data to be retrieved
+     * @return boolean-ThreadInfo pair in which the first parameter indicates if the process was successful
+     * and the second is the data object from the map or a dummy object
+     */
+    [[nodiscard]] static const pair<bool, ThreadInfo>& getDataFromId(long id);
+
+    /**
+     * method to get the ThreadData parameters from a json and add it to the given ThreadInfo
+     * @param info ThreadInfo object to add the additional data to
+     * @param j json representation of the data of the ThreadData object
+     */
     static void addThreadData(ThreadInfo &info, const json &j) ;
 
+    /**
+     * method to retrieve data from the json representation of a ThreadInfo object
+     * @param object json representation of the ThreadInfo
+     * @return ThreadInfo object with the given data from the json library
+     */
     [[nodiscard]] static ThreadInfo getInfo(const json &object) ;
 };
 
