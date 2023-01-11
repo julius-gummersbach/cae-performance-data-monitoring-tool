@@ -4,4 +4,4 @@ add_library(dataprocessing
 	Operations/GraphAddition.cpp
 	Graph.cpp
 	GraphCreator.cpp
-	GraphManager.cpp)
+	GraphManager.cpp "Operations/GraphDivision.cpp")

@@ -1,13 +1,12 @@
 #pragma once
+#include "GraphOperation.hpp"
 #include <stdexcept>
 #include <queue>
-
-#include "GraphOperation.hpp"
 
 
 namespace Graph
 {
-	class GraphAddition:GraphOperation
+	class GraphDivision:GraphOperation
 	{
 	public:
 		/**
