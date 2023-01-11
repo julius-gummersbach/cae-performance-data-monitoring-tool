@@ -17,7 +17,8 @@ using std::endl;
 using std::pair;
 
 /**
- *
+ * class to store all the ThreadInfos in a map sorted by their id given to it via a json object containing
+ * the information from the websocket connector
  */
 class DataManager {
 
