@@ -1,6 +1,7 @@
 #pragma once
 
 #include <deque>
+
 #include "DataTypes.hpp"
 
 //include QLineSeries//TODO

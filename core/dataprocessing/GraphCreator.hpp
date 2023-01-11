@@ -9,7 +9,6 @@ namespace Graph
 {
 	class GraphCreator
 	{
-
 	private:
 		//m_Datastorage//TODO
 	public:

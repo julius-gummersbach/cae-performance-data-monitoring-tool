@@ -9,8 +9,9 @@ namespace Graph
 
 	// TODO
 	GraphManager::GraphManager(const timePoint& startTime, const time_delta& duration) : 
-		m_StartTime{ startTime }, 
-		m_Duration{ duration } 
+		m_StartTime{ startTime },
+		m_Duration{ duration },
+		m_Graphs{}
 	{ }
 
 	void GraphManager::addGraph(const shared_ptr<Expression>& expression)

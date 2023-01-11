@@ -6,7 +6,7 @@
 
 namespace Graph
 {
-	virtual class Expression
+	class Expression
 	{
 	public:
 		/**
