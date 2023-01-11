@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Expression.hpp"
-#include "GraphCreator.hpp"
+#include "../GraphCreator.hpp"
 
 namespace Graph
 {
