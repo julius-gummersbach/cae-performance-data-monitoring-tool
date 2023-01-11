@@ -12,3 +12,4 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG build/debug)
 # RELEASE compile targets
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE build/release)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE build/release)
+#include_directories(../../websocketpp)
