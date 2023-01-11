@@ -8,17 +8,15 @@ using std::isinf;
 using std::isnan;
 using std::string;
 
-ThreadInfo::ThreadInfo(long threadId, string name, double freq) :
+ThreadInfo::ThreadInfo(string threadId, string name, double freq) :
         m_threadId{threadId}, m_name{std::move(name)}, m_freq{freq}, m_iterations{0}, m_overruns{0}, m_sumRt{0} {
     // if parameters are invalid we throw an exception that should be caught by the GUI that should prompt the user for new input
     if (!(m_freq > 0 && !isinf(m_freq) && !isnan(m_freq))) {
         throw std::invalid_argument("ThreadInfo instance could not be created: invalid frequency: " + std::to_string(m_freq));
     }
-    if (isnan(m_threadId)) {
-        throw std::invalid_argument("ThreadInfo instance could not be created: thread id was NAN ");
-    }
-    if (isinf(m_threadId)) {
-        throw std::invalid_argument("ThreadInfo instance could not be created: thread id was infinity");
+    if (m_threadId.length() != 6
+    || m_threadId.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") != std::string::npos) {
+        throw std::invalid_argument("ThreadInfo instance could not be created: invalid thread id: " + m_threadId);
     }
     if (m_name.empty()) {
         throw std::invalid_argument("ThreadInfo instance could not be created: name must not be empty");
@@ -31,7 +29,7 @@ void ThreadInfo::addData(const string &name,
                          double avgRt,
                          double sumVs,
                          double sumIs) {
-    bool isValid = !m_name.empty()
+    bool isValid = name == m_name
                    // check for infinity and nan
                    && !isinf(sumRt) && !isnan(sumRt) && sumRt > 0
                    && !isinf(maxRt) && !isnan(maxRt) && maxRt > 0

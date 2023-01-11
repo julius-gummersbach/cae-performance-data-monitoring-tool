@@ -13,7 +13,7 @@ using std::string;
 class ThreadInfo {
 private:
     /* unique identifier id of the Thread */
-    long m_threadId;
+    string m_threadId;
     /* name of the thread */
     string m_name;
     /* frequency of the thread */
@@ -27,7 +27,7 @@ private:
     /* ThreadData objects associated with this thread */
     std::list<ThreadData> m_data;
 public:
-    ThreadInfo(long threadId, string name, double freq);
+    ThreadInfo(string threadId, string name, double freq);
 
     /**
      * adds a new ThreadData object to the m_data list
