@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Expression.hpp"
-#include "../GraphOperation.hpp"
+#include "../Operations/GraphOperation.hpp"
 
 namespace Graph
 {
@@ -24,7 +24,7 @@ namespace Graph
 		/**
 		* Differs from the base calss as it calculates all points from the internally held expressions and operation.
 		* The calculation happens inside the GraphOperation object held.
-		* 
+		*
 		* @param startTime inclusive, the first point in time to be included
 		* @param duration the amount of time the graph covers, startTime + duration is the first point after the calculated graph.
 		* @return the calculated graph
