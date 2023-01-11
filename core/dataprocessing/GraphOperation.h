@@ -6,8 +6,22 @@ namespace Graph
 	virtual class GraphOperation
 	{
 	private:
-		Graph evaluate(const Graph& graph1,const Graph graph2)=0;
+		/**
+		* Combines two Graphs mathematically
+		* 
+		* @param firstGraph 
+		* @param secondGraph
+		* @return the combined graph
+		*/
+		Graph evaluate(const Graph& firstGraph,const Graph secondGraph)=0;
 	private:
-		bool checkTypeCompability(const GraphDataType& graph1, const GraphDataType& graph2)=0;
+		/**
+		* Checks if the two types are compatible
+		*
+		* @param firstGraphDataType
+		* @param secondGraphDataType
+		* @return whether or not the types are compatible
+		*/
+		bool checkTypeCompatibility(const GraphDataType& firstGraphDataType, const GraphDataType& secondGraphDataType)=0;
 	};
 }

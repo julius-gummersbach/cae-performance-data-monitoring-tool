@@ -20,6 +20,7 @@ namespace Graph
 		* @param type of the Data stored
 		* @param startTime inclusive, the first point in time to be included
 		* @param endtime exclusive, the first point in time to not be included
+		* @return created Graph
 		*/
 		Graph createGraph(const std::string& threadId,const GraphDataType& type,const timePoint& startTime, const time_delta& duration);
 	};

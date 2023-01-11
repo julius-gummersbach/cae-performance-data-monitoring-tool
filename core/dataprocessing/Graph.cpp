@@ -1,7 +1,8 @@
 #include "Graph.h"
 
 namespace Graph {
-	Graph::Graph(std::deque<double>& dataPoints,const GraphDataType& type)
+
+	Graph::Graph(std::deque<double>& dataPoints, const GraphDataType& type)
 	{
 		m_GraphDataType = type;
 		m_DataPoints = std::move(dataPoints);
@@ -19,7 +20,7 @@ namespace Graph {
 
 	void Graph::moveRight(const Graph& graph)
 	{
-		for(auto& p : graph.m_DataPoints)
+		for (auto& p : graph.m_DataPoints)
 		{
 			m_DataPoints.push_back(p);
 			m_DataPoints.pop_front();
