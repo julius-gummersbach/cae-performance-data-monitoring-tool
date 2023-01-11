@@ -3,7 +3,7 @@
 #include <chrono>
 #include <string>
 
-#include "Graph.h"
+#include "Graph.hpp"
 
 namespace Graph
 {

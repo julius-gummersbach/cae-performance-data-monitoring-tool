@@ -1,4 +1,4 @@
-#include "GraphCreator.h"
+#include "GraphCreator.hpp"
 
 namespace Graph
 {

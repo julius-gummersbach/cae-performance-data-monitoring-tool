@@ -3,7 +3,7 @@
 #include <vector>
 #include <memory>
 
-#include "Graph.h"
+#include "Graph.hpp"
 #include "Expression.hpp"
 
 

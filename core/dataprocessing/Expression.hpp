@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "Graph.h"
+#include "Graph.hpp"
 
 namespace Graph
 {

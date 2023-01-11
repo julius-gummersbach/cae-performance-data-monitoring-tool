@@ -1,8 +1,8 @@
 #include <unordered_map>
 #include <memory>
 
-#include "Graph.h"
-#include "GraphManager.h"
+#include "Graph.hpp"
+#include "GraphManager.hpp"
 
 namespace Graph 
 {
