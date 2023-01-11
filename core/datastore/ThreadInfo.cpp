@@ -11,9 +11,8 @@ using std::string;
 ThreadInfo::ThreadInfo(long threadId, string name, double freq) :
         m_threadId{threadId}, m_name{std::move(name)}, m_freq{freq}, m_iterations{0}, m_overruns{0}, m_sumRt{0} {
     // if parameters are invalid we throw an exception that should be caught by the GUI that should prompt the user for new input
-    if(m_freq!= 60){
-        throw std::invalid_argument("ThreadInfo instance could not be created: invalid frequency. "
-                                    "Expected: 60. Actual: " + std::to_string(m_freq));
+    if (!(m_freq > 0 && !isinf(m_freq) && !isnan(m_freq))) {
+        throw std::invalid_argument("ThreadInfo instance could not be created: invalid frequency: " + std::to_string(m_freq));
     }
     if(isnan(m_threadId)) {
         throw std::invalid_argument("ThreadInfo instance could not be created: thread id was NAN ");
