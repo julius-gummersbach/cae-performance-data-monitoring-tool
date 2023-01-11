@@ -6,8 +6,8 @@ namespace Graph
 	virtual class GraphOperation
 	{
 	private:
-		Graph evaluate(Graph graph1, Graph graph2)=0;
+		Graph evaluate(const Graph& graph1,const Graph graph2)=0;
 	private:
-		bool checkTypeCompability(GraphDataType graph1, GraphDataType graph2)=0;
+		bool checkTypeCompability(const GraphDataType& graph1, const GraphDataType& graph2)=0;
 	};
 }
