@@ -14,13 +14,13 @@ ThreadInfo::ThreadInfo(long threadId, string name, double freq) :
     if (!(m_freq > 0 && !isinf(m_freq) && !isnan(m_freq))) {
         throw std::invalid_argument("ThreadInfo instance could not be created: invalid frequency: " + std::to_string(m_freq));
     }
-    if(isnan(m_threadId)) {
+    if (isnan(m_threadId)) {
         throw std::invalid_argument("ThreadInfo instance could not be created: thread id was NAN ");
     }
-    if(isinf(m_threadId)){
+    if (isinf(m_threadId)) {
         throw std::invalid_argument("ThreadInfo instance could not be created: thread id was infinity");
     }
-    if(m_name.empty()){
+    if (m_name.empty()) {
         throw std::invalid_argument("ThreadInfo instance could not be created: name must not be empty");
     }
 }
@@ -32,14 +32,14 @@ void ThreadInfo::addData(const string &name,
                          double sumVs,
                          double sumIs) {
     bool isValid = !m_name.empty()
-                // check for infinity and nan
-                && !isinf(sumRt) && !isnan(sumRt) && sumRt > 0
-                && !isinf(maxRt) && !isnan(maxRt) && maxRt > 0
-                && !isinf(avgRt) && !isnan(avgRt) && avgRt > 0
-                && !isinf(sumVs) && !isnan(sumVs) && sumVs > 0 // todo revise as soon as content is clarified
-                && !isinf(sumIs) && !isnan(sumIs) && sumIs > 0 // todo revise as soon as content is clarified
-                // check for logical content
-                && sumRt >= maxRt && maxRt >= avgRt * 1000; // avgRt is in ms while maxRt is in s
+                   // check for infinity and nan
+                   && !isinf(sumRt) && !isnan(sumRt) && sumRt > 0
+                   && !isinf(maxRt) && !isnan(maxRt) && maxRt > 0
+                   && !isinf(avgRt) && !isnan(avgRt) && avgRt > 0
+                   && !isinf(sumVs) && !isnan(sumVs) && sumVs > 0 // todo revise as soon as content is clarified
+                   && !isinf(sumIs) && !isnan(sumIs) && sumIs > 0 // todo revise as soon as content is clarified
+                   // check for logical content
+                   && sumRt >= maxRt && maxRt >= avgRt * 1000; // avgRt is in ms while maxRt is in s
     if (isValid) {
         // todo update overruns
         m_sumRt += sumRt;
