@@ -3,7 +3,7 @@
 
 namespace Graph
 {
-	class GraphOperation
+	virtual class GraphOperation
 	{
 	public:
 		shared_ptr<Graph> evaluate(shared_ptr<Graph> graph1, shared_ptr<Graph> graph2);
