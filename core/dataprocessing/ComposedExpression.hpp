@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Expression.hpp"
-#include "GraphOperation.hpp"
+#include "Operations/GraphOperation.hpp"
 
 namespace Graph
 {
