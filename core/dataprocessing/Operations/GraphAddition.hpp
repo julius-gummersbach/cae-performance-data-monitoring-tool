@@ -1,5 +1,6 @@
 #pragma once
 #include "GraphOperation.hpp"
+#include <stdexcept>
 
 
 namespace Graph

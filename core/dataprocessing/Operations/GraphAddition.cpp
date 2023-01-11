@@ -2,15 +2,18 @@
 
 namespace Graph {
 
-	Graph evaluate(const Graph& firstGraph, const Graph& secondGraph)
+	Graph GraphAddition::evaluate(const Graph& firstGraph, const Graph& secondGraph)
 	{
-		
-		if(!checkTypeCompatibility(firstGraph.getDataPoints(), secondGraph.getDataPoints()))
+		if(!checkTypeCompatibility(firstGraph.getType(), secondGraph.getType()))
 		{
-			
+			//throw
 		}
 
 
+		return firstGraph;
 	}
-	bool checkTypeCompatibility(const GraphDataType& firstGraphDataType, const GraphDataType& secondGraphDataType);
+	bool GraphAddition::checkTypeCompatibility(const GraphDataType& firstGraphDataType, const GraphDataType& secondGraphDataType)
+	{
+		return true;
+	}
 }
