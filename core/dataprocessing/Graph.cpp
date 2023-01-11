@@ -8,12 +8,12 @@ namespace Graph {
 		m_DataPoints = std::move(dataPoints);
 	}
 
-	GraphDataType Graph::getType()
+	const GraphDataType Graph::getType() const
 	{
 		return m_GraphDataType;
 	}
 
-	std::deque<double> Graph::getDataPoints()
+	const std::deque<double>& Graph::getDataPoints() const
 	{
 		return m_DataPoints;
 	}

@@ -16,6 +16,6 @@ namespace Graph
 		* @param duration the amount of time the graph covers, startTime + duration is the first point after the calculated Graph.
 		* @return the calculated Graph
 		*/
-		virtual std::shared_ptr<Graph> getGraph(const timePoint& startTime, const time_delta& duration) = 0;
+		virtual std::shared_ptr<Graph> getGraph(const timePoint& startTime, const time_delta& duration) const = 0;
 	};
 }

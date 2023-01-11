@@ -15,20 +15,26 @@ namespace Graph
 
 	public:
 		/**
-		*
-		* @param dataPoints
+		* Creates a graph wrapping the points given.
+		* 
+		* @param dataPoints the points the graph is supposed to contain
+		* @param type the type of Graph being created
 		*/
 		Graph(std::deque<double>& dataPoints,const GraphDataType& type);
 
 		/**
+		* returns the type of this Graph
+		* 
 		* @return GraphDataType from the Graph
 		*/
-		GraphDataType getType();
+		const GraphDataType getType() const;
 
 		/**
+		* 
+		* 
 		* @return DataPoints as deque<double>
 		*/
-		std::deque<double> getDataPoints();
+		const std::deque<double>& getDataPoints() const;
 
 		/**
 		* Appands DataPoints from a Graph to the End and removes dataPoints at the Front.

@@ -21,6 +21,6 @@ namespace Graph
 		* @param endtime exclusive, the first point in time to not be included
 		* @return created Graph
 		*/
-		Graph createGraph(const std::string& threadId,const GraphDataType& type,const timePoint& startTime, const time_delta& duration);
+		Graph createGraph(const std::string& threadId,const GraphDataType& type,const timePoint& startTime, const time_delta& duration) const;
 	};
 }

@@ -2,7 +2,7 @@
 
 namespace Graph
 {
-	Graph GraphCreator::createGraph(const std::string& threadId,const GraphDataType& type,const timePoint& startTime,const const time_delta& duration)
+	Graph GraphCreator::createGraph(const std::string& threadId,const GraphDataType& type,const timePoint& startTime,const const time_delta& duration) const
 	{
 		std::deque<double> graphData{};
 		//m_DataStorage.getData();
