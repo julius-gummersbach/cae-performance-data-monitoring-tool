@@ -7,6 +7,7 @@
 
 #include <chrono>
 #include <memory>
+#include <string>
 
 namespace Graph
 {
@@ -14,8 +15,7 @@ namespace Graph
 	using time_delta = std::chrono::nanoseconds;
 	using timePoint = std::chrono::time_point<std::chrono::system_clock, time_delta>;
 	using std::shared_ptr;
-	using std::shared_ptr;
-
+	using std::string;
 
 	enum GraphDataType {};
 }

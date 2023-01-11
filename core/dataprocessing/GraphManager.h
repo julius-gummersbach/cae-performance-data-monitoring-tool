@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "Graph.h"
-#include "Expression.h"
+#include "Expression.hpp"
 
 
 namespace Graph

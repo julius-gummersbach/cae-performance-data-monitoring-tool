@@ -5,9 +5,8 @@ namespace Graph
 {
 	class GraphOperation
 	{
-	private:
-		Graph evaluate(Graph graph1, Graph graph2);
-	private:
+	public:
+		shared_ptr<Graph> evaluate(shared_ptr<Graph> graph1, shared_ptr<Graph> graph2);
 		//bool checkTypeCompability(GraphDataType graph1, GraphDataType graph2);//TODO
 	};
 }

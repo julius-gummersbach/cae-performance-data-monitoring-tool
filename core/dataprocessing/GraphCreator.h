@@ -9,10 +9,9 @@ namespace Graph
 {
 	class GraphCreator
 	{
-
 	private:
 		//m_Datastorage//TODO
 	public:
-		Graph createGraph(std::string threadId, GraphDataType type, timePoint startTime, timePoint endtime);//TODO
+		shared_ptr<Graph> createGraph(std::string threadId, GraphDataType type, timePoint startTime, timePoint endtime);//TODO
 	};
 }
