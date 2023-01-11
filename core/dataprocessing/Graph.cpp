@@ -12,6 +12,11 @@ namespace Graph {
 		return m_GraphDataType;
 	}
 
+	std::deque<double> Graph::getDataPoints()
+	{
+		return m_DataPoints;
+	}
+
 	void Graph::moveRight(const Graph& graph)
 	{
 		for(auto& p : graph.m_DataPoints)

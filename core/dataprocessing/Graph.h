@@ -17,6 +17,7 @@ namespace Graph
 	public:
 		Graph(std::deque<double>& dataPoints, GraphDataType type);
 		GraphDataType getType();
+		std::deque<double> getDataPoints();
 		void moveRight(const Graph& graph);
 		void moveLeft(const Graph& graph);
 		//GLineSeries getAsQLineSeries();//TODO
