@@ -4,16 +4,16 @@
 #include <websocketpp/client.hpp>
 #include <websocketpp/config/asio_no_tls_client.hpp>
 
-#include <websocketpp/common/thread.hpp>
-#include <websocketpp/common/memory.hpp>
+//#include <websocketpp/common/thread.hpp>
+//#include <websocketpp/common/memory.hpp>
 
 #include <iostream>
 #include <string>
 #include <thread>
 #include <map>
-#include <sstream>
+//#include <sstream>
 #include <cstdlib>
-#include <random>
+//#include <random>
 #include <vector>
 
 typedef websocketpp::client<websocketpp::config::asio_client> client;
@@ -49,9 +49,11 @@ public:
           << "), close reason: " << con->get_remote_close_reason();
         m_error_reason = s.str();
     }
+    //int i{0};
     void on_message(websocketpp::connection_hdl hdl, client::message_ptr msg) {
         if (msg->get_opcode() == websocketpp::frame::opcode::text) {
             m_messages.push_back(msg->get_payload());
+            //std::cout << ++i << std::endl;
         } else {
             m_messages.push_back(websocketpp::utility::to_hex(msg->get_payload()));
         }

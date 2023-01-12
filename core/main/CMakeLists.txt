@@ -9,8 +9,12 @@ find_package(Boost 1.81.0)
 
 #if(Boost_FOUND)
 include_directories(${Boost_INCLUDE_DIRS})
-include_directories(../../../websocketpp)
-add_executable(test.cpp test.cpp)
-target_link_libraries(test.cpp ws2_32)
-target_link_libraries(test.cpp ${Boost_LIBRARIES})
+
+add_executable(boostBeastTest.cpp boostBeastTest.cpp)
+target_link_libraries(boostBeastTest.cpp ${Boost_LIBRARIES})
+
+#include_directories(../../../websocketpp)
+#add_executable(test.cpp test.cpp)
+#target_link_libraries(test.cpp ws2_32)
+#target_link_libraries(test.cpp ${Boost_LIBRARIES})
 #endif()
