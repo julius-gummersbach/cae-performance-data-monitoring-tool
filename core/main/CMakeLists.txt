@@ -11,6 +11,7 @@ find_package(Boost 1.81.0)
 include_directories(${Boost_INCLUDE_DIRS})
 
 add_executable(boostBeastTest.cpp boostBeastTest.cpp)
+target_link_libraries(boostBeastTest.cpp ws2_32)
 target_link_libraries(boostBeastTest.cpp ${Boost_LIBRARIES})
 
 #include_directories(../../../websocketpp)
