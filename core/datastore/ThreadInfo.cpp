@@ -9,8 +9,9 @@ using std::isinf;
 using std::isnan;
 using std::string;
 
-ThreadInfo::ThreadInfo(string threadId, string name, double freq) :
-        m_threadId{std::move(threadId)}, m_name{std::move(name)}, m_freq{freq}, m_iterations{0}, m_overruns{0}, m_sumRt{0} {
+MonitoringTool::ThreadInfo::ThreadInfo(string threadId, string name, time_point startTime, double freq) :
+        m_threadId{std::move(threadId)}, m_name{std::move(name)}, m_startTime{startTime}, m_freq{freq}, m_iterations{0},
+        m_overruns{0}, m_sumRt{0} {
     // if parameters are invalid we throw an exception that should be caught by the GUI that should prompt the user for new input
     if (!(m_freq > 0 && !isinf(m_freq) && !isnan(m_freq))) {
         throw std::invalid_argument("ThreadInfo instance could not be created: invalid frequency: " + std::to_string(m_freq));
@@ -24,7 +25,7 @@ ThreadInfo::ThreadInfo(string threadId, string name, double freq) :
     }
 }
 
-void ThreadInfo::addData(const string &name,
+void MonitoringTool::ThreadInfo::addData(const string &name,
                          double sumRt,
                          double maxRt,
                          double avgRt,
@@ -47,26 +48,26 @@ void ThreadInfo::addData(const string &name,
     m_data.push_back(std::make_shared<ThreadData>(name, isValid, sumRt, maxRt, avgRt, sumVs, sumIs));
 }
 
-const string &ThreadInfo::getThreadId() const {
+const string &MonitoringTool::ThreadInfo::getThreadId() const {
     return m_threadId;
 }
 
-const string &ThreadInfo::getName() const {
+const string &MonitoringTool::ThreadInfo::getName() const {
     return m_name;
 }
 
-double ThreadInfo::getFreq() const {
+double MonitoringTool::ThreadInfo::getFreq() const {
     return m_freq;
 }
 
-int ThreadInfo::getIterations() const {
+int MonitoringTool::ThreadInfo::getIterations() const {
     return m_iterations;
 }
 
-int ThreadInfo::getOverruns() const {
+int MonitoringTool::ThreadInfo::getOverruns() const {
     return m_overruns;
 }
 
-double ThreadInfo::getSumRt() const {
+double MonitoringTool::ThreadInfo::getSumRt() const {
     return m_sumRt;
 }
