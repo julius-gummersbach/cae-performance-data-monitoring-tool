@@ -14,10 +14,11 @@ MonitoringTool::ThreadInfo::ThreadInfo(string threadId, string name, time_point 
         m_overruns{0}, m_sumRt{0} {
     // if parameters are invalid we throw an exception that should be caught by the GUI that should prompt the user for new input
     if (!(m_freq > 0 && !isinf(m_freq) && !isnan(m_freq))) {
-        throw std::invalid_argument("ThreadInfo instance could not be created: invalid frequency: " + std::to_string(m_freq));
+        throw std::invalid_argument(
+                "ThreadInfo instance could not be created: invalid frequency: " + std::to_string(m_freq));
     }
     if (m_threadId.length() != 6
-    || m_threadId.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") != std::string::npos) {
+        || m_threadId.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") != std::string::npos) {
         throw std::invalid_argument("ThreadInfo instance could not be created: invalid thread id: " + m_threadId);
     }
     if (m_name.empty()) {
@@ -26,11 +27,11 @@ MonitoringTool::ThreadInfo::ThreadInfo(string threadId, string name, time_point 
 }
 
 void MonitoringTool::ThreadInfo::addData(const string &name,
-                         double sumRt,
-                         double maxRt,
-                         double avgRt,
-                         double sumVs,
-                         double sumIs) {
+                                         double sumRt,
+                                         double maxRt,
+                                         double avgRt,
+                                         double sumVs,
+                                         double sumIs) {
     bool isValid = name == m_name
                    // check for infinity and nan
                    && !isinf(sumRt) && !isnan(sumRt) && sumRt > 0
@@ -54,6 +55,10 @@ const string &MonitoringTool::ThreadInfo::getThreadId() const {
 
 const string &MonitoringTool::ThreadInfo::getName() const {
     return m_name;
+}
+
+const MonitoringTool::time_point &MonitoringTool::ThreadInfo::getStartTime() const {
+    return m_startTime;
 }
 
 double MonitoringTool::ThreadInfo::getFreq() const {

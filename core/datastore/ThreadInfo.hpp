@@ -38,7 +38,7 @@ namespace MonitoringTool {
 
         [[nodiscard]] const string &getName() const;
 
-        [[nodiscard]] const time_point &getstartTime() const;
+        [[nodiscard]] const time_point &getStartTime() const;
 
         [[nodiscard]] double getFreq() const;
 
