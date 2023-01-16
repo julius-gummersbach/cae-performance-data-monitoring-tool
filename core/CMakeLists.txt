@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.0)
 add_subdirectory(main)
 add_subdirectory(dataprocessing)
 add_subdirectory(datastore)
+add_subdirectory(websocket)
 
 # These directories must not be added to git!
 # DEBUG compile targets
