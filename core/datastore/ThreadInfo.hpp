@@ -28,17 +28,17 @@ private:
     /* ThreadData objects associated with this thread */
     std::list<std::shared_ptr<ThreadData>> m_data;
 public:
-    const string &getThreadId() const;
+    [[nodiscard]] const string &getThreadId() const;
 
-    const string &getName() const;
+    [[nodiscard]] const string &getName() const;
 
-    double getFreq() const;
+    [[nodiscard]] double getFreq() const;
 
-    int getIterations() const;
+    [[nodiscard]] int getIterations() const;
 
-    int getOverruns() const;
+    [[nodiscard]] int getOverruns() const;
 
-    double getSumRt() const;
+    [[nodiscard]] double getSumRt() const;
 
     ThreadInfo(string threadId, string name, double freq);
 

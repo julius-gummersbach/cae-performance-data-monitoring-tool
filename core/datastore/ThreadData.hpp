@@ -10,19 +10,19 @@ struct ThreadData {
     string m_name;
     bool m_isValid;
 
-    const string &getName() const;
+    [[nodiscard]] const string &getName() const;
 
-    bool isValid() const;
+    [[nodiscard]] bool isValid() const;
 
-    double getSumRt() const;
+    [[nodiscard]] double getSumRt() const;
 
-    double getMaxRt() const;
+    [[nodiscard]] double getMaxRt() const;
 
-    double getAvgRt() const;
+    [[nodiscard]] double getAvgRt() const;
 
-    double getSumVs() const;
+    [[nodiscard]] double getSumVs() const;
 
-    double getSumIs() const;
+    [[nodiscard]] double getSumIs() const;
 
     double m_sumRt;
     double m_maxRt;
