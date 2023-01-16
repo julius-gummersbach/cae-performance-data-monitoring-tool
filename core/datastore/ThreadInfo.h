@@ -3,6 +3,7 @@
 
 #include <string>
 #include <list>
+#include <memory>
 #include "ThreadData.h"
 
 using std::string;
@@ -25,7 +26,7 @@ private:
     /* total runtime of the thread */
     double m_sumRt;
     /* ThreadData objects associated with this thread */
-    std::list<ThreadData> m_data;
+    std::list<std::shared_ptr<ThreadData>> m_data;
 public:
     ThreadInfo(string threadId, string name, double freq);
 
