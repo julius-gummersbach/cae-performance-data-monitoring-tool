@@ -1,4 +1,4 @@
-#include "ThreadInfo.h"
+#include "ThreadInfo.hpp"
 
 #include <utility>
 #include <cmath>

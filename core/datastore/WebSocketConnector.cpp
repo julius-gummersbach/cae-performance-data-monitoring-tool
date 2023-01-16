@@ -1,4 +1,4 @@
-#include "WebSocketConnector.h"
+#include "WebSocketConnector.hpp"
 
 WebSocketConnector::WebSocketConnector(const DataManager &dataManager){
     // to be implemented
