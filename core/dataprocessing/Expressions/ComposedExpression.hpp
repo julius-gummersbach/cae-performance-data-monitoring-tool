@@ -22,7 +22,7 @@ namespace Graph
 		ComposedExpression(shared_ptr<Expression> lhs, shared_ptr<Expression> rhs, shared_ptr<GraphOperation> operation);
 
 		/**
-		* Differs from the base calss as it calculates all points from the internally held expressions and operation.
+		* Differs from the base class as it calculates all points from the internally held expressions and operation.
 		* The calculation happens inside the GraphOperation object held.
 		*
 		* @param startTime inclusive, the first point in time to be included
