@@ -1,5 +1,6 @@
 #include "ThreadInfo.hpp"
 
+#include <memory>
 #include <utility>
 #include <cmath>
 #include <stdexcept>
@@ -43,5 +44,5 @@ void ThreadInfo::addData(const string &name,
         m_sumRt += sumRt;
     }
     // we also store invalid data to be able to keep track of time
-    m_data.push_back(std::shared_ptr<ThreadData>{new ThreadData{name, isValid, sumRt, maxRt, avgRt, sumVs, sumIs}});
+    m_data.push_back(std::make_shared<ThreadData>(name, isValid, sumRt, maxRt, avgRt, sumVs, sumIs));
 }
