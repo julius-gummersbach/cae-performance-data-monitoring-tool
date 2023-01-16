@@ -1,5 +1,4 @@
 #include "GraphDivision.hpp"
-#include <queue>
 
 namespace Graph {
 

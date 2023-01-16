@@ -2,6 +2,9 @@ add_library(dataprocessing
 	Expressions/AtomicExpression.cpp
 	Expressions/ComposedExpression.cpp
 	Operations/GraphAddition.cpp
+	Operations/GraphSubtraktion.cpp
+	Operations/GraphDivision.cpp
+	Operations/GraphMultiplikation.cpp
 	Graph.cpp
 	GraphCreator.cpp
-	GraphManager.cpp "Operations/GraphDivision.cpp")
+	GraphManager.cpp )

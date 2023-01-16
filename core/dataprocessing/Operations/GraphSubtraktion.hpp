@@ -1,15 +1,16 @@
 #pragma once
 #include "GraphOperation.hpp"
 
+
 namespace Graph
 {
-	class GraphDivision:GraphOperation
+	class GraphAddition:GraphOperation
 	{
 	public:
 		/**
 		* Combines two Graphs mathematically.
 		* Where each point from the combined graph is the
-		* ratio of two dataPoints from the combined graphs.
+		* difference of two dataPoints from the combined graphs.
 		*
 		* @param firstGraph
 		* @param secondGraph
@@ -23,7 +24,7 @@ namespace Graph
 		*
 		* @param firstGraphDataType
 		* @param secondGraphDataType
-		* @return whether or not the types are compatible
+		* @return whether or not the types are equal
 		*/
 		bool checkTypeCompatibility(const GraphDataType& firstGraphDataType, const GraphDataType& secondGraphDataType);
 	};

@@ -1,4 +1,7 @@
 #pragma once
+#include <queue>
+#include <stdexcept>
+
 #include "../Graph.hpp"
 
 namespace Graph

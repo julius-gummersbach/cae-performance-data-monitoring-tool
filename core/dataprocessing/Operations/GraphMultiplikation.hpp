@@ -1,15 +1,16 @@
 #pragma once
 #include "GraphOperation.hpp"
 
+
 namespace Graph
 {
-	class GraphDivision:GraphOperation
+	class GraphAddition:GraphOperation
 	{
 	public:
 		/**
 		* Combines two Graphs mathematically.
 		* Where each point from the combined graph is the
-		* ratio of two dataPoints from the combined graphs.
+		* product of two dataPoints from the combined graphs.
 		*
 		* @param firstGraph
 		* @param secondGraph

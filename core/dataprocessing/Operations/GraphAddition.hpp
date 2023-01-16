@@ -1,7 +1,4 @@
 #pragma once
-#include <stdexcept>
-#include <queue>
-
 #include "GraphOperation.hpp"
 
 
@@ -11,7 +8,9 @@ namespace Graph
 	{
 	public:
 		/**
-		* Combines two Graphs mathematically
+		* Combines two Graphs mathematically.
+		* Where each point from the combined graph is the
+		* sum of two dataPoints from the combined graphs.
 		*
 		* @param firstGraph
 		* @param secondGraph

@@ -1,4 +1,4 @@
-#include "GraphAddition.hpp"
+#include "GraphSubtraktion.hpp"
 
 namespace Graph {
 
@@ -16,7 +16,7 @@ namespace Graph {
 
 		while (first == end)
 		{
-			newDataPoints.push_back(*first + *second);
+			newDataPoints.push_back(*first - *second);
 			first++;
 			second++;
 		}
