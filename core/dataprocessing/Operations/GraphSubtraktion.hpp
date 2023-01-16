@@ -4,7 +4,7 @@
 
 namespace Graph
 {
-	class GraphAddition:GraphOperation
+	class GraphAddition :GraphOperation
 	{
 	public:
 		/**

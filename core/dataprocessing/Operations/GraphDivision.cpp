@@ -11,10 +11,10 @@ namespace Graph {
 		std::deque<double> newDataPoints{};
 
 		auto& first = firstGraph.getDataPoints().begin();
+		auto& firstEnd = firstGraph.getDataPoints().end();
 		auto& second = secondGraph.getDataPoints().begin();
-		auto& end = firstGraph.getDataPoints().end();
 
-		while (first == end)
+		while (first != firstEnd)
 		{
 			newDataPoints.push_back(*first / *second);
 			first++;

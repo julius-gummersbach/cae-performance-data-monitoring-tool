@@ -3,7 +3,7 @@
 
 namespace Graph
 {
-	class GraphDivision:GraphOperation
+	class GraphDivision :GraphOperation
 	{
 	public:
 		/**
