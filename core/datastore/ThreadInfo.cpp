@@ -46,3 +46,27 @@ void ThreadInfo::addData(const string &name,
     // we also store invalid data to be able to keep track of time
     m_data.push_back(std::make_shared<ThreadData>(name, isValid, sumRt, maxRt, avgRt, sumVs, sumIs));
 }
+
+const string &ThreadInfo::getThreadId() const {
+    return m_threadId;
+}
+
+const string &ThreadInfo::getName() const {
+    return m_name;
+}
+
+double ThreadInfo::getFreq() const {
+    return m_freq;
+}
+
+int ThreadInfo::getIterations() const {
+    return m_iterations;
+}
+
+int ThreadInfo::getOverruns() const {
+    return m_overruns;
+}
+
+double ThreadInfo::getSumRt() const {
+    return m_sumRt;
+}

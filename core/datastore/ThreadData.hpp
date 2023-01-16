@@ -9,6 +9,21 @@ using std::string;
 struct ThreadData {
     string m_name;
     bool m_isValid;
+
+    const string &getName() const;
+
+    bool isValid() const;
+
+    double getSumRt() const;
+
+    double getMaxRt() const;
+
+    double getAvgRt() const;
+
+    double getSumVs() const;
+
+    double getSumIs() const;
+
     double m_sumRt;
     double m_maxRt;
     double m_avgRt;
