@@ -1,7 +1,6 @@
 #include "DataManager.hpp"
-#include "../dataprocessing/DataTypes.hpp"
 
-deque<double> DataManager::getPointsInIntervall(const string &id,
+MonitoringTool::deque<double> MonitoringTool::DataManager::getPointsInIntervall(const string &id,
                                                 const Graph::timePoint &startTime,
                                                 const Graph::time_delta &length,
                                                 const Graph::GraphDataType &type) const {

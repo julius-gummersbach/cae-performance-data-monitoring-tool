@@ -10,20 +10,22 @@
 #include <iostream>
 #include <deque>
 
-using json = nlohmann::json;
-using std::string;
-using std::unordered_map;
-using std::vector;
-using std::pair;
-using std::deque;
+namespace MonitoringTool {
+
+  using json = nlohmann::json;
+  using std::string;
+  using std::unordered_map;
+  using std::vector;
+  using std::pair;
+  using std::deque;
 
 /**
  * class to store all the ThreadInfos in a map sorted by their id given to it via a json object containing
  * the information from the websocket connector
  */
-class DataManager {
+  class DataManager {
 
-public:
+  public:
 
     /**
      * method to get new incoming date from a json library and store it in the map for later use
@@ -44,10 +46,11 @@ public:
     const pair<bool, ThreadInfo> &operator[](const string &id) const;
 
     deque<double> getPointsInIntervall(const string &id,
-                                       const Graph::time_point &startTime,
+                                       const Graph::timePoint &startTime,
                                        const Graph::time_delta &length,
                                        const Graph::GraphDataType &type) const;
-private:
+
+  private:
 
     /**
      * map to assign a ThreadInfo object to a long value to store the data from the websocket connector
@@ -75,6 +78,6 @@ private:
      * @return ThreadInfo object with the given data from the json library
      */
     [[nodiscard]] static ThreadInfo getInfo(const json &object);
-};
-
+  };
+}
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_HPP
