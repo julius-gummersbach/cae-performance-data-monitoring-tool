@@ -12,21 +12,7 @@ namespace MonitoringTool::DataStore {
     struct ThreadData {
         string m_name;
         bool m_isValid;
-
-        [[nodiscard]] const string &getName() const;
-
-        [[nodiscard]] bool isValid() const;
-
-        [[nodiscard]] double getSumRt() const;
-
-        [[nodiscard]] double getMaxRt() const;
-
-        [[nodiscard]] double getAvgRt() const;
-
-        [[nodiscard]] double getSumVs() const;
-
-        [[nodiscard]] double getSumIs() const;
-
+        /* combined runtime of the iterations */
         double m_sumRt;
         double m_maxRt;
         double m_avgRt;
