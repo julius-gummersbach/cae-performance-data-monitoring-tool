@@ -3,15 +3,16 @@
 
 #include <nlohmann/json.hpp>
 
-namespace MonitoringTool {
+namespace MonitoringTool::DataStore {
 
-    using json = nlohmann::json;
+        using json = nlohmann::json;
 
-    class DataManager {
-    public:
-        void addThreadInfo(json threadInfo);
-    };
+        class DataManager {
+        public:
+            void addThreadInfo(const json& threadInfo);
+        };
 
-}
+    }
+
 
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_HPP

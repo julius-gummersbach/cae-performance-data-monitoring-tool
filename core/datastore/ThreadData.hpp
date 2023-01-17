@@ -4,9 +4,10 @@
 
 #include <string>
 
-namespace MonitoringTool {
+using MonitoringTool::DataProcessing::time_point;
+using std::string;
 
-    using std::string;
+namespace MonitoringTool::DataStore {
 
     struct ThreadData {
         string m_name;

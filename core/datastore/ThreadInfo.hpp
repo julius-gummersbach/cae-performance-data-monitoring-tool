@@ -2,19 +2,20 @@
 #define CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADINFO_H
 
 #include <string>
-#include <list>
 #include <memory>
 #include <chrono>
+#include <vector>
 #include "ThreadData.hpp"
 #include "../dataprocessing/DataTypes.hpp"
 
-namespace MonitoringTool {
+using std::string;
+using MonitoringTool::DataProcessing::time_point;
 
-    using std::string;
+namespace MonitoringTool::DataStore {
 
-/**
- * This class stores information of a specific thread
- */
+    /**
+     * This class stores information of a specific thread
+     */
     class ThreadInfo {
     private:
         /* unique identifier id of the Thread */
@@ -32,7 +33,8 @@ namespace MonitoringTool {
         /* total runtime of the thread */
         double m_sumRt;
         /* ThreadData objects associated with this thread */
-        std::list<std::shared_ptr<ThreadData>> m_data;
+        std::vector<std::shared_ptr<ThreadData>> m_data;
+
     public:
         [[nodiscard]] const string &getThreadId() const;
 
@@ -47,6 +49,8 @@ namespace MonitoringTool {
         [[nodiscard]] int getOverruns() const;
 
         [[nodiscard]] double getSumRt() const;
+
+        [[nodiscard]] const std::vector<std::shared_ptr<ThreadData>> &getMData() const;
 
         ThreadInfo(string threadId, string name, time_point startTime, double freq);
 

@@ -1,5 +1,5 @@
 #include "DataManager.hpp"
 
-void DataManager::addThreadInfo(json threadInfo){
+void MonitoringTool::DataStore::DataManager::addThreadInfo(const json& threadInfo){
     // to be implemented
 }
