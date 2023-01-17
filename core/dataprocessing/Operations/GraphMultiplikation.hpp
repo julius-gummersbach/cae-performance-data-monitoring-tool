@@ -2,7 +2,7 @@
 #include "GraphOperation.hpp"
 
 
-namespace Graph
+namespace DataProcessing
 {
 	class GraphAddition :GraphOperation
 	{

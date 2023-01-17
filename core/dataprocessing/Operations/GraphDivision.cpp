@@ -1,6 +1,6 @@
 #include "GraphDivision.hpp"
 
-namespace Graph {
+namespace DataProcessing {
 
 	Graph GraphDivision::evaluate(const Graph& firstGraph, const Graph& secondGraph)
 	{

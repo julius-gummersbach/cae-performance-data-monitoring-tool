@@ -1,7 +1,7 @@
 #pragma once
 #include "GraphOperation.hpp"
 
-namespace Graph
+namespace DataProcessing
 {
 	class GraphDivision :GraphOperation
 	{

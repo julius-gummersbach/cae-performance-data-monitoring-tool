@@ -1,6 +1,6 @@
 #include "GraphAddition.hpp"
 
-namespace Graph {
+namespace DataProcessing {
 
 	Graph GraphAddition::evaluate(const Graph& firstGraph, const Graph& secondGraph)
 	{

@@ -9,7 +9,7 @@
 #include <memory>
 #include <string>
 
-namespace Graph
+namespace DataProcessing
 {
 	using namespace std::chrono_literals;
 	using time_delta = std::chrono::nanoseconds;

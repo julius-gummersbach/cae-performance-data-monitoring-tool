@@ -1,6 +1,6 @@
 #include "Graph.hpp"
 
-namespace Graph {
+namespace DataProcessing {
 
 	Graph::Graph(std::deque<double>& dataPoints, const GraphDataType& type)
 	{

@@ -1,6 +1,6 @@
 #include "GraphCreator.hpp"
 
-namespace Graph
+namespace DataProcessing
 {
 	Graph GraphCreator::createGraph(const std::string& threadId,const GraphDataType& type,const time_point& startTime,const time_delta& duration) const
 	{

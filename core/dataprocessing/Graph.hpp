@@ -5,7 +5,7 @@
 #include "DataTypes.hpp"
 
 //include QLineSeries//TODO
-namespace Graph
+namespace DataProcessing
 {
 	class Graph
 	{

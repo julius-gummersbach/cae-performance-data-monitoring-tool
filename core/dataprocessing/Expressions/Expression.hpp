@@ -4,7 +4,7 @@
 
 #include "../Graph.hpp"
 
-namespace Graph
+namespace DataProcessing
 {
 	class Expression
 	{

@@ -7,7 +7,7 @@
 #include "Expressions/Expression.hpp"
 
 
-namespace Graph
+namespace DataProcessing
 {
 	class GraphManager
 	{
