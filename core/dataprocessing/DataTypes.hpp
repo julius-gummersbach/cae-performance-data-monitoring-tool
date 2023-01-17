@@ -17,5 +17,15 @@ namespace Graph
 	using std::shared_ptr;
 	using std::string;
 
-	enum GraphDataType {};
+	enum GraphDataType {
+    DATA_SUM_RT,
+    INFO_SUM_RT,
+    MAX_RT,
+    AVG_RT,
+    SUM_VS,
+    SUM_IS,
+    FREQ,
+    ITERATIONS,
+    OVERRUNS
+  };
 }
