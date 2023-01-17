@@ -9,7 +9,7 @@ void DataManager::addThreadInfo(const json &object) {
     }
     m_threadInfos.insert_or_assign(info.getThreadId(), info);
   } else {
-    if (m_threadInfos.at(object[tid]).getName().equal(object["name"])) {
+    if (std::basic_string.equal(m_threadInfos.at(object["tid"]).getName(),object["name"]) {
       vector<json> data = object["data"];
       ThreadInfo &pInfo = m_threadInfos.at(object["tid"]);
       for (const json &j: data) {
@@ -56,6 +56,7 @@ void DataManager::addThreadData(ThreadInfo &info, const json &j) {
 }
 
 ThreadInfo DataManager::getInfo(const json &object) {
+  Graph::timePoint startTime = std::chrono::system_clock::now();
   string tid = object["tid"];
   string name = object["name"];
   double freq = object["freq"];
@@ -65,6 +66,6 @@ ThreadInfo DataManager::getInfo(const json &object) {
   // int overruns = object["overruns");
   // vector<double> sum_rt = object["sum_rt");
 
-  ThreadInfo info{tid, name, freq};
+  ThreadInfo info{tid, name, freq, startTime};
   return info;
 }

@@ -5,6 +5,7 @@
 #include <string>
 #include <list>
 #include "ThreadData.hpp"
+#include "../dataprocessing/DataTypes.hpp"
 
 using std::string;
 
@@ -17,11 +18,12 @@ private:
     string m_name;
     double m_freq;
     int m_iterations;
+    Graph::timePoint m_startTime;
     int m_overruns;
     double m_sumRt;
     std::list<ThreadData> m_data;
 public:
-    ThreadInfo(string threadId, string name, double freq);
+    ThreadInfo(string threadId, string name, double freq, Graph::timePoint);
 
     void addData(const string& name,
                  double sumRt,
@@ -30,9 +32,11 @@ public:
                  double sumVs,
                  double sumIs);
 
-    [[nodiscard]] string getThreadId() const;
+    [[nodiscard]] const string& getThreadId() const;
 
-    [[nodiscard]] string getName() const;
+    [[nodiscard]] const string& getName() const;
+
+    [[nodiscard]] const Graph::timePoint& getStartTime() const;
 };
 
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADINFO_HPP

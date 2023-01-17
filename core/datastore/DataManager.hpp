@@ -3,6 +3,7 @@
 
 #include "nlohmann/json.hpp"
 #include "ThreadInfo.hpp"
+#include "../dataprocessing/DataTypes.hpp"
 #include <iostream>
 #include <unordered_map>
 #include <vector>
