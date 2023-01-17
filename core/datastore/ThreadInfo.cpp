@@ -80,7 +80,7 @@ namespace MonitoringTool::DataStore {
         return m_sumRt;
     }
 
-    const std::vector<std::shared_ptr<ThreadData>> &ThreadInfo::getMData() const {
+    const std::vector<std::shared_ptr<ThreadData>> &ThreadInfo::getData() const {
         return m_data;
     }
 

@@ -26,7 +26,7 @@ namespace MonitoringTool::DataStore {
         time_point m_startTime;
         /* frequency of the thread */
         double m_freq;
-        /* iterations the thread has gone through */
+        /* iterations that are combined in each ThreadData object associated with this thread */
         int m_iterations;
         /* overruns the thread has gone through */
         int m_overruns;
@@ -36,21 +36,15 @@ namespace MonitoringTool::DataStore {
         std::vector<std::shared_ptr<ThreadData>> m_data;
 
     public:
+        /* getters for the class attributes */
         [[nodiscard]] const string &getThreadId() const;
-
         [[nodiscard]] const string &getName() const;
-
         [[nodiscard]] const time_point &getStartTime() const;
-
         [[nodiscard]] double getFreq() const;
-
         [[nodiscard]] int getIterations() const;
-
         [[nodiscard]] int getOverruns() const;
-
         [[nodiscard]] double getSumRt() const;
-
-        [[nodiscard]] const std::vector<std::shared_ptr<ThreadData>> &getMData() const;
+        [[nodiscard]] const std::vector<std::shared_ptr<ThreadData>> &getData() const;
 
         ThreadInfo(string threadId, string name, time_point startTime, double freq);
 
