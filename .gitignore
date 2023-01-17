@@ -38,6 +38,9 @@
 # CMake
 cmake-build-*/
 
+# our build directory
+build/*
+
 # File-based project format
 *.iws
 
@@ -48,3 +51,7 @@ out/
 modules.xml
 .idea/misc.xml
 *.ipr
+
+# Visual Studio
+.vs/
+CMakeSettings.json

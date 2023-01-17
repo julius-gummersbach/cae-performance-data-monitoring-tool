@@ -1,0 +1,1 @@
+# add_executable(main <source files here>)
