@@ -9,9 +9,9 @@
 #include "../dataprocessing/DataTypes.hpp"
 
 using std::string;
-using MonitoringTool::DataProcessing::time_point;
+using CAEMonitoringTool::DataProcessing::time_point;
 
-namespace MonitoringTool::DataStore {
+namespace CAEMonitoringTool::DataStore {
 
     /**
      * This class stores information of a specific thread

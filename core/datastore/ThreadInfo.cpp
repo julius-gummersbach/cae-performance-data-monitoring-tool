@@ -9,7 +9,7 @@ using std::isinf;
 using std::isnan;
 using std::string;
 
-namespace MonitoringTool::DataStore {
+namespace CAEMonitoringTool::DataStore {
 
     ThreadInfo::ThreadInfo(string threadId, string name, MonitoringTool::DataProcessing::time_point startTime, double freq) :
             m_threadId{std::move(threadId)}, m_name{std::move(name)}, m_startTime{startTime}, m_freq{freq},

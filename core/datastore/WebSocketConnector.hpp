@@ -6,7 +6,7 @@
 #include <string>
 #include "DataManager.hpp"
 
-namespace MonitoringTool::DataStore {
+namespace CAEMonitoringTool::DataStore {
 
     using json = nlohmann::json;
 

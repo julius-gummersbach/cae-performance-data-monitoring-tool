@@ -6,7 +6,7 @@
 using MonitoringTool::DataProcessing::time_point;
 using std::string;
 
-namespace MonitoringTool::DataStore {
+namespace CAEMonitoringTool::DataStore {
 
     /**
      * Holds Data about a few iterations of a thread

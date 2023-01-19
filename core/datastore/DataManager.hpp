@@ -3,7 +3,7 @@
 
 #include <nlohmann/json.hpp>
 
-namespace MonitoringTool::DataStore {
+namespace CAEMonitoringTool::DataStore {
 
         using json = nlohmann::json;
 

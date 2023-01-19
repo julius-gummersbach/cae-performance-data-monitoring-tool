@@ -4,7 +4,7 @@
 
 using std::string;
 
-namespace MonitoringTool::DataStore {
+namespace CAEMonitoringTool::DataStore {
 
     ThreadData::ThreadData(string name, bool isValid, double sumRt, double maxRt, double avgRt, double sumVs,
                                       double sumIs) :
