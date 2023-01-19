@@ -43,6 +43,7 @@ void ConnectionMetadata::onMessage(const websocketpp::connection_hdl& hdl, const
     if (msg->get_opcode() == websocketpp::frame::opcode::text) {
 
         json j = json::parse(msg->get_payload());
+        std::cout << msg->get_payload() << std::endl;
         //DataManager::addThreadInfo(j);
         m_messages.push_back(msg->get_payload());
     } else {
