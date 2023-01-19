@@ -9,14 +9,13 @@ using std::isinf;
 using std::isnan;
 using std::string;
 using std::invalid_argument;
-using std::move;
 using CAEMonitoringTool::DataProcessing::time_point;
 
 namespace CAEMonitoringTool::DataStore {
 
     ThreadInfo::ThreadInfo(string threadId, string name, time_point startTime, double freq, int iterations,
                            int overruns, double sumRt) :
-            m_threadId{move(threadId)}, m_name{move(name)}, m_startTime{startTime}, m_freq{freq},
+            m_threadId{std::move(threadId)}, m_name{std::move(name)}, m_startTime{startTime}, m_freq{freq},
             m_iterations{iterations}, m_overruns{overruns}, m_sumRt{sumRt} {
         // if parameters are invalid we throw an exception that should be caught by the GUI that should prompt the user for new input
         if (!(m_freq > 0 && !isinf(m_freq) && !isnan(m_freq))) {

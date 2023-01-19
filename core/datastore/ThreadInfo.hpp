@@ -19,15 +19,15 @@ namespace CAEMonitoringTool::DataStore {
     class ThreadInfo {
     private:
         /* unique identifier id of the Thread */
-        string m_threadId;
+        const string m_threadId;
         /* name of the thread */
-        string m_name;
+        const string m_name;
         /* starting time of the thread */
-        time_point m_startTime;
+        const time_point m_startTime;
         /* frequency of the thread */
-        double m_freq;
+        const double m_freq;
         /* iterations that are combined in each ThreadData object associated with this thread */
-        int m_iterations;
+        const int m_iterations;
         /* overruns the thread has gone through */
         int m_overruns;
         /* total runtime of the thread */
