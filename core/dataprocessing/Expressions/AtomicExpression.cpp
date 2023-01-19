@@ -1,7 +1,7 @@
 
 #include "AtomicExpression.hpp"
 
-namespace Graph
+namespace CAEMonitoringTool::DataProcessing
 {
 	AtomicExpression::AtomicExpression(string threadID, GraphDataType type, GraphCreator creator) :
 		m_threadID{ threadID },
