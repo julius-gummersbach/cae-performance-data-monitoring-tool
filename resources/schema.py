@@ -25,10 +25,10 @@ class Module:
     
 @dataclass
 class Point:
-    # tick
+    # tick (16ms)
     x: int
         
-    # time
+    # time (ms)
     y: float
 
 @dataclass
