@@ -63,9 +63,9 @@ namespace CAEMonitoringTool::DataStore {
     /**
      * method to get the ThreadData parameters from a json and add it to the given ThreadInfo
      * @param info ThreadInfo object to add the additional data to
-     * @param j json representation of the data of the ThreadData object
+     * @param object json representation of the data of the ThreadData object
      */
-    static void addThreadData(ThreadInfo &info, const json &j);
+    static void addThreadData(ThreadInfo &info, const json &object);
 
     /**
      * method to retrieve data from the json representation of a ThreadInfo object

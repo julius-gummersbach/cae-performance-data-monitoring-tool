@@ -14,8 +14,9 @@ namespace CAEMonitoringTool::DataStore {
       if (std::basic_string.equal(m_threadInfos.at(object["tid"]).getName(), object["name"]) {
         vector<json> data = object["data"];
         ThreadInfo &pInfo = m_threadInfos.at(object["tid"]);
-        for (const json &j: data) {
-          addThreadData(pInfo, j);
+        pInfo.increaseOverruns(object["overruns"]);
+        for (const json &object: data) {
+          addThreadData(pInfo, object);
         }
       } else {
         // TODO: warning here that id was not unique
@@ -28,7 +29,7 @@ namespace CAEMonitoringTool::DataStore {
     pair<bool, ThreadInfo> p{true,
                              ThreadInfo{"foo",
                                         "bar",
-                                        static_cast<double>(rand() % 100)}};
+                                        (double)(rand() % 100)}};
     return p;
 
     //TODO: comment back in once real data is usable and delete rng
@@ -47,13 +48,13 @@ namespace CAEMonitoringTool::DataStore {
     return getDataFromId(id);
   }
 
-  void DataManager::addThreadData(ThreadInfo &info, const json &j) {
-    string name = j["name"];
-    vector<double> sum_rt = j["sum_rt"];
-    vector<double> max_rt = j["max_rt"];
-    vector<double> avg_rt = j["avg_rt"];
-    double sum_vs = j["sum_vs"];
-    double sum_is = j["sum_is"];
+  void DataManager::addThreadData(ThreadInfo &info, const json &object) {
+    string name = object["name"];
+    vector<double> sum_rt = object["sum_rt"];
+    vector<double> max_rt = object["max_rt"];
+    vector<double> avg_rt = object["avg_rt"];
+    double sum_vs = object["sum_vs"];
+    double sum_is = object["sum_is"];
     info.addData(name, sum_rt.front(), max_rt.front(), avg_rt.front(), sum_vs, sum_is);
   }
 
@@ -62,13 +63,11 @@ namespace CAEMonitoringTool::DataStore {
     string tid = object["tid"];
     string name = object["name"];
     double freq = object["freq"];
+    int iterations = object["iterations");
+    int overruns = object["overruns");
+    vector<double> sum_rt = object["sum_rt");
 
-    // TODO: determine what to do with these parameters
-    // int iterations = object["iterations");
-    // int overruns = object["overruns");
-    // vector<double> sum_rt = object["sum_rt");
-
-    ThreadInfo info{tid, name, freq, startTime};
+    ThreadInfo info{tid, name, freq, startTime, freq, iterations, overruns};
     return info;
   }
 }
