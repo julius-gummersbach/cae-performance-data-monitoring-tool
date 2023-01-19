@@ -10,7 +10,7 @@
 #include <iostream>
 #include <deque>
 
-namespace MonitoringTool {
+namespace MonitoringTool::DataStore {
 
   using json = nlohmann::json;
 

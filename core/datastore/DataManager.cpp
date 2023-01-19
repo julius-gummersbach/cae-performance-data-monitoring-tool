@@ -1,6 +1,6 @@
 #include "DataManager.hpp"
 
-std::deque<double> MonitoringTool::DataManager::getPointsInIntervall(const std::string &id,
+std::deque<double> MonitoringTool::DataStore::DataManager::getPointsInIntervall(const std::string &id,
                                                 const Graph::time_point &startTime,
                                                 const Graph::time_delta &length,
                                                 const Graph::GraphDataType &type) const {
