@@ -34,31 +34,12 @@ namespace CAEMonitoringTool::DataStore {
      */
     void addThreadInfo(const json &threadInfo);
 
-    /**
-     * overloading of the []-operator as a way to retrieve the ThreadInfo objects from the map via a given
-     * id
-     *
-     * @param id id of the ThreadInfo object to retrieve
-     * @return a boolean-ThreadInfo pair in which the first boolean value indicates if the request was
-     * successful and a ThreadInfo object with the given id was found and returned or unsuccessful and a
-     * dummy ThreadInfo object is created and returned with null-values as attributes
-     */
-    const pair<bool, ThreadInfo> &operator[](const string &id) const;
-
   private:
 
     /**
      * map to assign a ThreadInfo object to a long value to store the data from the websocket connector
      */
     unordered_map<string, ThreadInfo> m_threadInfos;
-
-    /**
-     * method to be called by the overloaded []-operator to retrieve data from the map
-     * @param id id of the data to be retrieved
-     * @return boolean-ThreadInfo pair in which the first parameter indicates if the process was successful
-     * and the second is the data object from the map or a dummy object
-     */
-    [[nodiscard]] static const pair<bool, ThreadInfo> &getDataFromId(const string &id);
 
     /**
      * method to get the ThreadData parameters from a json and add it to the given ThreadInfo

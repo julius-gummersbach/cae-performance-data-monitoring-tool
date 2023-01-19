@@ -24,30 +24,6 @@ namespace CAEMonitoringTool::DataStore {
     }
   }
 
-  const pair<bool, ThreadInfo> &DataManager::getDataFromId(const string &id) {
-
-    pair<bool, ThreadInfo> p{true,
-                             ThreadInfo{"foo",
-                                        "bar",
-                                        (double)(rand() % 100)}};
-    return p;
-
-    //TODO: comment back in once real data is usable and delete rng
-    /*
-    if (m_threadInfos.find(id) == m_threadInfos.end()) {
-      pair<bool, ThreadInfo> p{true, m_threadInfos.at(id)};
-      return p;
-    } else {
-      pair<bool, ThreadInfo> p{false, ThreadInfo{0,nullptr,0}};
-      return p;
-    }
-    */
-  }
-
-  const pair<bool, ThreadInfo> &DataManager::operator[](const string &id) const {
-    return getDataFromId(id);
-  }
-
   void DataManager::addThreadData(ThreadInfo &info, const json &object) {
     string name = object["name"];
     vector<double> sum_rt = object["sum_rt"];
