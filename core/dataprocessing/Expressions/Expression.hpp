@@ -4,7 +4,7 @@
 
 #include "../Graph.hpp"
 
-namespace Graph
+namespace CAEMonitoringTool::DataProcessing
 {
 	class Expression
 	{

@@ -14,6 +14,17 @@ namespace CAEMonitoringTool::DataStore {
 
   using json = nlohmann::json;
 
+
+using json = nlohmann::json;
+using std::string;
+using std::unordered_map;
+using std::vector;
+using std::cout;
+using std::endl;
+using std::pair;
+
+namespace CAEMonitoringTool::DataStore {
+
 /**
  * class to store all the ThreadInfos in a map sorted by their id given to it via a json object containing
  * the information from the websocket connector
@@ -29,6 +40,12 @@ namespace CAEMonitoringTool::DataStore {
      */
     void addThreadInfo(const json &threadInfo);
 
+  private:
+
+    /**
+     * map to assign a ThreadInfo object to a long value to store the data from the websocket connector
+     */
+    unordered_map<string, ThreadInfo> m_threadInfos;
     /**
      * overloading of the []-operator as a way to retrieve the ThreadInfo objects from the map via a given
      * id
@@ -81,6 +98,9 @@ namespace CAEMonitoringTool::DataStore {
      * @param j json representation of the data of the ThreadData object
      */
     static void addThreadData(ThreadInfo &info, const json &j);
+     * @param object json representation of the data of the ThreadData object
+     */
+    static void addThreadData(ThreadInfo &info, const json &object);
 
     /**
      * method to retrieve data from the json representation of a ThreadInfo object
@@ -105,12 +125,7 @@ namespace CAEMonitoringTool::DataStore {
                                const Graph::time_point &startTime,
                                const Graph::time_delta &length,
                                const getterFunc &func);
-
-    static const double& getSumRT(const ThreadData &data);
-    static const double& getMaxRT(const ThreadData &data);
-    static const double& getAvgRT(const ThreadData &data);
-    static const double& getSumVS(const ThreadData &data);
-    static const double& getSumIS(const ThreadData &data);
   };
+
 }
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_HPP

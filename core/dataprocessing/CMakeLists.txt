@@ -1,6 +1,11 @@
+set(CMAKE_CXX_STANDARD 20)
 add_library(dataprocessing 
 	Expressions/AtomicExpression.cpp
 	Expressions/ComposedExpression.cpp
+	Operations/GraphAddition.cpp
+	Operations/GraphSubtraktion.cpp
+	Operations/GraphDivision.cpp
+	Operations/GraphMultiplikation.cpp
 	Graph.cpp
 	GraphCreator.cpp
-	GraphManager.cpp)
+	GraphManager.cpp )
