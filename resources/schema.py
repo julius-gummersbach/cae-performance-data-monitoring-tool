@@ -48,7 +48,7 @@ class ThreadInfo:
     # amount of detected overruns
     overruns: int
         
-    # sum over avg_rt
+    # sum over sumRt
     sum_rt: float  # [ms]
         
     # list about all modules running in the thread
