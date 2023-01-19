@@ -46,7 +46,8 @@ namespace CAEMonitoringTool::DataStore {
         [[nodiscard]] double getSumRt() const;
         [[nodiscard]] const std::vector<std::shared_ptr<ThreadData>> &getData() const;
 
-        ThreadInfo(string threadId, string name, time_point startTime, double freq);
+        ThreadInfo(string threadId, string name, time_point startTime, double freq, int iterations, int overruns,
+                   double sumRt);
 
         /**
          * adds a new ThreadData object to the m_data list

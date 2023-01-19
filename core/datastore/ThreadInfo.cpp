@@ -8,33 +8,36 @@
 using std::isinf;
 using std::isnan;
 using std::string;
+using std::invalid_argument;
+using std::move;
+using CAEMonitoringTool::DataProcessing::time_point;
 
 namespace CAEMonitoringTool::DataStore {
 
-    ThreadInfo::ThreadInfo(string threadId, string name, MonitoringTool::DataProcessing::time_point startTime, double freq) :
-            m_threadId{std::move(threadId)}, m_name{std::move(name)}, m_startTime{startTime}, m_freq{freq},
-            m_iterations{0},
-            m_overruns{0}, m_sumRt{0} {
+    ThreadInfo::ThreadInfo(string threadId, string name, time_point startTime, double freq, int iterations,
+                           int overruns, double sumRt) :
+            m_threadId{move(threadId)}, m_name{move(name)}, m_startTime{startTime}, m_freq{freq},
+            m_iterations{iterations}, m_overruns{overruns}, m_sumRt{sumRt} {
         // if parameters are invalid we throw an exception that should be caught by the GUI that should prompt the user for new input
         if (!(m_freq > 0 && !isinf(m_freq) && !isnan(m_freq))) {
-            throw std::invalid_argument(
+            throw invalid_argument(
                     "ThreadInfo instance could not be created: invalid frequency: " + std::to_string(m_freq));
         }
         if (m_threadId.length() != 6
             || m_threadId.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") != std::string::npos) {
-            throw std::invalid_argument("ThreadInfo instance could not be created: invalid thread id: " + m_threadId);
+            throw invalid_argument("ThreadInfo instance could not be created: invalid thread id: " + m_threadId);
         }
         if (m_name.empty()) {
-            throw std::invalid_argument("ThreadInfo instance could not be created: name must not be empty");
+            throw invalid_argument("ThreadInfo instance could not be created: name must not be empty");
         }
     }
 
     void ThreadInfo::addData(const string &name,
-                                        double sumRt,
-                                        double maxRt,
-                                        double avgRt,
-                                        double sumVs,
-                                        double sumIs) {
+                             double sumRt,
+                             double maxRt,
+                             double avgRt,
+                             double sumVs,
+                             double sumIs) {
         bool isValid = name == m_name
                        // check for infinity and nan
                        && !isinf(sumRt) && !isnan(sumRt) && sumRt > 0
