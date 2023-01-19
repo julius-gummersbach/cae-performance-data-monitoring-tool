@@ -2,8 +2,9 @@
 #define CAE_PERFORMANCE_DATA_MONITORING_TOOL_THREADDATA_H
 
 #include <string>
+#include "../dataprocessing/DataTypes.hpp"
 
-using MonitoringTool::DataProcessing::time_point;
+using CAEMonitoringTool::DataProcessing::time_point;
 using std::string;
 
 namespace CAEMonitoringTool::DataStore {

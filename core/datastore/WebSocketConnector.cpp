@@ -1,9 +1,12 @@
 #include "WebSocketConnector.hpp"
 
-DataStore::WebSocketConnector::WebSocketConnector(const DataManager &dataManager){
-    // to be implemented
-}
+namespace CAEMonitoringTool::DataStore {
 
-void DataStore::WebSocketConnector::receiveData(const std::string &jsonString){
-    // to be implemented
+    WebSocketConnector::WebSocketConnector(const DataManager &dataManager) {
+        // to be implemented
+    }
+
+    void WebSocketConnector::receiveData(const std::string &jsonString) {
+        // to be implemented
+    }
 }
