@@ -5,6 +5,8 @@
 #include "websocketpp/config/asio_no_tls_client.hpp"
 #include "ConnectionMetadata.hpp"
 
+namespace CAEMonitoringTool::Websocket{
+
 typedef websocketpp::client<websocketpp::config::asio_client> client;
 
 
@@ -36,6 +38,14 @@ public:
      * @return A ConnectionMetadata object, see ConnectionMetadata.hpp for more information.
      */
     ConnectionMetadata::ptr getMetadata(int id) const;
+
+    /**
+     * Sends a message to the server via a connection
+     * @param id the id of the connection
+     * @param message the message (as a string)
+     */
+    void send(int id, const std::string& message);
+
     /**
      * Closes a connection with the given id.
      * @param id The id of the connection
@@ -51,5 +61,5 @@ private:
     con_list m_connection_list;
     int m_nextId;
 };
-
+}
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_WEBSOCKETENDPOINT_HPP

@@ -6,6 +6,7 @@
 #include <nlohmann/json.hpp>
 #include <utility>
 
+namespace CAEMonitoringTool::Websocket{
 using json = nlohmann::json;
 
 typedef websocketpp::client<websocketpp::config::asio_client> client;
@@ -56,3 +57,4 @@ websocketpp::connection_hdl ConnectionMetadata::getHdl() { return m_hdl; }
 std::string ConnectionMetadata::getStatus() { return m_status; }
 
 int ConnectionMetadata::getId() const { return m_id; }
+}
