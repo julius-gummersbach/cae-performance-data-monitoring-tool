@@ -1,10 +1,12 @@
 #include "WebSocketConnector.hpp"
 
-using json = nlohmann::json;
+namespace CAEMonitoringTool::DataStore {
 
-WebSocketConnector::WebSocketConnector(const DataManager &dataManager) :
-        m_dataManager{std::move(dataManager)}{}
+    WebSocketConnector::WebSocketConnector(const DataManager &dataManager) {
+        // to be implemented
+    }
 
-void WebSocketConnector::receiveData(const std::string &jsonString) {
-  m_dataManager.addThreadInfo(json::parse(jsonString));
+    void WebSocketConnector::receiveData(const std::string &jsonString) {
+        // to be implemented
+    }
 }
