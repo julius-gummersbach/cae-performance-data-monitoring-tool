@@ -65,6 +65,13 @@ namespace CAEMonitoringTool::DataStore {
                      double avgRt,
                      double sumVs,
                      double sumIs);
+
+        /**
+         * increases the overruns counter by the given delta
+         *
+         * @param delta
+         */
+        void increaseOverruns(int delta);
     };
 
 }

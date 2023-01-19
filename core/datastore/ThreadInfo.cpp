@@ -60,11 +60,14 @@ namespace CAEMonitoringTool::DataStore {
                        // check for logical content
                        && sumRt >= maxRt && maxRt >= avgRt * 1000; // avgRt is in ms while maxRt is in s
         if (isValid) {
-            // todo update overruns
             m_sumRt += sumRt;
         }
         // we also store invalid data to be able to keep track of time
         m_data.push_back(std::make_shared<ThreadData>(name, isValid, sumRt, maxRt, avgRt, sumVs, sumIs));
+    }
+
+    void ThreadInfo::increaseOverruns(int delta) {
+        m_overruns += delta;
     }
 
     const string &ThreadInfo::getThreadId() const {
