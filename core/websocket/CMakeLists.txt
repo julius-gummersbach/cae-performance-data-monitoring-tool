@@ -11,8 +11,8 @@ add_subdirectory(../../../json ${CMAKE_CURRENT_BINARY_DIR}/nlohmann_json)
 
 include_directories(../../../websocketpp)
 add_library(websocket
-        websocket_endpoint.cpp
-        connection_metadata.cpp
+        WebsocketEndpoint.cpp
+        ConnectionMetadata.cpp
         test.cpp)
 add_executable(test test.cpp)
 target_link_libraries(websocket nlohmann_json::nlohmann_json)

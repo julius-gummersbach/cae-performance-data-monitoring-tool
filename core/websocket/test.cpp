@@ -1,6 +1,4 @@
-//
-// Created by CAE-DUALSTUDIS on 11.01.2023.
-//
+
 #include "websocketpp/client.hpp"
 #include "websocketpp/config/asio_no_tls_client.hpp"
 //#include <websocketpp/common/thread.hpp>
@@ -11,10 +9,10 @@
 #include <thread>
 #include <cstdlib>
 #include <vector>
-#include "connection_metadata.hpp"
-#include "websocket_endpoint.hpp"
+#include "ConnectionMetadata.hpp"
+#include "WebsocketEndpoint.hpp"
 
-std::ostream &operator<<(std::ostream &out, connection_metadata const &data) {
+std::ostream &operator<<(std::ostream &out, ConnectionMetadata const &data) {
     out << "> URI: " << data.m_uri << "\n"
         << "> Status: " << data.m_status << "\n"
         << "> Remote Server: " << (data.m_server.empty() ? "None Specified" : data.m_server) << "\n"
@@ -30,7 +28,7 @@ std::ostream &operator<<(std::ostream &out, connection_metadata const &data) {
 int main() {
     bool done = false;
     std::string input;
-    websocket_endpoint endpoint;
+    WebsocketEndpoint endpoint;
     while (!done) {
         std::cout << "Enter Command: ";
         std::getline(std::cin, input);
@@ -54,7 +52,7 @@ int main() {
         } else if (input.substr(0,4) == "show") {
             int id = atoi(input.substr(5).c_str());
 
-            connection_metadata::ptr metadata = endpoint.get_metadata(id);
+            ConnectionMetadata::ptr metadata = endpoint.getMetadata(id);
             if (metadata) {
                 std::cout << *metadata << std::endl;
             } else {
@@ -65,13 +63,13 @@ int main() {
 
             std::string cmd;
             int id;
-            int close_code = websocketpp::close::status::normal;
+            int closeCode = websocketpp::close::status::normal;
             std::string reason;
 
-            ss >> cmd >> id >> close_code;
+            ss >> cmd >> id >> closeCode;
             std::getline(ss,reason);
 
-            endpoint.close(id, close_code, reason);
+            endpoint.close(id, closeCode, reason);
         } else {
             std::cout << "Unrecognized Command" << std::endl;
         }
