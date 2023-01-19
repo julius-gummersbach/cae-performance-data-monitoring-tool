@@ -1,7 +1,7 @@
 #pragma once
 #include "GraphOperation.hpp"
 
-namespace DataProcessing
+namespace CAEMonitoringTool::DataProcessing
 {
 	class GraphDivision :GraphOperation
 	{

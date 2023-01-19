@@ -7,7 +7,7 @@
 #include "Expressions/Expression.hpp"
 
 
-namespace DataProcessing
+namespace CAEMonitoringTool::DataProcessing
 {
 	class GraphManager
 	{

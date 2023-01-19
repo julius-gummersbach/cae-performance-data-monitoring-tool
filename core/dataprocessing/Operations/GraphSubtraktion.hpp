@@ -2,7 +2,7 @@
 #include "GraphOperation.hpp"
 
 
-namespace DataProcessing
+namespace CAEMonitoringTool::DataProcessing
 {
 	class GraphAddition :GraphOperation
 	{

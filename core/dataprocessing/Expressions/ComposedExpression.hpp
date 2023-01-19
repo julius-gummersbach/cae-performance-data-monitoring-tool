@@ -3,7 +3,7 @@
 #include "Expression.hpp"
 #include "../Operations/GraphOperation.hpp"
 
-namespace DataProcessing
+namespace CAEMonitoringTool::DataProcessing
 {
 	class ComposedExpression
 	{

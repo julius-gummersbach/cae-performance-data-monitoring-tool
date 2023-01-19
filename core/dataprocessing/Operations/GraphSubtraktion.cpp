@@ -1,6 +1,6 @@
 #include "GraphSubtraktion.hpp"
 
-namespace DataProcessing {
+namespace CAEMonitoringTool::DataProcessing {
 
 	Graph GraphAddition::evaluate(const Graph& firstGraph, const Graph& secondGraph)
 	{
@@ -10,9 +10,9 @@ namespace DataProcessing {
 		}
 		std::deque<double> newDataPoints{};
 
-		auto& first = firstGraph.getDataPoints().begin();
-		auto& firstEnd = firstGraph.getDataPoints().end();
-		auto& second = secondGraph.getDataPoints().begin();
+		auto first = firstGraph.getDataPoints().begin();
+		auto firstEnd = firstGraph.getDataPoints().end();
+		auto second = secondGraph.getDataPoints().begin();
 
 		while (first != firstEnd)
 		{

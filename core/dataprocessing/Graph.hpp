@@ -5,7 +5,7 @@
 #include "DataTypes.hpp"
 
 //include QLineSeries//TODO
-namespace DataProcessing
+namespace CAEMonitoringTool::DataProcessing
 {
 	class Graph
 	{

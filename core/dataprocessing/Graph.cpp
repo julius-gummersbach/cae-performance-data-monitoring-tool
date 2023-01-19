@@ -1,6 +1,6 @@
 #include "Graph.hpp"
 
-namespace DataProcessing {
+namespace CAEMonitoringTool::DataProcessing {
 
 	Graph::Graph(std::deque<double>& dataPoints, const GraphDataType& type)
 	{

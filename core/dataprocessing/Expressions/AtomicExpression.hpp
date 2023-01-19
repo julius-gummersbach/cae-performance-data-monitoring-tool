@@ -3,7 +3,7 @@
 #include "Expression.hpp"
 #include "../GraphCreator.hpp"
 
-namespace DataProcessing
+namespace CAEMonitoringTool::DataProcessing
 {
 	class AtomicExpression
 	{

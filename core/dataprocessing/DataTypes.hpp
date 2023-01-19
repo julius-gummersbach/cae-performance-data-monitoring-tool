@@ -9,7 +9,7 @@
 #include <memory>
 #include <string>
 
-namespace DataProcessing
+namespace CAEMonitoringTool::DataProcessing
 {
 	using namespace std::chrono_literals;
 	using time_delta = std::chrono::nanoseconds;

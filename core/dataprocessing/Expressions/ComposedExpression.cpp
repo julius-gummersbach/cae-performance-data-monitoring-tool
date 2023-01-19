@@ -1,6 +1,6 @@
 #include "ComposedExpression.hpp"
 
-namespace DataProcessing {
+namespace CAEMonitoringTool::DataProcessing {
 	ComposedExpression::ComposedExpression(shared_ptr<Expression> lhs, shared_ptr<Expression> rhs, shared_ptr<GraphOperation> operation) :
 		m_leftExpr{ lhs },
 		m_rightExpr{ rhs },
