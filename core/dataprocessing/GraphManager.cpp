@@ -4,7 +4,7 @@
 #include "Graph.hpp"
 #include "GraphManager.hpp"
 
-namespace Graph 
+namespace CAEMonitoringTool::DataProcessing 
 {
 
 	// TODO

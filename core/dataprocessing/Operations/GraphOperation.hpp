@@ -1,19 +1,22 @@
 #pragma once
+#include <queue>
+#include <stdexcept>
+
 #include "../Graph.hpp"
 
-namespace Graph
+namespace CAEMonitoringTool::DataProcessing
 {
 	class GraphOperation
 	{
 	public:
 		/**
 		* Combines two graphs mathematically
-		* 
-		* @param first graph 
+		*
+		* @param first graph
 		* @param second graph
 		* @return the combined graph
 		*/
-		virtual Graph evaluate(const Graph& firstGraph,const Graph& secondGraph) const = 0;
+		virtual Graph evaluate(const Graph& firstGraph, const Graph& secondGraph) const = 0;
 
 	private:
 		/**
