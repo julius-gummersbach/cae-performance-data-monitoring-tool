@@ -40,12 +40,27 @@ namespace MonitoringTool::DataStore {
      */
     const std::pair<bool, ThreadInfo> &operator[](const string &id) const;
 
+    /**
+     * method for the graph-expressions to get the data points for the graphs from the data manager in a given time
+     * interval
+     *
+     * @param id id of the threadinfo object the data has to be retrieved from
+     * @param startTime start time point of the time interval
+     * @param length length of the time interval in nanoseconds
+     * @param type data type of the graph
+     * @return a list of points with the values of the given type in the given time interval
+     */
     std::deque<double> getPointsInIntervall(const string &id,
-                                       const Graph::time_point &startTime,
-                                       const Graph::time_delta &length,
-                                       const Graph::GraphDataType &type) const;
+                                            const Graph::time_point &startTime,
+                                            const Graph::time_delta &length,
+                                            const Graph::GraphDataType &type) const;
 
   private:
+
+    /**
+     * general function pointer for the getter functions for the attributes of the threaddata objects
+     */
+    typedef const double&(*getterFunc)(const ThreadData &data);
 
     /**
      * map to assign a ThreadInfo object to a long value to store the data from the websocket connector
@@ -74,6 +89,28 @@ namespace MonitoringTool::DataStore {
      */
     [[nodiscard]] static ThreadInfo getInfo(const json &object);
 
+    /**
+     * method to calculate all the threaddata objects in the given time intervall and return the requestes data type
+     * from those using the passed function
+     *
+     * @param info threadinfo object the data the data has to be retrieved from
+     * @param data list of threaddata objects the attributes have to be retrieves from
+     * @param startTime start time point of the time interval
+     * @param length length of the time interval in nanoseconds
+     * @param func pointer to the getter function to get the right attribute form the thread data objects
+     * @return a list of points with the values of the given type in the given time interval
+     */
+    static std::deque<double> getData(const ThreadInfo &info,
+                               const std::vector<std::shared_ptr<ThreadData>> &data,
+                               const Graph::time_point &startTime,
+                               const Graph::time_delta &length,
+                               const getterFunc &func);
+
+    static const double& getSumRT(const ThreadData &data);
+    static const double& getMaxRT(const ThreadData &data);
+    static const double& getAvgRT(const ThreadData &data);
+    static const double& getSumVS(const ThreadData &data);
+    static const double& getSumIS(const ThreadData &data);
   };
 }
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_HPP
