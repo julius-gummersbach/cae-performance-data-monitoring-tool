@@ -4,7 +4,6 @@
 #include <string>
 #include "../dataprocessing/DataTypes.hpp"
 
-using CAEMonitoringTool::DataProcessing::time_point;
 using std::string;
 
 namespace CAEMonitoringTool::DataStore {

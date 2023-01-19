@@ -9,7 +9,7 @@ using std::isinf;
 using std::isnan;
 using std::string;
 using std::invalid_argument;
-using CAEMonitoringTool::DataProcessing::time_point;
+using Graph::time_point;
 
 namespace CAEMonitoringTool::DataStore {
 
@@ -77,7 +77,7 @@ namespace CAEMonitoringTool::DataStore {
         return m_name;
     }
 
-    const DataProcessing::time_point &ThreadInfo::getStartTime() const {
+    const Graph::time_point &ThreadInfo::getStartTime() const {
         return m_startTime;
     }
 

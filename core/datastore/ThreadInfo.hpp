@@ -9,7 +9,7 @@
 #include "../dataprocessing/DataTypes.hpp"
 
 using std::string;
-using CAEMonitoringTool::DataProcessing::time_point;
+using Graph::time_point;
 
 namespace CAEMonitoringTool::DataStore {
 
