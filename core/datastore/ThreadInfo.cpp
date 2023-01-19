@@ -30,6 +30,18 @@ namespace CAEMonitoringTool::DataStore {
         if (m_name.empty()) {
             throw invalid_argument("ThreadInfo instance could not be created: name must not be empty");
         }
+        if (iterations < 0 || isinf(iterations) || isnan(iterations)) {
+            throw invalid_argument("ThreadInfo instance could not be created: invalid value for iterations: "
+                                   + std::to_string(iterations));
+        }
+        if (overruns < 0 || isinf(overruns) || isnan(overruns)) {
+            throw invalid_argument("ThreadInfo instance could not be created: invalid value for overruns: "
+                                   + std::to_string(overruns));
+        }
+        if (sumRt < 0 || isinf(sumRt) || isnan(sumRt)) {
+            throw invalid_argument("ThreadInfo instance could not be created: invalid value for sumRT: "
+                                   + std::to_string(sumRt));
+        }
     }
 
     void ThreadInfo::addData(const string &name,
