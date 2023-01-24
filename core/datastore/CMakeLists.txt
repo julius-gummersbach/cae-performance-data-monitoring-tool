@@ -5,8 +5,5 @@ add_library(datastore
         DataManager.hpp
         ThreadInfo.cpp
         ThreadInfo.hpp
-        ThreadData.cpp
-        ThreadData.hpp
-        WebSocketConnector.cpp
-        WebSocketConnector.hpp)
+        )
 
