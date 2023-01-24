@@ -1,11 +1,13 @@
 
 #ifndef CAE_PERFORMANCE_DATA_MONITORING_TOOL_CONNECTIONMETADATA_HPP
 #define CAE_PERFORMANCE_DATA_MONITORING_TOOL_CONNECTIONMETADATA_HPP
+
 #include "websocketpp/client.hpp"
 #include "websocketpp/config/asio_no_tls_client.hpp"
 
 namespace CAEMonitoringTool::Websocket {
     typedef websocketpp::client<websocketpp::config::asio_client> client;
+
 /**
  *  Tracks information about connections.
  */
@@ -47,6 +49,12 @@ namespace CAEMonitoringTool::Websocket {
          */
         [[nodiscard]] int getId() const;
 
+        /**
+         * @return a reference to the message queue
+         */
+        std::deque<std::string>& getMessageQueue();
+
+        std::mutex m_messageMutex;
     private:
         int m_id;
         websocketpp::connection_hdl m_hdl;
@@ -54,7 +62,7 @@ namespace CAEMonitoringTool::Websocket {
         std::string m_uri;
         std::string m_server;
         std::string m_error_reason;
-        std::vector<std::string> m_messages;
+        std::deque<std::string> m_messages;
     };
 }
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_CONNECTIONMETADATA_HPP
