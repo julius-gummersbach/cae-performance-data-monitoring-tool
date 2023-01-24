@@ -3,21 +3,56 @@ from typing import List
 
 
 @dataclass
-class ThreadData:
+class Module:
+    # module name
     name: str
-    sum_rt: float  # [s]
-    max_rt: float  # [s]
+    
+    # sum realtime
+    sum_rt: float  # [ms]
+        
+    # max realtime
+    max_rt: float  # [ms]
+        
+    # average realtime
     avg_rt: float  # [ms]
-    sum_vs: float  # [s]
-    sum_is: float  # [s]
-
+        
+    # sum voluntary context switches
+    sum_vs: float
+        
+    # sum involuntary context switches
+    sum_is: float
+       
+    
+@dataclass
+class Point:
+    # tick (16ms)
+    x: int
+        
+    # time (ms)
+    y: float
 
 @dataclass
 class ThreadInfo:
+    # the thread id
     tid: str
+        
+    # the thread name
     name: str
+        
+    # the thread frequency
     freq: float
+        
+    # amount of iterations
     iterations: int
+        
+    # amount of detected overruns
     overruns: int
-    sum_rt: float  # [s]
-    data: List[ThreadData]
+        
+    # sum over sumRt
+    sum_rt: float  # [ms]
+        
+    # list about all modules running in the thread
+    modules: List[Module]
+        
+    # graph about the consumed time in the related thread
+    graph: List[Point]
