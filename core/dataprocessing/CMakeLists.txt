@@ -1,4 +1,4 @@
 set(CMAKE_CXX_STANDARD 20)
 add_library(dataprocessing 
-	Graph.hpp
-	GraphManager.hpp)
+	Graph.cpp
+	GraphManager.cpp)
