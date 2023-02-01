@@ -5,7 +5,7 @@
 #include "GraphOperation.hpp"
 
 
-namespace Graph
+namespace CAEMonitoringTool::DataProcessing
 {
 	class GraphManager
 	{

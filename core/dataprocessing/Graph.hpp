@@ -3,7 +3,7 @@
 #include "DataTypes.hpp"
 
 //include QLineSeries//TODO
-namespace Graph
+namespace CAEMonitoringTool::DataProcessing 
 {
 	class Graph
 	{
@@ -20,7 +20,7 @@ namespace Graph
 		*/
 		Graph(std::vector<std::pair<int, double>> dataPoints);
 
-		Graph(Graph leftGraph, Graph rightGraph, GraphOperation operation);
+		Graph(Graph leftGraph, Graph rightGraph, callback_function operationFunction);
 			
 		std::string getImage();
 	};

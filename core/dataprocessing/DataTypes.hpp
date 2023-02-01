@@ -10,8 +10,9 @@
 #include <string>
 #include <vector>
 
-namespace Graph
+namespace CAEMonitoringTool::DataProcessing
 {
+	typedef double (*callback_function)(double value1, double value2);
 	using std::shared_ptr;
 	using std::string;
 }

@@ -1,11 +1,12 @@
 #include "Graph.hpp"
 
-namespace Graph {
+namespace CAEMonitoringTool::DataProcessing
+{
 
 	Graph::Graph(std::vector<std::pair<int, double>> dataPoints)
 	{}
 
-	Graph::Graph(Graph leftGraph, Graph rightGraph, GraphOperation operation)
+	Graph::Graph(Graph leftGraph, Graph rightGraph, callback_function operationFunction)
 	{}
 
 	std::string Graph::getImage()

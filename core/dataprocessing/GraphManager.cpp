@@ -2,7 +2,7 @@
 
 #include "GraphManager.hpp"
 
-namespace Graph 
+namespace CAEMonitoringTool::DataProcessing
 {
 	GraphManager::GraphManager()
 	{ }
