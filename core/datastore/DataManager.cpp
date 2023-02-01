@@ -24,7 +24,7 @@ namespace CAEMonitoringTool::DataStore {
       string result{"{"};
       string divider;
       for (const std::shared_ptr<json> &object: info.m_modules) {
-        result.append("[").append(divider).append(object->dump()).append("]");
+        result.append(divider).append(object->dump());
         divider = ", ";
       }
       result.append("}");
