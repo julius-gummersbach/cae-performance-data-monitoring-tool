@@ -4,6 +4,4 @@ add_library(datastore
         DataManager.cpp
         DataManager.hpp
         ThreadInfo.cpp
-        ThreadInfo.hpp
-        )
-
+        ThreadInfo.hpp)

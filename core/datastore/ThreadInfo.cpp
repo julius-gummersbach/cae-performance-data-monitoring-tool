@@ -43,8 +43,4 @@ namespace CAEMonitoringTool::DataStore {
                              + std::to_string(sumRt));
     }
   }
-
-  void ThreadInfo::addModule(const Module &module) {
-    this->m_modules.push_back(std::make_shared<Module>(module));
-  }
 }
