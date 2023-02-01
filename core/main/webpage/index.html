@@ -1,0 +1,188 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>CAE Performance Data Monitoring Tool</title>
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="img/CAE_logo.svg">
+
+  <meta name="theme-color" content="#fafafa">
+
+</head>
+
+<body>
+
+<div id="headline">
+  <img id="logo" src="img/CAE_logo.svg" alt="CAE Logo">
+  <div id="title">
+    <h1>Performance Data Monitoring Tool</h1>
+  </div>
+</div>
+
+<div id="selectThread">
+  <div class="customDropdown">
+    <label for="lhsThread"></label>
+    <select name="lhsThread" id="lhsThread">
+      <option value="SelectPrompt">Select a thread...</option>
+      <option value="Thread1">Thread 1</option>
+      <option value="Thread2">Thread 2</option>
+      <option value="Thread3">Thread 3</option>
+    </select>
+  </div>
+
+  <div class="customDropdown">
+    <label for="operation"></label>
+    <select name="operation" id="operation">
+      <option value=0>Select an operation...</option>
+      <option value=1>+</option>
+      <option value=2>-</option>
+      <option value=3>x</option>
+      <option value=4>/</option>
+    </select>
+  </div>
+
+  <div class="customDropdown">
+    <label for="rhsThread"></label>
+    <select name="rhsThread" id="rhsThread">
+      <option value="SelectPrompt">Select another thread...</option>
+      <option value="Thread1">Thread 1</option>
+      <option value="Thread2">Thread 2</option>
+      <option value="Thread3">Thread 3</option>
+    </select>
+  </div>
+
+</div>
+
+
+<div id="displaySection">
+  <div id="leftDisplaySection">
+    <div id="graphSvgContainer">
+      <img id="graph_svg" src="img/graph_demo_data.svg" alt="Graph demo SVG"/>
+    </div>
+    <div class="ThreadInfoTable">
+      <table>
+        <tr>
+          <th>id</th>
+          <th>frequency</th>
+          <th>iterations</th>
+          <th>overruns</th>
+          <th>runtime</th>
+        </tr>
+        <tr>
+          <td>A32VG9</td>
+          <td>60.0</td>
+          <td>5</td>
+          <td>0</td>
+          <td>0.2434</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div id="ModuleTable">
+    <table>
+      <tr>
+        <th>name</th>
+        <th>sum_rt</th>
+        <th>max_rt</th>
+        <th>avg_rt</th>
+        <th>sum_vs</th>
+        <th>sum_is</th>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0853</td>
+        <td>0.0191</td>
+        <td>17.05719</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0793</td>
+        <td>0.0175</td>
+        <td>15.8595</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+      <tr>
+        <td>Thread01</td>
+        <td>0.0788</td>
+        <td>0.0173</td>
+        <td>15.7637</td>
+        <td>0.1</td>
+        <td>0.25</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</body>
+</html>
