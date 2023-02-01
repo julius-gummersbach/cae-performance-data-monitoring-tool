@@ -13,8 +13,6 @@
 namespace CAEMonitoringTool::DataStore {
 
   using json = nlohmann::json;
-
-  using json = nlohmann::json;
   using std::string;
   using std::unordered_map;
   using std::vector;

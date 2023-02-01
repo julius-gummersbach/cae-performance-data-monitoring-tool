@@ -106,14 +106,11 @@ namespace CAEMonitoringTool::DataStore {
     string tid = object["tid"];
     string name = object["name"];
     double freq = object["freq"];
-    int iterations = object["iterations");
-    int overruns = object["overruns");
-    vector<double> sum_rt = object["sum_rt");
+    int iterations = object["iterations"];
+    int overruns = object["overruns"];
+    vector<double> sum_rt = object["sum_rt"];
 
     ThreadInfo info{tid, name, freq, startTime, freq, iterations, overruns};
     return info;
   }
-}
-}
-}
 }
