@@ -2,7 +2,6 @@
 
 #include "Graph.hpp"
 #include "DataTypes.hpp"
-#include "GraphOperation.hpp"
 
 
 namespace CAEMonitoringTool::DataProcessing
@@ -11,10 +10,12 @@ namespace CAEMonitoringTool::DataProcessing
 	{
 	private:
 		std::unordered_map<shared_ptr<std::string>, shared_ptr<Graph>> m_graphs;	// all graphs this object manages
-		std::unordered_map<shared_ptr<std::string>, shared_ptr<Graph>> m_operations;
+		std::unordered_map<shared_ptr<std::string>, callback_function> m_operations;
 
 
 	public:
+
+		GraphManager();
 
 		/**
 		* Adds a graph to the graphlist from the given Points.

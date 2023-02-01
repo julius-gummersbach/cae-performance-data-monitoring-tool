@@ -10,6 +10,7 @@ namespace CAEMonitoringTool::DataProcessing
 	private:
 		std::vector<std::pair<int, double>>	m_dataPoints;// the points that make up the graph
 		std::string m_svgPath;
+		//ImageCreator m_imageCreator
 
 	public:
 		/**
@@ -18,9 +19,9 @@ namespace CAEMonitoringTool::DataProcessing
 		* @param dataPoints the points that make up the graph.
 		* @param type the type of graph being created
 		*/
-		Graph(std::vector<std::pair<int, double>> dataPoints);
+		Graph(const std::vector<std::pair<int, double>>& dataPoints);
 
-		Graph(Graph leftGraph, Graph rightGraph, callback_function operationFunction);
+		Graph(const Graph& leftGraph,const Graph& rightGraph, callback_function operationFunction);
 			
 		std::string getImage();
 	};
