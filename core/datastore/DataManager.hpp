@@ -17,7 +17,7 @@ namespace CAEMonitoringTool::DataStore {
 
   public:
 
-    void addData(const std::string &jsonString);
+    void addData(const json &object);
 
     std::string getModulesJSON(const std::string& id) const;
   };

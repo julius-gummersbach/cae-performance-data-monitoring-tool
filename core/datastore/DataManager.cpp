@@ -2,13 +2,12 @@
 
 namespace CAEMonitoringTool::DataStore {
 
-  void DataManager::addData(const std::string &jsonString) {
-    const json jsonObject{json::parse(jsonString)};
+  void DataManager::addData(const json &object) {
 
-    ThreadInfo info{jsonObject.at("tid"), jsonObject.at("name"), jsonObject.at("freq"),
-                    jsonObject.at("iterations"), jsonObject.at("overruns"), jsonObject.at("sum_rt").at(0)};
+    ThreadInfo info{object.at("tid"), object.at("name"), object.at("freq"),
+                    object.at("iterations"), object.at("overruns"), object.at("sum_rt").at(0)};
 
-    const std::vector<json> modules{jsonObject.at("modules")};
+    const std::vector<json> modules{object.at("modules")};
     for (auto &x: modules) {
       info.m_modules.push_back(std::make_shared<json>(x));
     }
