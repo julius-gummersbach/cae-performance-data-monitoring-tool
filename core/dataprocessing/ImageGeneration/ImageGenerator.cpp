@@ -38,7 +38,7 @@ namespace CAEMonitoringTool::DataProcessing {
         ioPPlot.mGridInfo.mYGridOn = true;
     }
 
-    std::string ImageGenerator::generateImage(const vector<std::pair<int, double>> &points) {
+    std::string ImageGenerator::generateImage(const std::vector<std::pair<int, double>> &points) {
         string path{"test5.svg"};
         PPlot pplot;
         plotIt(pplot,points);
