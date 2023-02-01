@@ -24,7 +24,7 @@ namespace CAEMonitoringTool::DataProcessing {
         }
         auto *legend = new LegendData();
         legend->mName = "Unsere Beispiel-Daten";
-        legend->mColor = PColor(100, 100, 200);
+        legend->mColor = PColor(41, 105, 242);
 
         ioPPlot.mPlotDataContainer.AddXYPlot(xValues, yValues, legend);
 
