@@ -3,11 +3,9 @@
 #include "websocketpp/config/asio_no_tls_client.hpp"
 #include "ConnectionMetadata.hpp"
 //#include "../datastore/DataManager.hpp"
-#include <nlohmann/json.hpp>
 #include <utility>
 
 namespace CAEMonitoringTool::Websocket{
-using json = nlohmann::json;
 
 typedef websocketpp::client<websocketpp::config::asio_client> client;
 
@@ -42,8 +40,6 @@ void ConnectionMetadata::onClose(client *c, websocketpp::connection_hdl hdl) {
 
 void ConnectionMetadata::onMessage(const websocketpp::connection_hdl& hdl, const client::message_ptr& msg) {
     if (msg->get_opcode() == websocketpp::frame::opcode::text) {
-
-        json j = json::parse(msg->get_payload());
         std::cout << msg->get_payload() << std::endl;
         //DataManager::addThreadInfo(j);
         m_messages.push_back(msg->get_payload());
