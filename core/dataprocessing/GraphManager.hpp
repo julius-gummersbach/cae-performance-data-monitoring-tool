@@ -22,7 +22,7 @@ namespace CAEMonitoringTool::DataProcessing
 		*
 		* @param jsonStr which includes Points for a Graph
 		*/
-		void addGraphFromPoints(std::string jsonStr);
+		void addGraphFromPoints(const json& jsonStr);
 
 		/**
 		* Adds a graph to the graphlist by combining the Graphs 

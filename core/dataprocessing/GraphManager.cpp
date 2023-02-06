@@ -31,10 +31,19 @@ namespace CAEMonitoringTool::DataProcessing
 		m_operations.insert_or_assign(std::make_shared<string>("/"), &Division);
 	}
 
-	void GraphManager::addGraphFromPoints(std::string jsonStr)
+	void GraphManager::addGraphFromPoints(const json& jsonStr)
 	{
-		
-		//m_graphs.insert(makeshared<string>("thread"), Graph{ dataPoints });
+		auto jsonIter = jsonStr.at("graph").begin();//TODO funktioniert das mit iterator?
+		auto jsonEnd = jsonStr.at("graph").end();
+		std::vector< std::pair<int, double>> dataPoints{};
+
+		while (jsonIter != jsonEnd)
+		{
+			dataPoints.push_back(std::pair<int, double>{jsonIter->at("x"), jsonIter->at("y")});
+			++jsonIter;
+		}
+		std::pair<shared_ptr<std::string>, shared_ptr<Graph>> Point{ std::make_shared<string>(jsonStr.at("tid")),std::make_shared<Graph>(dataPoints) };
+		m_graphs.insert(Point);
 	}
 
 	void GraphManager::addGraphfromCombination(std::string jsonStr)
