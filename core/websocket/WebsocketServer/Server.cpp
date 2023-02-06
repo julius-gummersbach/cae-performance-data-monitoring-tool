@@ -9,18 +9,19 @@
 
 typedef websocketpp::server<websocketpp::config::asio> server;
 
-server print_server;
+server toolServer;
 
-void on_message(websocketpp::connection_hdl h, server::message_ptr msg) {
-    std::cout << "TEST MARIA" << msg->get_payload() << std::endl;
-    std::string s = "hii";
-    print_server.get_con_from_hdl(h)->send(s);
+void on_message(websocketpp::connection_hdl h, const server::message_ptr& msg) {
+    std::cout << msg->get_payload() << std::endl;
+    std::string s = "test hello 123 123";
+    toolServer.get_con_from_hdl(h)->send(s);
+    //a:
 }
 
 int main() {
-    print_server.set_message_handler(&on_message);
-    print_server.init_asio();
-    print_server.listen(9002);
-    print_server.start_accept();
-    print_server.run();
+    toolServer.set_message_handler(&on_message);
+    toolServer.init_asio();
+    toolServer.listen(9002);
+    toolServer.start_accept();
+    toolServer.run();
 }
