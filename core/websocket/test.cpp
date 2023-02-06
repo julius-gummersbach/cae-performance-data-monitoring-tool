@@ -18,9 +18,13 @@ int main() {
     if (id != -1) {
         std::cout << "> Created connection with id " << id << std::endl;
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    endpoint.send(id, "HIHIHI");
-    //endpoint.close(0,websocketpp::close::status::going_away, "");
-     */
+    //std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    //endpoint.send(id, "HIHIHI");
+
+    while(true) {
+        std::cout << endpoint.getMessage(id) << std::endl << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    }
+    endpoint.close(id,websocketpp::close::status::going_away, "");
     return 0;
 }

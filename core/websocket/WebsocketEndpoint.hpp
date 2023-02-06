@@ -4,6 +4,7 @@
 #include "websocketpp/client.hpp"
 #include "websocketpp/config/asio_no_tls_client.hpp"
 #include "ConnectionMetadata.hpp"
+#include "mutex"
 
 namespace CAEMonitoringTool::Websocket{
 
@@ -53,6 +54,12 @@ public:
      * @param reason the reason in human readable form.
      */
     void close(int id, websocketpp::close::status::value code, const std::string& reason);
+
+    /**
+     * Gets a message from the queue
+     * @return the message string if one is present, otherwise an empty string.
+     */
+    std::string getMessage(int id) const;
 
 private:
     typedef std::map<int, ConnectionMetadata::ptr> con_list;
