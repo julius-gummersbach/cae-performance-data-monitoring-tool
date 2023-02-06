@@ -40,9 +40,16 @@ namespace CAEMonitoringTool::Websocket {
           << "), close reason: " << con->get_remote_close_reason();
         m_error_reason = s.str();
     }
-
+    /**
+     * Defines what to do once a message is received.
+     * Pushes the received string into a queue to await usage by the controller.
+     * @param hdl a thread-safe pointer to this specific connection
+     * @param msg the message-pointer
+     */
     void ConnectionMetadata::onMessage(const websocketpp::connection_hdl &hdl, const client::message_ptr &msg) {
+        // lock the queue to avoid conflicts with the main thread
         std::lock_guard<std::mutex> lk(m_messageMutex);
+        // add the message string to the queue
         m_messages.push_back(msg->get_payload());
     }
 

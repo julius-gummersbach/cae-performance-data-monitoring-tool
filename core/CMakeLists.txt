@@ -8,10 +8,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG build/debug)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE build/release)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE build/release)
 
-
-
-SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "../../../boostlibrary/boost_1_81_0")
-SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "../../../boostlibrary/boost_1_81_0/libs")
+SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "../../boostlibrary/boost_1_81_0")
+SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "../../boostlibrary/boost_1_81_0/libs")
 find_package(Boost 1.81.0)
 
 include_directories(${Boost_INCLUDE_DIRS})

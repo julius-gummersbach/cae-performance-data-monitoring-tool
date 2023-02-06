@@ -7,21 +7,23 @@
 #include <websocketpp/server.hpp>
 #include <string>
 
-typedef websocketpp::server<websocketpp::config::asio> server;
+namespace CAEMonitoringTool::Websocket {
 
-server toolServer;
+    typedef websocketpp::server<websocketpp::config::asio> server;
 
-void on_message(websocketpp::connection_hdl h, const server::message_ptr& msg) {
-    std::cout << msg->get_payload() << std::endl;
-    std::string s = "test hello 123 123";
-    toolServer.get_con_from_hdl(h)->send(s);
-    //a:
-}
+    server toolServer;
+    void on_message(websocketpp::connection_hdl h, const server::message_ptr &msg) {
+        std::cout << msg->get_payload() << std::endl;
+        std::string s = "test hello 123 123";
+        toolServer.get_con_from_hdl(h)->send(s);
+    }
 
-int main() {
-    toolServer.set_message_handler(&on_message);
-    toolServer.init_asio();
-    toolServer.listen(9002);
-    toolServer.start_accept();
-    toolServer.run();
+
+
+    // toolServer.set_message_handler(&on_message);
+    // toolServer.init_asio();
+    // toolServer.listen(9002);
+    // toolServer.start_accept();
+    // toolServer.run();
+
 }
