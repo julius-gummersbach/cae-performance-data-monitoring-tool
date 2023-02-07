@@ -12,6 +12,7 @@
 #include <websocketpp/config/asio_no_tls.hpp>
 #include "websocketpp/client.hpp"
 #include "websocketpp/config/asio_no_tls_client.hpp"
+#include "nlohmann/json.hpp"
 
 namespace CAEMonitoringTool {
     class Controller {
