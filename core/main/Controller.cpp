@@ -32,7 +32,7 @@ public:
 };
 
 struct Graph {
-    string getImage() { return ""; }
+    string getImage() { return "img/ExamplePlot4.svg"; }
 };
 
 class GraphManager {
@@ -80,7 +80,7 @@ namespace CAEMonitoringTool {
                     // Get initial Threads to gui
                     auto guiConnection = guiServer.get_con_from_hdl(guiHdl);
                     for (const auto &s: m_dataManager.getThreadIds()) {
-                        guiConnection->send("S" + s);
+                        guiConnection->send("ST" + s);
                     }
                 });
         // This method gets called for both incoming and outgoing messages
@@ -88,28 +88,38 @@ namespace CAEMonitoringTool {
                 [&guiServer, &guiHdl, &m_graphManager, &m_dataManager]
                         (websocketpp::connection_hdl h, const server::message_ptr &msg) -> void {
                     string messageContent = msg->get_payload();
-                    string answer{"S"};
+                    std::cout << "Message received: " << messageContent << std::endl;
                     // -----Message deciphering-----
                     // Origin: "S" if the message comes from the Server, "G" if it comes from the GUI
                     string messageOrigin = messageContent.substr(0, 1);
+                    std::cout << messageOrigin << std::endl;
                     // Use cases:
                     // 1) Send thread id, operator and second thread id -> receive Image path, content for "Thread" and "Modules" table
                     // 2) Send thread id -> receive Image path, content for "Thread" and "Modules" table
                     if (messageOrigin == "G") {
+                        string answer{"S"};
                         // find out if just an id, or 2 ids with an operation were sent -> second char either "1" or "2"
                         string requestType = messageContent.substr(1, 1);
                         if (requestType == "1") {
                             string requestedId = messageContent.substr(2);
 
+                            m_graphManager.graphs.insert({requestedId, Graph()});
+
                             string requestedImagePath = m_graphManager.graphs[requestedId].getImage();
+                            std::cout << requestedImagePath << std::endl;
                             string requestedJsonContent = m_dataManager.getThreadInfoJson(requestedId);
                             answer += (requestedImagePath + "|" + requestedJsonContent);
+                            std::cout << answer << std::endl;
                         } else {
                             // Parse the two ids and operator
                         }
                         guiServer.get_con_from_hdl(guiHdl)->send(answer);
                     }
                 });
+        // Setting Logging behavior to silent
+        guiServer.clear_access_channels(websocketpp::log::alevel::all);
+        guiServer.clear_error_channels(websocketpp::log::elevel::all);
+        // starting the server on port 9002
         guiServer.init_asio();
         guiServer.listen(9002);
         guiServer.start_accept();
