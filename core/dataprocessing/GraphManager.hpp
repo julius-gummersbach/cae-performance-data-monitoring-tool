@@ -25,7 +25,7 @@ namespace CAEMonitoringTool::DataProcessing
 		void addGraphFromPoints(const json& jsonStr);
 
 		/**
-		* Adds a graph to the graphlist by combining the Graphs 
+		* Adds a graph to the graphlist by combining the Graphs
 		* spezified in the json String with the spezified Operation.
 		*
 		* @param Json String which includes the id of two Graphs and a Operation

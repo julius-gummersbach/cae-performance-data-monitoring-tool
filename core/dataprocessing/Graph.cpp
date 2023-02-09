@@ -1,6 +1,6 @@
 #include "Graph.hpp"
 
-namespace CAEMonitoringTool::DataProcessing 
+namespace CAEMonitoringTool::DataProcessing
 {
 	Graph::Graph(const std::vector<std::pair<int, double>>& dataPoints) :m_dataPoints{ dataPoints }
 	{}

@@ -1,6 +1,6 @@
 #pragma once
 
-/* 
+/*
 * This file contains all type definitions that are used internally.
 * Classes and structs are an exception to this.
 */

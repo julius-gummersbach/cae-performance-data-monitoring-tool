@@ -21,8 +21,8 @@ namespace CAEMonitoringTool::DataProcessing
 		*/
 		Graph(const std::vector<std::pair<int, double>>& dataPoints);
 
-		Graph(const Graph& leftGraph,const Graph& rightGraph, operationFunction operationFunction);
-			
+		Graph(const Graph& leftGraph, const Graph& rightGraph, operationFunction operationFunction);
+
 		std::string getImage();
 	};
 }
