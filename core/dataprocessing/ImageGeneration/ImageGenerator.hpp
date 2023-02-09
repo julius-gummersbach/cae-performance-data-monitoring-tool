@@ -10,10 +10,10 @@
 
 
 namespace CAEMonitoringTool::DataProcessing {
-    class ImageGenerator {
-    public:
-        static std::string generateImage(const std::vector <std::pair<int, double>> &points);
-    };
+	class ImageGenerator {
+	public:
+		static std::string generateImage(const std::vector <std::pair<int, double>>& points, const std::string& threadId);
+	};
 }
 
 

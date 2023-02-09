@@ -8,27 +8,27 @@
 
 namespace CAEMonitoringTool::DataProcessing {
 
-  using json = nlohmann::json;
+	using json = nlohmann::json;
 
-  /**
-   * class to receive the incoming json-data strings from the websocket-connector, parse and redistribute it
-   * to the DataManager and GraphManager
-   */
-  class DataParser {
+	/**
+	 * class to receive the incoming json-data strings from the websocket-connector, parse and redistribute it
+	 * to the DataManager and GraphManager
+	 */
+	class DataParser {
 
-  public:
+	public:
 
-    /**
-     * documentation, edit me later
-     *
-     * @param object
-     * @param dManager
-     * @param gManager
-     * @return
-     */
-    static bool parseThreadInfo(const json &object,
-                                DataStore::DataManager &dManager,
-                                GraphManager &gManager);
-  };
+		/**
+		 * documentation, edit me later
+		 *
+		 * @param object
+		 * @param dManager
+		 * @param gManager
+		 * @return
+		 */
+		static bool parseThreadInfo(const std::string& jsonContent,
+			DataStore::DataManager& dManager,
+			GraphManager& gManager);
+	};
 }
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAPARSER_HPP
