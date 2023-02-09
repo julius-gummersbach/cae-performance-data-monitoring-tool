@@ -9,8 +9,8 @@ namespace CAEMonitoringTool::DataProcessing
 	class GraphManager
 	{
 	private:
-		std::unordered_map<shared_ptr<std::string>, shared_ptr<Graph>> m_graphs;	// all graphs this object manages
-		std::unordered_map<shared_ptr<std::string>, operationFunction> m_operations;
+		std::unordered_map<std::string, shared_ptr<Graph>> m_graphs;	// all graphs this object manages
+		std::unordered_map<std::string, operationFunction> m_operations;
 
 
 	public:
@@ -22,7 +22,7 @@ namespace CAEMonitoringTool::DataProcessing
 		*
 		* @param jsonStr which includes Points for a Graph
 		*/
-		void addGraphFromPoints(const json& jsonStr);
+		void addGraphFromPoints(const json& jsonObject);
 
 		/**
 		* Adds a graph to the graphlist by combining the Graphs
@@ -30,8 +30,8 @@ namespace CAEMonitoringTool::DataProcessing
 		*
 		* @param Json String which includes the id of two Graphs and a Operation
 		*/
-		void addGraphfromCombination(std::string jsonStr);
+		void addGraphfromCombination(const json& jsonObject);
 
-		std::string getImage(const std::string& threadID);
+		const std::string& getImage(const std::string& threadID);
 	};
 }
