@@ -3,6 +3,7 @@
 #include "websocketpp/config/asio_no_tls_client.hpp"
 #include "WebsocketEndpoint.hpp"
 #include "ConnectionMetadata.hpp"
+#include "queue"
 
 namespace CAEMonitoringTool::Websocket {
 
@@ -114,6 +115,15 @@ namespace CAEMonitoringTool::Websocket {
         if (ec) {
             std::cout << "> Error initiating close: " << ec.message() << std::endl;
         }
+    }
+
+    std::string WebsocketEndpoint::getMessage(int id) const{
+        std::lock_guard<std::mutex> lk(this->getMetadata(id)->m_messageMutex);
+        std::deque<std::string>& queue = this->getMetadata(id)->getMessageQueue();
+        if(queue.empty()) return "";
+        std::string message = queue.front();
+        queue.pop_front();
+        return message;
     }
 }
 

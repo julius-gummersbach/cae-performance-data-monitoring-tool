@@ -8,4 +8,14 @@ add_library(dataprocessing
         Operations/GraphSubtraktion.cpp
         Operations/GraphDivision.cpp
         Operations/GraphMultiplikation.cpp
-        DataParser.cpp)
+		Graph.cpp
+		GraphCreator.cpp
+		GraphManager.cpp
+        DataParser.cpp
+		ImageGeneration/PPlot.cpp
+		ImageGeneration/SVGPainter.cpp
+		ImageGeneration/ImageGenerator.cpp)
+
+add_executable(imageGeneratorTest ImageGeneration/ImageGenerator.cpp)
+
+target_link_libraries(imageGeneratorTest dataprocessing)
