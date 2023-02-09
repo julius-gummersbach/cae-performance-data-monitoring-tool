@@ -25,10 +25,10 @@ namespace CAEMonitoringTool::DataProcessing
 
 	GraphManager::GraphManager()
 	{
-		m_operations.insert_or_assign(std::make_shared<string>("+"), &Addition);
-		m_operations.insert_or_assign(std::make_shared<string>("-"), &Subtraction);
-		m_operations.insert_or_assign(std::make_shared<string>("*"), &Multiplication);
-		m_operations.insert_or_assign(std::make_shared<string>("/"), &Division);
+		m_operations.insert_or_assign("+", &addition);
+		m_operations.insert_or_assign("-", &subtraction);
+		m_operations.insert_or_assign("*", &multiplication);
+		m_operations.insert_or_assign("/", &division);
 	}
 
 	void GraphManager::addGraphFromPoints(const json& jsonStr)
@@ -42,13 +42,24 @@ namespace CAEMonitoringTool::DataProcessing
 			dataPoints.push_back(std::pair<int, double>{jsonIter->at("x"), jsonIter->at("y")});
 			++jsonIter;
 		}
-		std::pair<shared_ptr<std::string>, shared_ptr<Graph>> Point{ std::make_shared<string>(jsonStr.at("tid")),std::make_shared<Graph>(dataPoints) };
+		std::pair<std::string, shared_ptr<Graph>> Point{ jsonObject.at("tid"),std::make_shared<Graph>(Graph(dataPoints,threadId)) };
 		m_graphs.insert(Point);
 	}
 
-	void GraphManager::addGraphfromCombination(std::string jsonStr)
+	void GraphManager::addGraphfromCombination(const json& jsonObject)
 	{
-		//m_graphs.insert(makeshared<string>("thread"), Graph{ dataPoints1, dataPoints2, m_operations[std::make_shared<string>("+")]});
+		std::string threadId = jsonObject.at("resultingGraphName");
+		Graph leftGraph = *m_graphs.at(jsonObject.at("lhs")).get();
+		Graph rightGraph = *m_graphs.at(jsonObject.at("rhs")).get();
+		operationFunction operation = m_operations.at(jsonObject.at("operation"));
+		shared_ptr<Graph> composedGraph = std::make_shared<Graph>(leftGraph, rightGraph, operation, threadId);
+		std::pair<std::string, shared_ptr<Graph>> graphTupel{ threadId, composedGraph };
+		m_graphs.insert(graphTupel);
+	}
+
+	std::string GraphManager::getImage(const std::string& threadID)
+	{
+		return m_graphs.at(threadID).get()->getImage();
 	}
 
 }
