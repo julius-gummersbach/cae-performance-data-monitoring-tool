@@ -1,3 +1,9 @@
+### Webpage ###
+main/webpage/node_modules
+main/webpage/dist
+main/webpage/.cache
+main/webpage/.idea
+
 ### C++ ###
 # Prerequisites
 *.d
