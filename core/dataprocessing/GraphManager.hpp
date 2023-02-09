@@ -32,6 +32,6 @@ namespace CAEMonitoringTool::DataProcessing
 		*/
 		void addGraphfromCombination(const json& jsonObject);
 
-		std::string getImage(const std::string& threadID);
+		const std::string& getImage(const std::string& threadID);
 	};
 }

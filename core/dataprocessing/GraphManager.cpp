@@ -58,12 +58,7 @@ namespace CAEMonitoringTool::DataProcessing
 		m_graphs.insert(graphTupel);
 	}
 
-	std::string GraphManager::getImage(const std::string& threadID)
-	{
-		return m_graphs.at(threadID).get()->getImage();
-	}
-
-	std::string GraphManager::getImage(const std::string& threadID)
+	const std::string& GraphManager::getImage(const std::string& threadID)
 	{
 		return m_graphs.at(threadID).get()->getImage();
 	}
