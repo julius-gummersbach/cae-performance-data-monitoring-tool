@@ -8,7 +8,4 @@ add_library(dataprocessing
         Operations/GraphSubtraktion.cpp
         Operations/GraphDivision.cpp
         Operations/GraphMultiplikation.cpp
-        Graph.cpp
-        GraphCreator.cpp
-        GraphManager.cpp
         DataParser.cpp)
