@@ -56,16 +56,14 @@ namespace CAEMonitoringTool {
                     std::cout << "Gui connection established!" << std::endl;
                     // Get initial Threads to gui
                     auto guiConnection = guiServer.get_con_from_hdl(guiHdl);
+                    json payload;
                     for (const auto &threadId: dataManager.getThreadIds()) {
-                        /*json msg;
-                        msg["sender"] = "server";
-                        msg["topic"] = "startup";
-                        msg["payload"] = threadId; */
-                        json msg{{"sender","server"},
-                                 {"topic","startup"},
-                                 {"payload", threadId}};
-                        guiConnection->send(msg.dump());
+                        payload[threadId] = json::parse(dataManager.getThreadInfo(threadId)).at("name").dump();
                     }
+                    json msg{{"sender","server"},
+                             {"topic","startup"},
+                             {"payload", payload}};
+                    guiConnection->send(msg.dump());
                 });
         // This method gets called for both incoming and outgoing messages
         guiServer.set_message_handler(
@@ -75,10 +73,20 @@ namespace CAEMonitoringTool {
                     if(messageJson.at("sender") == "gui"){
                         if(messageJson.at("topic") == "requestData"){
                             string threadId = messageJson.at("payload").at("tid");
+
+                            string payloadString = dataManager.getThreadInfo(threadId);
+                            json payload;
+                            if(payloadString.empty()){
+                                payload["tid"] = threadId;
+                                payload["modules"] = std::vector<string>();
+                            } else {
+                                payload = json::parse(payloadString);
+                            }
+                            payload["graphPath"] = graphManager.getImage(threadId);
+
                             json answer{{"sender","server"},
                                         {"topic", "provideData"},
-                                        {"payload",dataManager.getThreadInfo(threadId)},
-                                        {"graphPath",graphManager.getImage(threadId)}};
+                                        {"payload",payload}};
                             guiServer.get_con_from_hdl(guiHdl)->send(answer.dump());
                         } else if(messageJson.at("topic") == "operation"){
                             graphManager.addGraphfromCombination(messageJson.at("payload"));
