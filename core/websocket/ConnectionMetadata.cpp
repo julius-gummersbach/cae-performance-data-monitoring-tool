@@ -18,9 +18,9 @@ namespace CAEMonitoringTool::Websocket {
               m_server("N/A") {}
 
     void ConnectionMetadata::onOpen(client *c, websocketpp::connection_hdl hdl) {
-        m_status = "Open";
         client::connection_ptr con = c->get_con_from_hdl(std::move(hdl));
         m_server = con->get_response_header("Server");
+        m_status = "Open";
     }
 
     void ConnectionMetadata::onFail(client *c, websocketpp::connection_hdl hdl) {

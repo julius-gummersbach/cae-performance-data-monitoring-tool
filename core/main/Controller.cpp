@@ -7,7 +7,6 @@
 #include "string"
 #include "thread"
 #include "chrono"
-#include "vector"
 #include "sstream"
 
 using std::string;
@@ -26,9 +25,13 @@ namespace CAEMonitoringTool {
         // Configures the (client) endpoint and sets up a connection between it and the data Server
         CAEMonitoringTool::Websocket::WebsocketEndpoint endpoint;
         int dataConId = endpoint.connect("ws://localhost:5000");
-        // Sends a message to the dataServer to let it know to start sending its data (JSON-Strings)
+        // Waits for the connection to establish and sends a message to the dataServer
+        // to let it know to start sending its data (JSON-Strings)
+        while(endpoint.getMetadata(dataConId)->getStatus() != "Open"){
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        }
         endpoint.send(dataConId, "startData");
-        bool isDone{true}; //TODO false
+        bool isDone{false}; //TODO false
         while (!isDone) {
             // Checks the message content. If it is not empty, it parses the string into a JSON object.
             // The return value of parseThreadInfo is a boolean determined by a JSON field of the string.
@@ -53,65 +56,33 @@ namespace CAEMonitoringTool {
                     std::cout << "Gui connection established!" << std::endl;
                     // Get initial Threads to gui
                     auto guiConnection = guiServer.get_con_from_hdl(guiHdl);
-                    for (const auto &s: dataManager.getThreadIds()) {
-                        guiConnection->send("ST" + s);
+                    for (const auto &threadId: dataManager.getThreadIds()) {
+                        /*json msg;
+                        msg["sender"] = "server";
+                        msg["topic"] = "startup";
+                        msg["payload"] = threadId; */
+                        json msg{{"sender","server"},
+                                 {"topic","startup"},
+                                 {"payload", threadId}};
+                        guiConnection->send(msg.dump());
                     }
                 });
         // This method gets called for both incoming and outgoing messages
         guiServer.set_message_handler(
                 [&guiServer, &guiHdl, &graphManager, &dataManager]
                         (websocketpp::connection_hdl h, const server::message_ptr &msg) -> void {
-                    /*
                     json messageJson = json::parse(msg->get_payload());
-
                     if(messageJson.at("sender") == "gui"){
-                        json answer{{"sender","server"},{"payload",{{"imagePath",""},{"moduleInfo",""}}}};
-                        json payload = messageJson.at("payload");
-                        if(payload.at("rhs").empty()){
-                            string requestedId = payload.at("lhs");
-                            //graphManager.graphs.insert({requestedId, Graph()});
-                            // m_graphManager.getImage(requestedId)
-                            //string requestedImagePath = m_graphManager.graphs[requestedId].getImage();
-                            string requestedImagePath = graphManager.getImage(requestedId);
-                            std::cout << requestedImagePath << std::endl;
-                            string requestedJsonContent = dataManager.getThreadInfo(requestedId);
-                            answer.at("imagePath") = requestedImagePath;
-                            std::cout << answer << std::endl;
-                        } else {
-
+                        if(messageJson.at("topic") == "requestData"){
+                            string threadId = messageJson.at("payload").at("tid");
+                            json answer{{"sender","server"},
+                                        {"topic", "provideData"},
+                                        {"payload",dataManager.getThreadInfo(threadId)},
+                                        {"graphPath",graphManager.getImage(threadId)}};
+                            guiServer.get_con_from_hdl(guiHdl)->send(answer.dump());
+                        } else if(messageJson.at("topic") == "operation"){
+                            graphManager.addGraphfromCombination(messageJson.at("payload"));
                         }
-                        guiServer.get_con_from_hdl(guiHdl)->send(answer);
-                    } else {
-
-                    }   */
-
-                    string messageContent = msg->get_payload();
-                    std::cout << "Message received: " << messageContent << std::endl;
-                    // -----Message deciphering-----
-                    // Origin: "S" if the message comes from the Server, "G" if it comes from the GUI
-                    string messageOrigin = messageContent.substr(0, 1);
-                    std::cout << messageOrigin << std::endl;
-                    // Use cases:
-                    // 1) Send thread id, operator and second thread id -> receive Image path, content for "Thread" and "Modules" table
-                    // 2) Send thread id -> receive Image path, content for "Thread" and "Modules" table
-                    if (messageOrigin == "G") {
-                        string answer{"S"};
-                        // find out if just an id, or 2 ids with an operation were sent -> second char either "1" or "2"
-                        string requestType = messageContent.substr(1, 1);
-                        if (requestType == "1") {
-                            string requestedId = messageContent.substr(2);
-                            string requestedImagePath = graphManager.getImage(requestedId);
-                            std::cout << requestedImagePath << std::endl;
-                            string requestedJsonContent = dataManager.getThreadInfo(requestedId);
-                            answer += (requestedImagePath + "|" + requestedJsonContent);
-
-                            answer = "S" + requestedImagePath;
-
-                            std::cout << answer << std::endl;
-                        } else {
-                            // Parse the two ids and operator
-                        }
-                        guiServer.get_con_from_hdl(guiHdl)->send(answer);
                     }
                 });
         // Setting Logging behavior to silent
