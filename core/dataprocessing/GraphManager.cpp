@@ -65,7 +65,7 @@ namespace CAEMonitoringTool::DataProcessing
 
 	std::string GraphManager::getImage(const std::string& threadID)
 	{
-		return m_graphs.at(std::make_shared<string>(threadID)).get()->getImage();
+		return m_graphs.at(threadID).get()->getImage();
 	}
 
 }
