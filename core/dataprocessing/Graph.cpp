@@ -2,10 +2,10 @@
 
 namespace CAEMonitoringTool::DataProcessing
 {
-	Graph::Graph(const std::vector<std::pair<int, double>>& dataPoints) :m_dataPoints{ dataPoints }
+	Graph::Graph(const std::vector<std::pair<int, double>>& dataPoints, const std::string& threadId) : m_dataPoints{ dataPoints }, m_threadId{ threadId }
 	{}
 
-	Graph::Graph(const Graph& leftGraph, const Graph& rightGraph, operationFunction operation)
+	Graph::Graph(const Graph& leftGraph, const Graph& rightGraph, const std::string& threadId, operationFunction operation) : m_threadId{ threadId }
 	{
 		std::vector<std::pair<int, double>>	newDataPoints{};
 
@@ -24,6 +24,10 @@ namespace CAEMonitoringTool::DataProcessing
 
 	std::string Graph::getImage()
 	{
-		return "TODO";
+		if (m_svgPath == "")
+		{
+			m_svgPath = ImageGenerator::generateImage(m_dataPoints, m_threadId);
+		}
+		return m_svgPath;
 	}
 }

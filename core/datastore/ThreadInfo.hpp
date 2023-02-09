@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include "nlohmann/json.hpp"
+#include "cmath"
 
 namespace CAEMonitoringTool::DataStore {
 
