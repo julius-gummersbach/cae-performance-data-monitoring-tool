@@ -3,29 +3,26 @@
 
 namespace CAEMonitoringTool::DataProcessing {
 
-	bool DataParser::parseThreadInfo(const std::string& jsonContent,
-		DataStore::DataManager& dManager,
-		GraphManager& gManager) {
+  bool DataParser::parseThreadInfo(const std::string &jsonContent,
+                                   DataStore::DataManager &dManager,
+                                   GraphManager &gManager) {
 
-        json object = json::parse(jsonContent);
+    std::string threadInfo = jsonContent.substr(0, jsonContent.find("graph") - 2)
+            .append(jsonContent.substr(jsonContent.find("iterations") - 2));
+    json object = json::parse(jsonContent);
 
-		std::string id{ object.at("tid") };
-		std::string points;
-		points.append(R"({ "tid": ")")
-			.append(id)
-			.append(R"(", "graph" :)")
-			.append(object["graph"].dump())
-			.append("}");
+    if(dManager.addData(json::parse(threadInfo))) {
+      std::string id{object["tid"]};
+      std::string points;
+      points.append(R"({ "tid": ")")
+              .append(id)
+              .append(R"(", "graph" :)")
+              .append(object["graph"].dump())
+              .append("}");
+      gManager.addGraphFromPoints(json::parse(points));
+    }
 
-		gManager.addGraphFromPoints(json::parse(points));
-
-		std::string jsonString{ object.dump() };
-		std::string threadInfo = jsonString.substr(0, jsonString.find("graph") - 2)
-			.append(jsonString.substr(jsonString.find("iterations") - 2));
-
-		dManager.addData(json::parse(jsonString));
-
-		return object["isDone"];
-	}
+    return object["isDone"];
+  }
 
 }
