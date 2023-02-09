@@ -2,13 +2,10 @@
 
 namespace CAEMonitoringTool::DataProcessing 
 {
-	Graph::Graph(const std::vector<std::pair<int, double>>& dataPoints)
-	{
-		m_dataPoints = dataPoints;
-		//m_svgPath = m_imageCreator.createImage(dataPoints);
-	}
+	Graph::Graph(const std::vector<std::pair<int, double>>& dataPoints) :m_dataPoints{ dataPoints }
+	{}
 
-	Graph::Graph(const Graph& leftGraph, const Graph& rightGraph, callback_function operationFunction)
+	Graph::Graph(const Graph& leftGraph, const Graph& rightGraph, operationFunction operation)
 	{
 		std::vector<std::pair<int, double>>	newDataPoints{};
 
@@ -18,9 +15,9 @@ namespace CAEMonitoringTool::DataProcessing
 
 		while (leftIter != leftEnd)
 		{
-			newDataPoints.push_back(std::pair<int, double>{leftIter->first, operationFunction(leftIter->second, rightIter->second)});
-			leftIter++;
-			rightIter++;
+			newDataPoints.push_back(std::pair<int, double>{leftIter->first, operation(leftIter->second, rightIter->second)});
+			++leftIter;
+			++rightIter;
 		}
 		m_dataPoints = newDataPoints;
 	}

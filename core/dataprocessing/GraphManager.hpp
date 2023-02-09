@@ -10,7 +10,7 @@ namespace CAEMonitoringTool::DataProcessing
 	{
 	private:
 		std::unordered_map<shared_ptr<std::string>, shared_ptr<Graph>> m_graphs;	// all graphs this object manages
-		std::unordered_map<shared_ptr<std::string>, callback_function> m_operations;
+		std::unordered_map<shared_ptr<std::string>, operationFunction> m_operations;
 
 
 	public:
