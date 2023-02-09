@@ -1,6 +1,5 @@
 #include "DataParser.hpp"
 
-using json = nlohmann::json;
 
 namespace CAEMonitoringTool::DataProcessing {
 

@@ -26,7 +26,7 @@ namespace CAEMonitoringTool::DataProcessing {
 		 * @param gManager
 		 * @return
 		 */
-		static bool parseThreadInfo(const std::string & jsonContent,
+		static bool parseThreadInfo(const std::string& jsonContent,
 			DataStore::DataManager& dManager,
 			GraphManager& gManager);
 	};

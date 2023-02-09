@@ -19,17 +19,11 @@ include_directories(../../websocketpp)
 add_subdirectory(main)
 add_subdirectory(dataprocessing)
 add_subdirectory(datastore)
-#add_subdirectory(websocket)
 
 add_library(websocket
         websocket/WebsocketEndpoint.cpp
         websocket/ConnectionMetadata.cpp
-        websocket/WebsocketServer/Server.cpp
         main/Controller.cpp)
-
-#add_library(main
-#        main/Controller.hpp
-#        main/Controller.cpp)
 
 add_executable(run main/Controller.cpp)
 target_link_libraries(websocket ws2_32)

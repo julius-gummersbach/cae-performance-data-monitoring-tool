@@ -19,7 +19,6 @@ namespace CAEMonitoringTool {
     class Controller {
         DataStore::DataManager m_dataManager;
         DataProcessing::GraphManager m_graphManager;
-        DataProcessing::DataParser m_dataParser;
     public:
         Controller() = default;
         void startUp();
