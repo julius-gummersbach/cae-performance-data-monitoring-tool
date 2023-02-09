@@ -4,4 +4,5 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_library(datastore
         DataManager.cpp
-        ThreadInfo.cpp)
+        ThreadInfo.cpp
+        Module.cpp)
