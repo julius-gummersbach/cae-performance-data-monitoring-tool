@@ -18,15 +18,13 @@ namespace CAEMonitoringTool::DataStore {
 
   public:
 
-    void addData(const json &object);
+    bool addData(const json &object);
 
     std::string getModulesJSON(const std::string& id) const;
 
     std::vector<std::string> getThreadIds() const;
 
-    string getThreadInfoJson(string id) const{
-          return "thread info, this should be a json";
-      }
+    std::string getThreadInfo(const std::string &id) const;
   };
 }
 #endif //CAE_PERFORMANCE_DATA_MONITORING_TOOL_DATAMANAGER_HPP

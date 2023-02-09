@@ -1,5 +1,7 @@
 include_directories(../../../json/include)
 
+set(CMAKE_CXX_STANDARD 20)
+
 add_library(websocket
         WebsocketEndpoint.cpp
         ConnectionMetadata.cpp

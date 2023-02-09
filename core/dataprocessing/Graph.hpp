@@ -1,8 +1,8 @@
 #pragma once
 
 #include "DataTypes.hpp"
+#include "ImageGeneration\ImageGenerator.hpp"
 
-//include QLineSeries//TODO
 namespace CAEMonitoringTool::DataProcessing
 {
 	class Graph
@@ -10,7 +10,7 @@ namespace CAEMonitoringTool::DataProcessing
 	private:
 		std::vector<std::pair<int, double>>	m_dataPoints;// the points that make up the graph
 		std::string m_svgPath;
-		//ImageCreator m_imageCreator
+		std::string m_threadId;
 
 	public:
 		/**
@@ -19,9 +19,9 @@ namespace CAEMonitoringTool::DataProcessing
 		* @param dataPoints the points that make up the graph.
 		* @param type the type of graph being created
 		*/
-		Graph(const std::vector<std::pair<int, double>>& dataPoints);
+		Graph(const std::vector<std::pair<int, double>>& dataPoints, const std::string& threadId);
 
-		Graph(const Graph& leftGraph, const Graph& rightGraph, operationFunction operationFunction);
+		Graph(const Graph& leftGraph, const Graph& rightGraph, const std::string& threadId, operationFunction operationFunction);
 
 		std::string getImage();
 	};
