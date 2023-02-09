@@ -61,3 +61,4 @@ modules.xml
 # Visual Studio
 .vs/
 CMakeSettings.json
+/core/main/webpage/node_modules/

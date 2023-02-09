@@ -1,46 +1,88 @@
-
-//var ws = require("../../../../../ws/index.js")
-
-
 let socket = new WebSocket("ws://localhost:9002");
 
-// send message from the form
-document.forms.publish.onsubmit = function() {
-    let outgoingMessage = "G";
-    //if(this.rhsThread.value !== ""){
-    //    outgoingMessage +=
-    //        ("2" + this.operation.textContent + "|" + this.rhsThread.textContent + "|" + this.threadName.value);
-    //} else {
-        outgoingMessage += "1" //+ this.lhsThread.selected().value;
-    //}
-    socket.send(outgoingMessage);
-    return false;
-};
+// maps thread ids to their thread name
+const threadMap = new Map();
 
-// message received - show the message in div#messages
-socket.onmessage = function(event) {
-    let message = event.data.substring(1);
-
-    // Is this is one of the first messages from the server that informs the tool of the given Threads
-    //TODO make sure that in no other case a message from the server starts with "ST", or use a different identification method
-    if(message.startsWith("T")){
-        let lhsOptionElement = document.createElement('option');
-        lhsOptionElement.value = message.substring(1);
-        lhsOptionElement.textContent = "Thread " + message.substring(1);
-        let rhsOptionElement = document.createElement('option');
-        rhsOptionElement.value = message.substring(1);
-        rhsOptionElement.textContent = "Thread " + message.substring(1);
-        document.getElementById('lhsThread').prepend(lhsOptionElement);
-        document.getElementById('rhsThread').prepend(rhsOptionElement);
-        // If not:
-    } else {
-        //let splitMessage = message.split("|");
-        //let test = document.createElement('div');
-        //test.textContent = splitMessage[0];
-        //document.getElementById('lhsThread').prepend(test);
-        document.getElementById('graph_svg').src = message; //splitMessage[0];
-    }
+let testPayload = {
+    "tid": "1234",
+    "name": "tollerthread",
+    "freq": 62.5,
+    "iterations": 1,
+    "overruns": 100,
+    "sum_rt": 98134719,
+    "modules": [{
+        "name": "toles module",
+        "sum_rt": 1,
+        "max_rt": 2,
+        "avg_rt": 3,
+        "sum_vs": 4,
+        "sum_is": 5
+    },
+        {
+            "name": "tolles module",
+            "sum_rt": 11,
+            "max_rt": 22,
+            "avg_rt": 33,
+            "sum_vs": 43,
+            "sum_is": 5
+        },
+        {
+            "name": "tollles module",
+            "sum_rt": 1,
+            "max_rt": 2,
+            "avg_rt": 3,
+            "sum_vs": 4,
+            "sum_is": 5
+        }
+    ],
+    "graphPath": "img\\graph_placeholder.svg"
 }
 
+let composedPayload = {
+    "tid": "1234",
+    "modules": [],
+    "graphPath": "img\\graph_placeholder.svg"
+}
 
+/**
+ * Update the gui with the data from the payload
+ * @param threadInfo JSON object containing the thread info
+ */
+updateGui = function (threadInfo) {
+    if (threadInfo.modules.length === 0) {
+        document.getElementById("ModuleTable").style.visibility = "hidden";
+        document.getElementById("ThreadInfoTable").style.visibility = "hidden"
+    } else {
+        // update module table
+        let moduleTable = document.getElementById("ModuleTable");
+        moduleTable.style.visibility = "visible"
+        let newModuleTbody = document.createElement('tbody');
+        threadInfo.modules.forEach(module => {
+            let newRow = document.createElement("tr");
+            Object.values(module).forEach((moduleValue) => {
+                let cell = document.createElement("td");
+                cell.innerText = moduleValue;
+                newRow.appendChild(cell);
+            })
+            newModuleTbody.appendChild(newRow);
+        });
+        let oldModuleTbody = moduleTable.childNodes[1].getElementsByTagName('tbody')[0];
+        oldModuleTbody.parentNode.replaceChild(newModuleTbody, oldModuleTbody);
 
+        //update thread info table
+        let threadInfoTable = document.getElementById("ThreadInfoTable");
+        threadInfoTable.style.visibility = "visible"
+        let newThreadInfoTbody = document.createElement('tbody');
+        let newRow = document.createElement("tr");
+        ["tid", "freq", "iterations", "overruns", "sum_rt"].forEach(s => {
+            let cell = document.createElement("td");
+            cell.innerText = threadInfo[s];
+            newRow.appendChild(cell);
+        });
+        newThreadInfoTbody.appendChild(newRow);
+        let oldThreadInfoTbody = threadInfoTable.childNodes[1].getElementsByTagName('tbody')[0];
+        oldThreadInfoTbody.parentNode.replaceChild(newThreadInfoTbody, oldThreadInfoTbody);
+    }
+    //update graph
+    document.getElementById("graph_svg").src = threadInfo.graphPath;
+}
