@@ -31,5 +31,7 @@ namespace CAEMonitoringTool::DataProcessing
 		* @param Json String which includes the id of two Graphs and a Operation
 		*/
 		void addGraphfromCombination(std::string jsonStr);
+
+		std::string getImage(const std::string& threadID);
 	};
 }
