@@ -1,7 +1,5 @@
 #pragma once
 
-#include <deque>
-
 #include "DataTypes.hpp"
 
 //include QLineSeries//TODO
@@ -10,8 +8,9 @@ namespace CAEMonitoringTool::DataProcessing
 	class Graph
 	{
 	private:
-		GraphDataType m_graphDataType;		// the graph type of the this object
-		std::deque<double> m_dataPoints;	// the points that make up the graph
+		std::vector<std::pair<int, double>>	m_dataPoints;// the points that make up the graph
+		std::string m_svgPath;
+		//ImageCreator m_imageCreator
 
 	public:
 		/**
@@ -20,38 +19,10 @@ namespace CAEMonitoringTool::DataProcessing
 		* @param dataPoints the points that make up the graph.
 		* @param type the type of graph being created
 		*/
-		Graph(std::deque<double>& dataPoints, const GraphDataType& type);
+		Graph(const std::vector<std::pair<int, double>>& dataPoints);
 
-		/**
-		* returns the type of this graph
-		*
-		* @return GraphDataType from the graph
-		*/
-		const GraphDataType getType() const;
+		Graph(const Graph& leftGraph, const Graph& rightGraph, operationFunction operationFunction);
 
-		/**
-		*
-		*
-		* @return DataPoints as deque<double>
-		*/
-		const std::deque<double>& getDataPoints() const;
-
-		/**
-		* Appends data points from a graph to the end and removes data points at the front.
-		* Therefore moves forward in time.
-		*
-		* @param graph to appand to the right
-		*/
-		void moveRight(const Graph& graph);
-
-		/**
-		* Appands data points from a graph to the front and removes data points at the end.
-		* Therefore moves forward in time.
-		*
-		* @param graph to appand to the left
-		*/
-		void moveLeft(const Graph& graph);
-		//GLineSeries getAsQLineSeries();//TODO
-
+		std::string getImage();
 	};
 }

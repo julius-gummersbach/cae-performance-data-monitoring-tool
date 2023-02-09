@@ -1,42 +1,54 @@
 #include <unordered_map>
-#include <memory>
 
-#include "Graph.hpp"
 #include "GraphManager.hpp"
 
-namespace CAEMonitoringTool::DataProcessing 
+namespace CAEMonitoringTool::DataProcessing
 {
-
-	// TODO
-	GraphManager::GraphManager(const time_point& startTime, const time_delta& duration) : 
-		m_startTime{ startTime },
-		m_duration{ duration },
-		m_graphs{}
-	{ }
-
-	void GraphManager::addGraph(const shared_ptr<Expression>& expression)
+	double addition(double value1, double value2)
 	{
-		m_graphs.emplace(
-			expression, 
-			expression->getGraph(m_startTime, m_duration));
+		return value1 + value2;
+	}
+	double subtraction(double value1, double value2)
+	{
+		return value1 - value2;
 	}
 
-	void GraphManager::move(const time_delta& delta) {
-		time_point intervalStart{ m_startTime + m_duration };
+	double multiplication(double value1, double value2)
+	{
+		return value1 * value2;
+	}
 
-		for (auto& elem : m_graphs) {
-			auto graph = elem.first->getGraph(intervalStart, delta);
-			elem.second->moveRight(*graph);
+	double division(double value1, double value2)
+	{
+		return value1 / value2;
+	}
+
+	GraphManager::GraphManager()
+	{
+		m_operations.insert_or_assign(std::make_shared<string>("+"), &Addition);
+		m_operations.insert_or_assign(std::make_shared<string>("-"), &Subtraction);
+		m_operations.insert_or_assign(std::make_shared<string>("*"), &Multiplication);
+		m_operations.insert_or_assign(std::make_shared<string>("/"), &Division);
+	}
+
+	void GraphManager::addGraphFromPoints(const json& jsonStr)
+	{
+		auto jsonIter = jsonStr.at("graph").begin();//TODO funktioniert das mit iterator?
+		auto jsonEnd = jsonStr.at("graph").end();
+		std::vector< std::pair<int, double>> dataPoints{};
+
+		while (jsonIter != jsonEnd)
+		{
+			dataPoints.push_back(std::pair<int, double>{jsonIter->at("x"), jsonIter->at("y")});
+			++jsonIter;
 		}
+		std::pair<shared_ptr<std::string>, shared_ptr<Graph>> Point{ std::make_shared<string>(jsonStr.at("tid")),std::make_shared<Graph>(dataPoints) };
+		m_graphs.insert(Point);
 	}
-	void GraphManager::changeInterval(const time_point& start, const time_delta& duration) {
-		m_startTime = start;
-		m_duration = duration;
 
-		for (auto& elem : m_graphs) {
-			auto graph = elem.first->getGraph(start, duration);
-			elem.second.swap(graph);
-		}
+	void GraphManager::addGraphfromCombination(std::string jsonStr)
+	{
+		//m_graphs.insert(makeshared<string>("thread"), Graph{ dataPoints1, dataPoints2, m_operations[std::make_shared<string>("+")]});
 	}
-	//QChart getChart();//TODO
+
 }

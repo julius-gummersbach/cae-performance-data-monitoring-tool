@@ -1,10 +1,7 @@
 #pragma once
 
-#include <vector>
-#include <memory>
-
 #include "Graph.hpp"
-#include "Expressions/Expression.hpp"
+#include "DataTypes.hpp"
 
 
 namespace CAEMonitoringTool::DataProcessing
@@ -12,39 +9,27 @@ namespace CAEMonitoringTool::DataProcessing
 	class GraphManager
 	{
 	private:
-		std::unordered_map<shared_ptr<Expression>, shared_ptr<Graph>> m_graphs;	// all graphs this object manages
+		std::unordered_map<shared_ptr<std::string>, shared_ptr<Graph>> m_graphs;	// all graphs this object manages
+		std::unordered_map<shared_ptr<std::string>, operationFunction> m_operations;
 
-		time_point m_startTime;	// a GraphManager manages graphs over a fixed period in time. This is the start of that period
-		time_delta m_duration;	// a GraphManager manages graphs over a fixed period in time. This is the duration of that period
 
 	public:
-		/**
-		* @param startTime inclusive, the first point in time to be included
-		* @param duration for the time interval
-		*/
-		GraphManager(const time_point& startTime, const time_delta& duration);
+
+		GraphManager();
 
 		/**
-		* Adds a graph to the graphlist.
+		* Adds a graph to the graphlist from the given Points.
 		*
-		* @param expression which contains all information for the graph
+		* @param jsonStr which includes Points for a Graph
 		*/
-		void addGraph(const shared_ptr<Expression>& expression);
+		void addGraphFromPoints(const json& jsonStr);
 
 		/**
-		* Changes the start of the time interval for all graphs.
+		* Adds a graph to the graphlist by combining the Graphs
+		* spezified in the json String with the spezified Operation.
 		*
-		* @param delta to move the time interval by
+		* @param Json String which includes the id of two Graphs and a Operation
 		*/
-		void move(const time_delta& delta);
-
-		/**
-		* Changes the start and the duration of the time interval for all graphs.
-		*
-		* @param startTime
-		* @param duration
-		*/
-		void changeInterval(const time_point& startTime, const time_delta& duration);
-		//QChart getChart();
+		void addGraphfromCombination(std::string jsonStr);
 	};
 }

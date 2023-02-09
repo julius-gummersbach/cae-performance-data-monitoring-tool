@@ -1,38 +1,29 @@
 #include "Graph.hpp"
 
-namespace CAEMonitoringTool::DataProcessing {
+namespace CAEMonitoringTool::DataProcessing
+{
+	Graph::Graph(const std::vector<std::pair<int, double>>& dataPoints) :m_dataPoints{ dataPoints }
+	{}
 
-	Graph::Graph(std::deque<double>& dataPoints, const GraphDataType& type)
+	Graph::Graph(const Graph& leftGraph, const Graph& rightGraph, operationFunction operation)
 	{
-		m_graphDataType = type;
-		m_dataPoints = std::move(dataPoints);
-	}
+		std::vector<std::pair<int, double>>	newDataPoints{};
 
-	const GraphDataType Graph::getType() const
-	{
-		return m_graphDataType;
-	}
+		auto leftIter = leftGraph.m_dataPoints.begin();
+		auto leftEnd = leftGraph.m_dataPoints.end();
+		auto rightIter = rightGraph.m_dataPoints.begin();
 
-	const std::deque<double>& Graph::getDataPoints() const
-	{
-		return m_dataPoints;
-	}
-
-	void Graph::moveRight(const Graph& graph)
-	{
-		for (auto& p : graph.m_dataPoints)
+		while (leftIter != leftEnd)
 		{
-			m_dataPoints.push_back(p);
-			m_dataPoints.pop_front();
+			newDataPoints.push_back(std::pair<int, double>{leftIter->first, operation(leftIter->second, rightIter->second)});
+			++leftIter;
+			++rightIter;
 		}
+		m_dataPoints = newDataPoints;
 	}
 
-	void Graph::moveLeft(const Graph& graph)
+	std::string Graph::getImage()
 	{
-		for (auto& p : graph.m_dataPoints)
-		{
-			m_dataPoints.push_front(p);
-			m_dataPoints.pop_back();
-		}
+		return "TODO";
 	}
 }
