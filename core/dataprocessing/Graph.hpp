@@ -23,6 +23,6 @@ namespace CAEMonitoringTool::DataProcessing
 
 		Graph(const Graph& leftGraph, const Graph& rightGraph, const std::string& threadId, operationFunction operationFunction);
 
-		std::string getImage();
+		const std::string& getImage();
 	};
 }
