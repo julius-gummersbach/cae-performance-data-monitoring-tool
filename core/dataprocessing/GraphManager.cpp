@@ -31,10 +31,11 @@ namespace CAEMonitoringTool::DataProcessing
 		m_operations.insert_or_assign("/", &division);
 	}
 
-	void GraphManager::addGraphFromPoints(const json& jsonStr)
+	void GraphManager::addGraphFromPoints(const json& jsonObject)
 	{
-		auto jsonIter = jsonStr.at("graph").begin();//TODO funktioniert das mit iterator?
-		auto jsonEnd = jsonStr.at("graph").end();
+		auto jsonIter = jsonObject.at("graph").begin();//TODO funktioniert das mit iterator?
+		auto jsonEnd = jsonObject.at("graph").end();
+		std::string threadId = jsonObject.at("tid");
 		std::vector< std::pair<int, double>> dataPoints{};
 
 		while (jsonIter != jsonEnd)
@@ -60,6 +61,11 @@ namespace CAEMonitoringTool::DataProcessing
 	std::string GraphManager::getImage(const std::string& threadID)
 	{
 		return m_graphs.at(threadID).get()->getImage();
+	}
+
+	std::string GraphManager::getImage(const std::string& threadID)
+	{
+		return m_graphs.at(std::make_shared<string>(threadID)).get()->getImage();
 	}
 
 }
