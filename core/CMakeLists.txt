@@ -35,6 +35,8 @@ add_executable(run main/Controller.cpp)
 target_link_libraries(websocket ws2_32)
 target_link_libraries(websocket wsock32)
 target_link_libraries(run websocket)
+target_link_libraries(run dataprocessing)
+target_link_libraries(run datastore)
 target_link_libraries(websocket ${Boost_LIBRARIES})
 
 

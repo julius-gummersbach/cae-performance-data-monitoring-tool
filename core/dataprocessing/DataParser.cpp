@@ -1,10 +1,14 @@
 #include "DataParser.hpp"
 
+using json = nlohmann::json;
+
 namespace CAEMonitoringTool::DataProcessing {
 
-	bool DataParser::parseThreadInfo(const json& object,
+	bool DataParser::parseThreadInfo(const std::string& jsonContent,
 		DataStore::DataManager& dManager,
 		GraphManager& gManager) {
+
+        json object = json::parse(jsonContent);
 
 		std::string id{ object.at("tid") };
 		std::string points;

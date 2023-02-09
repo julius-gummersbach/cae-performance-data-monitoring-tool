@@ -9,45 +9,19 @@
 #include "chrono"
 #include "vector"
 #include "sstream"
-#include "map"
 
 using std::string;
 using std::stringstream;
 using json = nlohmann::json;
 
-class DataParser {
-public:
-    bool parseThreadInfo() { return true; };
-};
-
-class DataManager {
-public:
-    std::vector<string> getThreadIds() {
-        std::vector<string> v{"a", "b", "c"};
-        return v;
-    };
-    string getThreadInfoJson(string id){
-        return "thread info, this should be a json";
-    }
-};
-
-struct Graph {
-    string getImage() { return "img/ExamplePlot4.svg"; }
-};
-
-class GraphManager {
-public:
-    std::unordered_map<string, Graph> graphs{};
-};
-
-
 namespace CAEMonitoringTool {
     typedef websocketpp::server<websocketpp::config::asio> server;
 
     void Controller::startUp() {
-        DataParser m_dataParser;
-        DataManager m_dataManager;
-        GraphManager m_graphManager;
+        //DataParser m_dataParser;
+        DataStore::DataManager& dataManager = m_dataManager;
+        DataProcessing::GraphManager& graphManager = m_graphManager;
+
 
         // Configures the (client) endpoint and sets up a connection between it and the data Server
         CAEMonitoringTool::Websocket::WebsocketEndpoint endpoint;
@@ -61,7 +35,7 @@ namespace CAEMonitoringTool {
             // If it equals true, that means that this was the last message to be received and the loop can be stopped.
             string mes = endpoint.getMessage(dataConId);
             if (!mes.empty()) {
-                isDone = m_dataParser.parseThreadInfo();
+                isDone = DataProcessing::DataParser::parseThreadInfo(mes, dataManager, graphManager);
             } else {
                 // If the message content is empty, that means the next message has not been received yet,
                 // and we need to wait for that.
@@ -74,19 +48,20 @@ namespace CAEMonitoringTool {
         server guiServer;
         websocketpp::connection_hdl guiHdl{};
         guiServer.set_open_handler(
-                [&guiHdl, &guiServer, &m_dataManager](websocketpp::connection_hdl hdl) -> void {
+                [&guiHdl, &guiServer, &dataManager](websocketpp::connection_hdl hdl) -> void {
                     guiHdl = std::move(hdl);
                     std::cout << "Gui connection established!" << std::endl;
                     // Get initial Threads to gui
                     auto guiConnection = guiServer.get_con_from_hdl(guiHdl);
-                    for (const auto &s: m_dataManager.getThreadIds()) {
+                    for (const auto &s: dataManager.getThreadIds()) {
                         guiConnection->send("ST" + s);
                     }
                 });
         // This method gets called for both incoming and outgoing messages
         guiServer.set_message_handler(
-                [&guiServer, &guiHdl, &m_graphManager, &m_dataManager]
+                [&guiServer, &guiHdl, &graphManager, &dataManager]
                         (websocketpp::connection_hdl h, const server::message_ptr &msg) -> void {
+                    /*
                     json messageJson = json::parse(msg->get_payload());
 
                     if(messageJson.at("sender") == "gui"){
@@ -94,11 +69,12 @@ namespace CAEMonitoringTool {
                         json payload = messageJson.at("payload");
                         if(payload.at("rhs").empty()){
                             string requestedId = payload.at("lhs");
-                            m_graphManager.graphs.insert({requestedId, Graph()});
-
-                            string requestedImagePath = m_graphManager.graphs[requestedId].getImage();
+                            //graphManager.graphs.insert({requestedId, Graph()});
+                            // m_graphManager.getImage(requestedId)
+                            //string requestedImagePath = m_graphManager.graphs[requestedId].getImage();
+                            string requestedImagePath = graphManager.getImage(requestedId);
                             std::cout << requestedImagePath << std::endl;
-                            string requestedJsonContent = m_dataManager.getThreadInfoJson(requestedId);
+                            string requestedJsonContent = dataManager.getThreadInfoJson(requestedId);
                             answer.at("imagePath") = requestedImagePath;
                             std::cout << answer << std::endl;
                         } else {
@@ -107,8 +83,8 @@ namespace CAEMonitoringTool {
                         guiServer.get_con_from_hdl(guiHdl)->send(answer);
                     } else {
 
-                    }
-                    /*
+                    }   */
+
                     string messageContent = msg->get_payload();
                     std::cout << "Message received: " << messageContent << std::endl;
                     // -----Message deciphering-----
@@ -124,19 +100,19 @@ namespace CAEMonitoringTool {
                         string requestType = messageContent.substr(1, 1);
                         if (requestType == "1") {
                             string requestedId = messageContent.substr(2);
-
-                            m_graphManager.graphs.insert({requestedId, Graph()});
-
-                            string requestedImagePath = m_graphManager.graphs[requestedId].getImage();
+                            string requestedImagePath = graphManager.getImage(requestedId);
                             std::cout << requestedImagePath << std::endl;
-                            string requestedJsonContent = m_dataManager.getThreadInfoJson(requestedId);
+                            string requestedJsonContent = dataManager.getThreadInfoJson(requestedId);
                             answer += (requestedImagePath + "|" + requestedJsonContent);
+
+                            answer = "S" + requestedImagePath;
+
                             std::cout << answer << std::endl;
                         } else {
                             // Parse the two ids and operator
                         }
-
-                    }*/
+                        guiServer.get_con_from_hdl(guiHdl)->send(answer);
+                    }
                 });
         // Setting Logging behavior to silent
         guiServer.clear_access_channels(websocketpp::log::alevel::all);
@@ -150,7 +126,7 @@ namespace CAEMonitoringTool {
 }
 
 int main() {
-    CAEMonitoringTool::Controller c;
+    CAEMonitoringTool::Controller c{};
     c.startUp();
     return 0;
 }

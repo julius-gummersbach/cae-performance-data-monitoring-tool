@@ -25,10 +25,10 @@ namespace CAEMonitoringTool::DataProcessing
 
 	GraphManager::GraphManager()
 	{
-		m_operations.insert_or_assign(std::make_shared<string>("+"), &Addition);
-		m_operations.insert_or_assign(std::make_shared<string>("-"), &Subtraction);
-		m_operations.insert_or_assign(std::make_shared<string>("*"), &Multiplication);
-		m_operations.insert_or_assign(std::make_shared<string>("/"), &Division);
+		m_operations.insert_or_assign(std::make_shared<string>("+"), &addition);
+		m_operations.insert_or_assign(std::make_shared<string>("-"), &subtraction);
+		m_operations.insert_or_assign(std::make_shared<string>("*"), &multiplication);
+		m_operations.insert_or_assign(std::make_shared<string>("/"), &division);
 	}
 
 	void GraphManager::addGraphFromPoints(const json& jsonStr)

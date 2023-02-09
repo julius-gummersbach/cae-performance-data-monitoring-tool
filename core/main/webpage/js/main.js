@@ -34,11 +34,11 @@ socket.onmessage = function(event) {
         document.getElementById('rhsThread').prepend(rhsOptionElement);
         // If not:
     } else {
-        let splitMessage = message.split("|");
-        let test = document.createElement('div');
-        test.textContent = splitMessage[0];
-        document.getElementById('lhsThread').prepend(test);
-        document.getElementById('graph_svg').src = splitMessage[0];
+        //let splitMessage = message.split("|");
+        //let test = document.createElement('div');
+        //test.textContent = splitMessage[0];
+        //document.getElementById('lhsThread').prepend(test);
+        document.getElementById('graph_svg').src = message; //splitMessage[0];
     }
 }
 

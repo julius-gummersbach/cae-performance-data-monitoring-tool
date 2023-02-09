@@ -8,6 +8,7 @@
 #include "../websocket/WebsocketEndpoint.hpp"
 #include "../datastore/DataManager.hpp"
 #include "../dataprocessing/GraphManager.hpp"
+#include "../dataprocessing/DataParser.hpp"
 #include "websocketpp/server.hpp"
 #include <websocketpp/config/asio_no_tls.hpp>
 #include "websocketpp/client.hpp"
@@ -17,8 +18,10 @@
 namespace CAEMonitoringTool {
     class Controller {
         DataStore::DataManager m_dataManager;
-        //DataProcessing::GraphManager m_graphManager;
+        DataProcessing::GraphManager m_graphManager;
+        DataProcessing::DataParser m_dataParser;
     public:
+        Controller() = default;
         void startUp();
 
     };

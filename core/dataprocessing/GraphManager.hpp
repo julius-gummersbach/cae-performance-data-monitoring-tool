@@ -31,5 +31,9 @@ namespace CAEMonitoringTool::DataProcessing
 		* @param Json String which includes the id of two Graphs and a Operation
 		*/
 		void addGraphfromCombination(std::string jsonStr);
+
+
+        //string getImage(string id) const { return "img/ExamplePlot4.svg"; }
+
 	};
 }
