@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="">
+<script src="js/main.js"></script>
 
 <head>
   <meta charset="utf-8">
@@ -62,8 +63,9 @@
     <div id="graphSvgContainer">
       <img id="graph_svg" src="img/graph_demo_data.svg" alt="Graph demo SVG"/>
     </div>
-    <div class="ThreadInfoTable">
+    <div class="ThreadInfoTable" id="ThreadInfoTable">
       <table>
+        <thead>
         <tr>
           <th class="TableHeadline" colspan="5">Thread</th>
         </tr>
@@ -74,19 +76,17 @@
           <th>overruns</th>
           <th>runtime</th>
         </tr>
-        <tr>
-          <td>A32VG9</td>
-          <td>60.0</td>
-          <td>5</td>
-          <td>0</td>
-          <td>0.2434</td>
-        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
       </table>
     </div>
   </div>
 
   <div id="ModuleTable">
     <table>
+      <thead>
       <tr>
         <th class="TableHeadline" colspan="6">Modules</th>
       </tr>
@@ -98,94 +98,10 @@
         <th>sum_vs</th>
         <th>sum_is</th>
       </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0853</td>
-        <td>0.0191</td>
-        <td>17.05719</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0793</td>
-        <td>0.0175</td>
-        <td>15.8595</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
-      <tr>
-        <td>Thread01</td>
-        <td>0.0788</td>
-        <td>0.0173</td>
-        <td>15.7637</td>
-        <td>0.1</td>
-        <td>0.25</td>
-      </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
     </table>
   </div>
 </div>
