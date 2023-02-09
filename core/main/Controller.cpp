@@ -74,7 +74,7 @@ namespace CAEMonitoringTool {
                             //string requestedImagePath = m_graphManager.graphs[requestedId].getImage();
                             string requestedImagePath = graphManager.getImage(requestedId);
                             std::cout << requestedImagePath << std::endl;
-                            string requestedJsonContent = dataManager.getThreadInfoJson(requestedId);
+                            string requestedJsonContent = dataManager.getThreadInfo(requestedId);
                             answer.at("imagePath") = requestedImagePath;
                             std::cout << answer << std::endl;
                         } else {
@@ -102,7 +102,7 @@ namespace CAEMonitoringTool {
                             string requestedId = messageContent.substr(2);
                             string requestedImagePath = graphManager.getImage(requestedId);
                             std::cout << requestedImagePath << std::endl;
-                            string requestedJsonContent = dataManager.getThreadInfoJson(requestedId);
+                            string requestedJsonContent = dataManager.getThreadInfo(requestedId);
                             answer += (requestedImagePath + "|" + requestedJsonContent);
 
                             answer = "S" + requestedImagePath;
