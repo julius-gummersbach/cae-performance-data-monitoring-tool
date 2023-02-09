@@ -87,6 +87,28 @@ namespace CAEMonitoringTool {
         guiServer.set_message_handler(
                 [&guiServer, &guiHdl, &m_graphManager, &m_dataManager]
                         (websocketpp::connection_hdl h, const server::message_ptr &msg) -> void {
+                    json messageJson = json::parse(msg->get_payload());
+
+                    if(messageJson.at("sender") == "gui"){
+                        json answer{{"sender","server"},{"payload",{{"imagePath",""},{"moduleInfo",""}}}};
+                        json payload = messageJson.at("payload");
+                        if(payload.at("rhs").empty()){
+                            string requestedId = payload.at("lhs");
+                            m_graphManager.graphs.insert({requestedId, Graph()});
+
+                            string requestedImagePath = m_graphManager.graphs[requestedId].getImage();
+                            std::cout << requestedImagePath << std::endl;
+                            string requestedJsonContent = m_dataManager.getThreadInfoJson(requestedId);
+                            answer.at("imagePath") = requestedImagePath;
+                            std::cout << answer << std::endl;
+                        } else {
+
+                        }
+                        guiServer.get_con_from_hdl(guiHdl)->send(answer);
+                    } else {
+
+                    }
+                    /*
                     string messageContent = msg->get_payload();
                     std::cout << "Message received: " << messageContent << std::endl;
                     // -----Message deciphering-----
@@ -113,8 +135,8 @@ namespace CAEMonitoringTool {
                         } else {
                             // Parse the two ids and operator
                         }
-                        guiServer.get_con_from_hdl(guiHdl)->send(answer);
-                    }
+
+                    }*/
                 });
         // Setting Logging behavior to silent
         guiServer.clear_access_channels(websocketpp::log::alevel::all);
