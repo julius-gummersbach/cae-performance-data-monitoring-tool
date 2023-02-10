@@ -3,47 +3,6 @@ let socket = new WebSocket("ws://localhost:9002");
 // maps thread ids to their thread name
 const threadMap = new Map();
 
-let testPayload = {
-    "tid": "1234",
-    "name": "tollerthread",
-    "freq": 62.5,
-    "iterations": 1,
-    "overruns": 100,
-    "sum_rt": 98134719,
-    "modules": [{
-        "name": "toles module",
-        "sum_rt": 1,
-        "max_rt": 2,
-        "avg_rt": 3,
-        "sum_vs": 4,
-        "sum_is": 5
-    },
-        {
-            "name": "tolles module",
-            "sum_rt": 11,
-            "max_rt": 22,
-            "avg_rt": 33,
-            "sum_vs": 43,
-            "sum_is": 5
-        },
-        {
-            "name": "tollles module",
-            "sum_rt": 1,
-            "max_rt": 2,
-            "avg_rt": 3,
-            "sum_vs": 4,
-            "sum_is": 5
-        }
-    ],
-    "graphPath": "img\\graph_placeholder.svg"
-}
-
-let composedPayload = {
-    "tid": "1234",
-    "modules": [],
-    "graphPath": "img\\graph_placeholder.svg"
-}
-
 /**
  * Update the gui with the data from the payload
  * @param threadInfo JSON object containing the thread info
@@ -137,7 +96,9 @@ socket.onmessage = function (event) {
     if (message.sender === "server") {
         switch (message.topic) {
             case "startup":
-                // todo
+                message.payload.forEach(thread => {
+                    threadMap.set(thread.tid, thread.name);
+                });
                 updateDropdown();
                 break;
             case "provideData":
@@ -146,4 +107,36 @@ socket.onmessage = function (event) {
     }
 }
 
-document.forms.publish.onsubmit = function() {}
+submitOperation = function() {
+    let lhs = document.getElementById("lhsThread").options[document.getElementById("lhsThread").selectedIndex].value;
+    let rhs = document.getElementById("rhsThread").options[document.getElementById("rhsThread").selectedIndex].value;
+    let operation = document.getElementById("operation").options[document.getElementById("operation").selectedIndex].value;
+    let resultingGraphName = document.getElementById("threadName").value;
+
+    if(lhs === "" || rhs === "" || operation === "" || resultingGraphName === ""){
+        alert("Please fill out all fields");
+        return false;
+    }
+
+    if(Array.from(threadMap.values()).includes(resultingGraphName)){
+        alert("Entered thread name already exists");
+        return false;
+    }
+
+    let message = {
+        "sender": "gui",
+        "topic": "operation",
+        "payload": {
+            "lhs": lhs,
+            "operation": operation,
+            "rhs": rhs,
+            "resultingGraphName": resultingGraphName
+        }
+    }
+    socket.send(JSON.stringify(message));
+    return false;
+}
+
+window.onload = function () {
+    updateDropdown();
+}

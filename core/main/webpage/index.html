@@ -24,30 +24,24 @@
 </div>
 
 <div id="selectThread">
-  <form name="publish">
+  <form name="publish" onsubmit="submitOperation()">
     <label for="lhsThread"></label>
     <select id="lhsThread" name="lhsThread" onchange="threadSelected()">
       <option value="" disabled selected hidden>Select a thread</option>
-      <option value="thread1">Thread 1</option>
-      <option value="thread2">Thread 2</option>
-      <option value="thread3">Thread 3</option>
     </select>
 
     <label for="operation"></label>
     <select id="operation" name="operation">
       <option value="" disabled selected hidden>Select an operation</option>
-      <option value="add">+</option>
-      <option value="subtract">-</option>
-      <option value="multiply">*</option>
-      <option value="divide">/</option>
+      <option value="+">+</option>
+      <option value="-">-</option>
+      <option value="*">*</option>
+      <option value="/">/</option>
     </select>
 
     <label for="rhsThread"></label>
     <select id="rhsThread" name="rhsThread">
-      <option value="" selected>Select a thread</option>
-      <option value="thread1">Thread 1</option>
-      <option value="thread2">Thread 2</option>
-      <option value="thread3">Thread 3</option>
+      <option value="" disabled selected hidden>Select a thread</option>
     </select>
 
     <label for="threadName"> = </label>
@@ -61,7 +55,7 @@
 <div id="displaySection">
   <div id="leftDisplaySection">
     <div id="graphSvgContainer">
-      <img id="graph_svg" src="img/graph_demo_data.svg" alt="Graph demo SVG"/>
+      <img id="graph_svg" src="img/graph_demo_data.svg" alt="Graph SVG"/>
     </div>
     <div class="ThreadInfoTable" id="ThreadInfoTable">
       <table>
