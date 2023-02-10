@@ -82,7 +82,7 @@ namespace CAEMonitoringTool {
                             } else {
                                 payload = json::parse(payloadString);
                             }
-                            payload["graphPath"] = graphManager.getImage(threadId);
+                            payload["graphSvg"] = graphManager.getImage(threadId);
 
                             json answer{{"sender","server"},
                                         {"topic", "provideData"},
