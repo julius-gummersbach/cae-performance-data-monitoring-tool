@@ -24,7 +24,7 @@
 </div>
 
 <div id="selectThread">
-  <form name="publish">
+  <form name="publish" onsubmit="submitOperation()">
     <label for="lhsThread"></label>
     <select id="lhsThread" name="lhsThread" onchange="threadSelected()">
       <option value="" disabled selected hidden>Select a thread</option>

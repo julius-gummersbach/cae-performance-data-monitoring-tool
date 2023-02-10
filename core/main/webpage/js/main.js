@@ -146,4 +146,32 @@ socket.onmessage = function (event) {
     }
 }
 
-document.forms.publish.onsubmit = function() {}
+submitOperation = function() {
+    let lhs = document.getElementById("lhsThread").options[document.getElementById("lhsThread").selectedIndex].value;
+    let rhs = document.getElementById("rhsThread").options[document.getElementById("rhsThread").selectedIndex].value;
+    let operation = document.getElementById("operation").options[document.getElementById("operation").selectedIndex].value;
+    let resultingGraphName = document.getElementById("threadName").value;
+
+    if(lhs === "" || rhs === "" || operation === "" || resultingGraphName === ""){
+        alert("Please fill out all fields");
+        return false;
+    }
+
+    if(Array.from(threadMap.values()).includes(resultingGraphName)){
+        alert("Entered thread name already exists");
+        return false;
+    }
+
+    let message = {
+        "sender": "gui",
+        "topic": "operation",
+        "payload": {
+            "lhs": lhs,
+            "operation": operation,
+            "rhs": rhs,
+            "resultingGraphName": resultingGraphName
+        }
+    }
+    socket.send(JSON.stringify(message));
+    return false;
+}
