@@ -44,6 +44,12 @@ let composedPayload = {
     "graphPath": "img\\graph_placeholder.svg"
 }
 
+// test code dont commit
+threadMap.set("1", "Thread 1");
+threadMap.set("2", "Thread 2");
+threadMap.set("3", "Thread 3");
+
+
 /**
  * Update the gui with the data from the payload
  * @param threadInfo JSON object containing the thread info
