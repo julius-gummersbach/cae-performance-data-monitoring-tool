@@ -58,11 +58,11 @@ namespace CAEMonitoringTool {
                     auto guiConnection = guiServer.get_con_from_hdl(guiHdl);
                     json payload;
                     for (const auto &threadId: dataManager.getThreadIds()) {
-                        payload[threadId] = json::parse(dataManager.getThreadInfo(threadId)).at("name").dump();
+                        payload.push_back({{"tid",threadId},{"name",json::parse(dataManager.getThreadInfo(threadId)).at("name")}});
                     }
                     json msg{{"sender","server"},
                              {"topic","startup"},
-                             {"payload", payload}};
+                             {"payload", payload.dump()}};
                     guiConnection->send(msg.dump());
                 });
         // This method gets called for both incoming and outgoing messages
