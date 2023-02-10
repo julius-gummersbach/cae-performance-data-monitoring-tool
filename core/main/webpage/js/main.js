@@ -3,53 +3,6 @@ let socket = new WebSocket("ws://localhost:9002");
 // maps thread ids to their thread name
 const threadMap = new Map();
 
-let testPayload = {
-    "tid": "1234",
-    "name": "tollerthread",
-    "freq": 62.5,
-    "iterations": 1,
-    "overruns": 100,
-    "sum_rt": 98134719,
-    "modules": [{
-        "name": "toles module",
-        "sum_rt": 1,
-        "max_rt": 2,
-        "avg_rt": 3,
-        "sum_vs": 4,
-        "sum_is": 5
-    },
-        {
-            "name": "tolles module",
-            "sum_rt": 11,
-            "max_rt": 22,
-            "avg_rt": 33,
-            "sum_vs": 43,
-            "sum_is": 5
-        },
-        {
-            "name": "tollles module",
-            "sum_rt": 1,
-            "max_rt": 2,
-            "avg_rt": 3,
-            "sum_vs": 4,
-            "sum_is": 5
-        }
-    ],
-    "graphPath": "img\\graph_placeholder.svg"
-}
-
-let composedPayload = {
-    "tid": "1234",
-    "modules": [],
-    "graphPath": "img\\graph_placeholder.svg"
-}
-
-// test code dont commit
-threadMap.set("1", "Thread 1");
-threadMap.set("2", "Thread 2");
-threadMap.set("3", "Thread 3");
-
-
 /**
  * Update the gui with the data from the payload
  * @param threadInfo JSON object containing the thread info
