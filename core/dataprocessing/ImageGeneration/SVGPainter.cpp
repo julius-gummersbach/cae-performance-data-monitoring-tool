@@ -28,6 +28,7 @@
 #include "SVGPainter.h"
 #include <cstring>
 #include <fstream>
+#include "sstream"
 
 namespace SVGChart {
 	using namespace std;
@@ -102,11 +103,14 @@ namespace SVGChart {
 		svgContent << inString << "</text>\n";
 	}
 
-	void SVGPainter::writeFile(string filePath) {
+	std::string SVGPainter::writeFile(string filePath) {
 		ofstream outFile;
 		outFile.open(filePath);
 		outFile << svgContent.rdbuf();
 		outFile << "</svg>\n" << endl;
 		outFile.close();
+        std::stringstream s;
+        s << svgContent.rdbuf() << "</svg>\n" << endl;
+        return s.str();
 	}
 }

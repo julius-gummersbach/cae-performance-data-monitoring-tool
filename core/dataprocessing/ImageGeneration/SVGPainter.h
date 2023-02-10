@@ -56,7 +56,7 @@ namespace SVGChart {
 		virtual void DrawText(int inX, int inY, const char* inString);
 		virtual void DrawRotatedText(int inX, int inY, float inDegrees, const char* inString);
 		virtual void SetStyle([[maybe_unused]] const PStyle& inStyle) {};
-		void writeFile(string filePath);
+		std::string writeFile(string filePath);
 		// public member variables
 
 	private:

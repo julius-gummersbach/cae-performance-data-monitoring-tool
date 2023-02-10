@@ -45,7 +45,7 @@ namespace CAEMonitoringTool::DataProcessing {
 		long width = points.size() * 16;
 		SVGPainter painter(width, 450);
 		pplot.Draw(painter);
-		painter.writeFile(path);
-		return path;
+		return painter.writeFile(path);
+        //return path;
 	}
 }
