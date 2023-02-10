@@ -1,11 +1,14 @@
 #include "DataManager.hpp"
+#include "iostream"
 
 namespace CAEMonitoringTool::DataStore {
 
   bool DataManager::addData(const json &object) {
 
     auto infoObject{ThreadInfo::make(object["tid"], object["name"], object["freq"],
-                                     object["iterations"], object["overruns"], object["sum_rt"].at(0),
+                                     //TODO adjust server.py script so "sum_rt" is a list with one entry, and adjust getting that entry here
+                                     // (as that is how "sum_rt" is described in schema.py)
+                                     object["iterations"], object["overruns"], object["sum_rt"],
                                      object.dump())};
 
     if(!infoObject.first) {
@@ -14,9 +17,13 @@ namespace CAEMonitoringTool::DataStore {
 
     auto& info{infoObject.second};
 
-    for (auto &x: object["modules"]) {
+
+    //for(auto xIt = object["modules"].begin(); xIt != object["modules"].end(); ++xIt){
+    for (auto &x: object["data"]) {  //TODO change "data" to "modules" according to schema.py once server.py is adjusted
       auto moduleObject{Module::make(x["name"], x["sum_rt"], x["max_rt"],
                                      x["avg_rt"], x["sum_vs"], x["sum_is"])};
+      //auto moduleObject{Module::make((*xIt)["name"], (*xIt)["sum_rt"], (*xIt)["max_rt"],
+      //                               (*xIt)["avg_rt"], (*xIt)["sum_vs"], (*xIt)["sum_is"])};
       if(!moduleObject.first) {
         return false;
       }

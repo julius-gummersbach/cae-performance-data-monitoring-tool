@@ -86,6 +86,7 @@ namespace CAEMonitoringTool {
                                 payload = json::parse(payloadString);
                             }
                             payload["graphSvg"] = graphManager.getImage(threadId);
+                            std::cout << "Image SVG: " << std::endl << payload["graphSvg"] << std::endl;
 
                             json answer{{"sender","server"},
                                         {"topic", "provideData"},
