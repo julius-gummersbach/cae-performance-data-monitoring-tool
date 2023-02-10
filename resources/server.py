@@ -56,7 +56,7 @@ class CThreadInfo:
     iterations: int
     overruns: int
     sum_rt: float  # [s]
-    data: List[CThreadData]
+    modules: List[CThreadData]
     graph: List[Point]
     isDone: bool
 
@@ -81,7 +81,7 @@ def fill_data(thread, last):
     iterations = T_ITERATIONS
     overruns = 0
     sum_rt = 0
-    data = []
+    modules = []
     graph: list[Point] = []
 
     expected_val = random.uniform(8, 12)
@@ -90,9 +90,9 @@ def fill_data(thread, last):
         x = i * iterations
         graph.append(Point(x, y))
         sum_rt += y
-        data.append(calc_data(thread))
+        modules.append(calc_data(thread))
 
-    info = CThreadInfo(tid, name, freq, iterations, overruns, sum_rt, data, graph, last)
+    info = CThreadInfo(tid, name, freq, iterations, overruns, sum_rt, modules, graph, last)
     return info
 
 

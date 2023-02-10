@@ -65,7 +65,7 @@ namespace CAEMonitoringTool {
                     }
                     json msg{{"sender","server"},
                              {"topic","startup"},
-                             {"payload", payload.dump()}};
+                             {"payload", payload}};
                     guiConnection->send(msg.dump());
                 });
         // This method gets called for both incoming and outgoing messages
@@ -86,7 +86,7 @@ namespace CAEMonitoringTool {
                                 payload = json::parse(payloadString);
                             }
                             payload["graphSvg"] = graphManager.getImage(threadId);
-                            std::cout << "Image SVG: " << std::endl << payload["graphSvg"] << std::endl;
+                            std::cout << "Image SVG for thread "<< payload["tid"] << ": " << std::endl << payload["graphSvg"] << std::endl;
 
                             json answer{{"sender","server"},
                                         {"topic", "provideData"},
