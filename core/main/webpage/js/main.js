@@ -137,7 +137,9 @@ socket.onmessage = function (event) {
     if (message.sender === "server") {
         switch (message.topic) {
             case "startup":
-                // todo
+                message.payload.forEach(thread => {
+                    threadMap.set(thread.tid, thread.name);
+                });
                 updateDropdown();
                 break;
             case "provideData":
