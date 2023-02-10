@@ -7,10 +7,14 @@
 
 #include "string"
 #include "vector"
-
+#include "PPlot.h"
+using namespace SVGChart;
+using std::pair;
 
 namespace CAEMonitoringTool::DataProcessing {
 	class ImageGenerator {
+    private:
+        static void plotIt(PPlot& ioPPlot, const vector<pair<int, double>>& points);
 	public:
 		static std::string generateImage(const std::vector <std::pair<int, double>>& points, const std::string& threadId);
 	};

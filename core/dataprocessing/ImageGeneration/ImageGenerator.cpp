@@ -13,16 +13,16 @@ using std::make_unique;
 
 namespace CAEMonitoringTool::DataProcessing {
 
-	void plotIt(PPlot& ioPPlot, const vector<pair<int, double>>& points) {
+	void ImageGenerator::plotIt(PPlot& ioPPlot, const vector<pair<int, double>>& points) {
 		ioPPlot.mPlotBackground.mTitle = "Our beautiful graph";
 		auto* xValues = new PlotData();
 		auto* yValues = new PlotData();
-		xValues->push_back(0);
-		yValues->push_back(0);
+		//xValues->push_back(0);
+		//yValues->push_back(0);
 		for (auto pair : points) {
 			xValues->push_back(pair.first * 16);
 			yValues->push_back(pair.second);
-}
+        }
 		auto* legend = new LegendData();
 		legend->mName = "Our sample data";
 		legend->mColor = PColor(41, 105, 242);
