@@ -43,7 +43,7 @@ updateGui = function (threadInfo) {
         oldThreadInfoTbody.parentNode.replaceChild(newThreadInfoTbody, oldThreadInfoTbody);
     }
     //update graph
-    document.getElementById("graph_svg").src = threadInfo.graphPath;
+    document.getElementById('graph_svg').innerHTML = threadInfo.graphSvg;
 }
 
 /**

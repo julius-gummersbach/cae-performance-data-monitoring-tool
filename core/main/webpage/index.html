@@ -55,7 +55,10 @@
 <div id="displaySection">
   <div id="leftDisplaySection">
     <div id="graphSvgContainer">
-      <img id="graph_svg" src="img/graph_demo_data.svg" alt="Graph SVG"/>
+      <svg id="graph_svg" width="100%" height="100%">
+        <rect x="0" y="0" width="100%" height="100%" fill="#ddd"/>
+        <text x="50%" y="50%" font-size="20" text-anchor="middle" dominant-baseline="central" fill="black">Select a thread to display from the dropdown menu</text>
+      </svg>
     </div>
     <div class="ThreadInfoTable" id="ThreadInfoTable">
       <table>
