@@ -39,7 +39,7 @@ namespace CAEMonitoringTool::DataProcessing {
 	}
 
 	std::string ImageGenerator::generateImage(const std::vector<std::pair<int, double>>& points, const std::string& threadId) {
-		string path{ "C:\\Users\\aixtron\\source\\repos\\cae - performance - data - monitoring - tool\\core\\main\\webpage\\img\\generated svg files\\" + threadId };
+		string path{ "../../../main/webpage/img/generated svg files/" + threadId + ".svg" };
 		PPlot pplot;
 		plotIt(pplot, points);
 		long width = points.size() * 16;

@@ -32,13 +32,16 @@ namespace CAEMonitoringTool {
         }
         endpoint.send(dataConId, "startData");
         bool isDone{false}; //TODO false
+        int i{0};
         while (!isDone) {
             // Checks the message content. If it is not empty, it parses the string into a JSON object.
             // The return value of parseThreadInfo is a boolean determined by a JSON field of the string.
             // If it equals true, that means that this was the last message to be received and the loop can be stopped.
             string mes = endpoint.getMessage(dataConId);
             if (!mes.empty()) {
+                std::cout << "received message " << ++i << std::endl;
                 isDone = DataProcessing::DataParser::parseThreadInfo(mes, dataManager, graphManager);
+                std::cout << "parsed message " << i << std::endl;
             } else {
                 // If the message content is empty, that means the next message has not been received yet,
                 // and we need to wait for that.
@@ -58,11 +61,11 @@ namespace CAEMonitoringTool {
                     auto guiConnection = guiServer.get_con_from_hdl(guiHdl);
                     json payload;
                     for (const auto &threadId: dataManager.getThreadIds()) {
-                        payload[threadId] = json::parse(dataManager.getThreadInfo(threadId)).at("name").dump();
+                        payload.push_back({{"tid",threadId},{"name",json::parse(dataManager.getThreadInfo(threadId)).at("name")}});
                     }
                     json msg{{"sender","server"},
                              {"topic","startup"},
-                             {"payload", payload}};
+                             {"payload", payload.dump()}};
                     guiConnection->send(msg.dump());
                 });
         // This method gets called for both incoming and outgoing messages
@@ -101,6 +104,7 @@ namespace CAEMonitoringTool {
         guiServer.listen(9002);
         guiServer.start_accept();
         guiServer.run();
+        std::cout << "Server for GUI started" << std::endl;
     }
 }
 
