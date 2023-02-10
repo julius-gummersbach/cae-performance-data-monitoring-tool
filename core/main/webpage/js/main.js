@@ -86,3 +86,64 @@ updateGui = function (threadInfo) {
     //update graph
     document.getElementById("graph_svg").src = threadInfo.graphPath;
 }
+
+/**
+ * Update the options in the thread dropdowns from the thread map
+ */
+updateDropdown = function () {
+    let lhsDropdown = document.getElementById("lhsThread");
+    let rhsDropdown = document.getElementById("rhsThread");
+    while (lhsDropdown.options.length > 1) { // keep first element ("select a thread")
+        lhsDropdown.remove(1);
+    }
+    while (rhsDropdown.options.length > 1) {
+        rhsDropdown.remove(1);
+    }
+    threadMap.forEach((value, key) => {
+        let option1 = document.createElement("option");
+        option1.value = key;
+        option1.text = value;
+        lhsDropdown.appendChild(option1);
+        let option2 = document.createElement("option");
+        option2.value = key;
+        option2.text = value;
+        rhsDropdown.appendChild(option2);
+    })
+}
+
+/**
+ * Handles the selection of a thread in the dropdown
+ */
+threadSelected = function () {
+    let leftDropdown = document.getElementById("lhsThread");
+    let selected = leftDropdown.options[leftDropdown.selectedIndex];
+    let message = {
+        "sender": "gui",
+        "topic": "requestData",
+        "payload": {
+            "tid": selected.value
+        }
+    }
+    socket.send(JSON.stringify(message));
+}
+
+/**
+ * Handles incoming messages from the server
+ * add or update thread data in the threadMap
+ * @param event
+ */
+socket.onmessage = function (event) {
+    let message = JSON.parse(event.data);
+    if (message.sender === "server") {
+        switch (message.topic) {
+            case "startup":
+                // todo
+                updateDropdown();
+                break;
+            case "provideData":
+                updateGui(message.payload);
+        }
+    }
+}
+
+document.forms.publish.onsubmit = function() {}
