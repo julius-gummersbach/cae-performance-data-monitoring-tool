@@ -136,3 +136,7 @@ submitOperation = function() {
     socket.send(JSON.stringify(message));
     return false;
 }
+
+window.onload = function () {
+    updateDropdown();
+}
