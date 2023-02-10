@@ -53,7 +53,7 @@ namespace CAEMonitoringTool::DataProcessing
 		Graph leftGraph = *m_graphs.at(jsonObject.at("lhs")).get();
 		Graph rightGraph = *m_graphs.at(jsonObject.at("rhs")).get();
 		operationFunction operation = m_operations.at(jsonObject.at("operation"));
-		shared_ptr<Graph> composedGraph = std::make_shared<Graph>(leftGraph, rightGraph, operation, threadId);
+		shared_ptr<Graph> composedGraph = std::make_shared<Graph>(leftGraph, rightGraph, threadId, operation);
 		std::pair<std::string, shared_ptr<Graph>> graphTupel{ threadId, composedGraph };
 		m_graphs.insert(graphTupel);
 	}

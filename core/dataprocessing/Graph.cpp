@@ -22,9 +22,9 @@ namespace CAEMonitoringTool::DataProcessing
 		m_dataPoints = newDataPoints;
 	}
 
-	std::string Graph::getImage()
+	const std::string& Graph::getImage()
 	{
-		if (m_svgPath == "")
+		if (m_svgPath.empty())
 		{
 			m_svgPath = ImageGenerator::generateImage(m_dataPoints, m_threadId);
 		}
