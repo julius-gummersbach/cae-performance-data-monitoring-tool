@@ -33,17 +33,8 @@ namespace CAEMonitoringTool::DataProcessing
 
 	void GraphManager::addGraphFromPoints(const json& jsonObject)
 	{
-		//auto jsonIter = jsonObject.at("graph").begin();//TODO funktioniert das mit iterator? -> Maybe
-		//auto jsonEnd = jsonObject.at("graph").end();
 		std::string threadId = jsonObject.at("tid");
 		std::vector< std::pair<int, double>> dataPoints{};
-        /*
-		while (jsonIter != jsonEnd)
-		{
-			dataPoints.push_back(std::pair<int, double>{jsonIter->at("x"), jsonIter->at("y")});
-			++jsonIter;
-		}*/
-        // Das hier sollte aber ziemlich sicher gehen
         for(auto jsonIter : jsonObject.at("graph")){
             dataPoints.push_back(std::pair<int, double>{jsonIter.at("x"), jsonIter.at("y")});
         }

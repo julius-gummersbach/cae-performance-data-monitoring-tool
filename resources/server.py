@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser(
     prog='Script to simulate a server',
     description='Generate a JSON-File per Thread',
     epilog='Created JSON-Files script ended')
+# At least 9 values are needed for the graph to render
 parser.add_argument("-min", "--minValue", action="store", default=int(16))  # 62 = one second
 parser.add_argument("-max", "--maxValue", action="store", default=int(32))  # 258492 = 3 sid. days
 parser.add_argument("-f", "--Frequency", action="store", default=float(62.5))
@@ -97,12 +98,15 @@ def fill_data(thread, last):
 
 
 async def send_info(websocket, path):
+    print("Sending a message each for " + str(NUMBER_OF_THREADS) + " threads...")
     for i in range(NUMBER_OF_THREADS):
         if i != (NUMBER_OF_THREADS - 1):
             info = fill_data(i, False)
         else:
             info = fill_data(i, True)
+        print("Thread " + str(i+1))
         print(info.to_json())
+        print()
         await websocket.send(info.to_json())
         await asyncio.sleep(0.2)
 

@@ -40,7 +40,7 @@ namespace CAEMonitoringTool::DataProcessing {
 	}
 
     std::string ImageGenerator::generateImage(const vector<std::pair<int, double>> &points, const string &threadId) {
-        string path{threadId + ".svg" }; //"../../../main/webpage/img/generated svg files/" +
+        string path{threadId + ".svg" };
         PPlot pplot;
         plotIt(pplot,points);
         long width = points.size() * 16;
@@ -54,13 +54,3 @@ namespace CAEMonitoringTool::DataProcessing {
         return buffer.str();
     }
 }
-
-
-/*int main(){
-  vector<pair<int,double>> exampleData2{};
-  std::srand(9821);
-  for(int i = 0; i< std::rand() + 100; i++){
-    exampleData2.push_back(std::make_pair(i,std::rand()));
-  }
-  CAEMonitoringTool::DataProcessing::ImageGenerator::generateImage(exampleData2,"testi");
-}*/
