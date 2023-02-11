@@ -76,6 +76,7 @@ namespace CAEMonitoringTool {
                     if(messageJson.at("sender") == "gui"){
                         if(messageJson.at("topic") == "requestData"){
                             string threadId = messageJson.at("payload").at("tid");
+                            std::cout << "Data request received for thread " << threadId << std::endl;
 
                             string payloadString = dataManager.getThreadInfo(threadId);
                             json payload;
@@ -86,13 +87,16 @@ namespace CAEMonitoringTool {
                                 payload = json::parse(payloadString);
                             }
                             payload["graphSvg"] = graphManager.getImage(threadId);
-                            std::cout << "Image SVG for thread "<< payload["tid"] << ": " << std::endl << payload["graphSvg"].dump() << std::endl;
 
                             json answer{{"sender","server"},
                                         {"topic", "provideData"},
                                         {"payload",payload}};
                             guiServer.get_con_from_hdl(guiHdl)->send(answer.dump());
-                        } else if(messageJson.at("topic") == "operation"){
+                        } else { //else if(messageJson.at("topic") == "operation")
+                            std::cout << "Request for new Graph received: " << messageJson.at("payload").at("lhs") << " "
+                                      << messageJson.at("payload").at("operation") << " "
+                                      << messageJson.at("payload").at("rhs") << " as "
+                                      << messageJson.at("payload").at("resultingGraphName") << std::endl;
                             graphManager.addGraphfromCombination(messageJson.at("payload"));
                         }
                     }
