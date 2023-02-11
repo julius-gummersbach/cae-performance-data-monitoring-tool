@@ -17,21 +17,21 @@ namespace CAEMonitoringTool::DataProcessing {
 		ioPPlot.mPlotBackground.mTitle = "Our beautiful graph";
 		auto* xValues = new PlotData();
 		auto* yValues = new PlotData();
-		//xValues->push_back(0);
-		//yValues->push_back(0);
+		xValues->push_back(0);
+		yValues->push_back(0);
 		for (auto pair : points) {
 			xValues->push_back(pair.first * 16);
 			yValues->push_back(pair.second);
-        }
-		auto* legend = new LegendData();
+                }
+		auto *legend = new LegendData();
 		legend->mName = "Our sample data";
 		legend->mColor = PColor(41, 105, 242);
 
 		ioPPlot.mPlotDataContainer.AddXYPlot(xValues, yValues, legend);
 
-		ioPPlot.mMargins.mLeft = 90;
+		ioPPlot.mMargins.mLeft = 75;
 		ioPPlot.mMargins.mTop = 50;
-		ioPPlot.mMargins.mBottom = 50;
+		ioPPlot.mMargins.mBottom = 140;
 		ioPPlot.mMargins.mRight = 50;
 
 		ioPPlot.mXAxisSetup.mLabel = "Time in Milliseconds";
@@ -54,3 +54,13 @@ namespace CAEMonitoringTool::DataProcessing {
         return buffer.str();
     }
 }
+
+
+/*int main(){
+  vector<pair<int,double>> exampleData2{};
+  std::srand(9821);
+  for(int i = 0; i< std::rand() + 100; i++){
+    exampleData2.push_back(std::make_pair(i,std::rand()));
+  }
+  CAEMonitoringTool::DataProcessing::ImageGenerator::generateImage(exampleData2,"testi");
+}*/

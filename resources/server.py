@@ -12,10 +12,10 @@ parser = argparse.ArgumentParser(
     prog='Script to simulate a server',
     description='Generate a JSON-File per Thread',
     epilog='Created JSON-Files script ended')
-parser.add_argument("-min", "--minValue", action="store", default=int(3))  # 62 = one second
-parser.add_argument("-max", "--maxValue", action="store", default=int(5))  # 258492 = 3 sid. days
+parser.add_argument("-min", "--minValue", action="store", default=int(16))  # 62 = one second
+parser.add_argument("-max", "--maxValue", action="store", default=int(32))  # 258492 = 3 sid. days
 parser.add_argument("-f", "--Frequency", action="store", default=float(62.5))
-parser.add_argument("-i", "--Iteration", action="store", default=int(2))   # 5
+parser.add_argument("-i", "--Iteration", action="store", default=int(5))   # 5
 args = parser.parse_args()
 
 DATA_COUNT = random.randint(int(args.minValue), int(args.maxValue) + 1)
