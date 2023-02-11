@@ -35,9 +35,9 @@ namespace CAEMonitoringTool::DataProcessing
 	{
 		std::string threadId = jsonObject.at("tid");
 		std::vector< std::pair<int, double>> dataPoints{};
-        for(auto jsonIter : jsonObject.at("graph")){
-            dataPoints.push_back(std::pair<int, double>{jsonIter.at("x"), jsonIter.at("y")});
-        }
+                for(auto jsonIter : jsonObject.at("graph")){
+                    dataPoints.push_back(std::pair<int, double>{jsonIter.at("x"), jsonIter.at("y")});
+                }
 
 		std::pair<std::string, shared_ptr<Graph>> Point{ jsonObject.at("tid"),std::make_shared<Graph>(Graph(dataPoints,threadId)) };
 		m_graphs.insert(Point);

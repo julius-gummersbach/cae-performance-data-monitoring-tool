@@ -4,7 +4,7 @@ namespace CAEMonitoringTool::DataStore {
 
   bool DataManager::addData(const json &object) {
     //TODO adjust server.py script so "sum_rt" is a list with one entry, and adjust getting that entry here
-    // (as that is how "sum_rt" is described in schema.py)
+    // (with .at(0) or something) (as that is how "sum_rt" is described in schema.py)
     auto infoObject{ThreadInfo::make(object["tid"], object["name"], object["freq"],
                                      object["iterations"], object["overruns"], object["sum_rt"],
                                      object.dump())};
@@ -15,7 +15,7 @@ namespace CAEMonitoringTool::DataStore {
 
     auto& info{infoObject.second};
 
-    
+
     for (auto &x: object["modules"]) {
       auto moduleObject{Module::make(x["name"], x["sum_rt"], x["max_rt"],
                                      x["avg_rt"], x["sum_vs"], x["sum_is"])};
