@@ -3,8 +3,7 @@
 namespace CAEMonitoringTool::DataStore {
 
   bool DataManager::addData(const json &object) {
-    //TODO adjust server.py script so "sum_rt" is a list with one entry, and adjust getting that entry here
-    // (with .at(0) or something) (as that is how "sum_rt" is described in schema.py)
+
     auto infoObject{ThreadInfo::make(object["tid"], object["name"], object["freq"],
                                      object["iterations"], object["overruns"], object["sum_rt"],
                                      object.dump())};
