@@ -135,7 +135,21 @@ submitOperation = function() {
         }
     }
     threadMap.set(resultingGraphName, resultingGraphName);
+    // send operation to server
     socket.send(JSON.stringify(message));
     updateDropdown();
+
+    // automatically select and request data for the new thread
+    document.getElementById("lhsThread").value = resultingGraphName;
+    document.getElementById("rhsThread").value = "";
+    document.getElementById("operation").value = "";
+    document.getElementById("threadName").value = "";
+    socket.send(JSON.stringify({
+        "sender": "gui",
+        "topic": "requestData",
+        "payload": {
+            "tid": resultingGraphName
+        }
+    }));
     return false;
 }
