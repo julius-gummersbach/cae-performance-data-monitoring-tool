@@ -58,7 +58,11 @@ updateDropdown = function () {
     while (rhsDropdown.options.length > 1) {
         rhsDropdown.remove(1);
     }
-    threadMap.forEach((value, key) => {
+    // sort the map by thread name
+    let sortedThreadMap = new Map([...threadMap.entries()].sort((a, b) => a[1].localeCompare(b[1])));
+
+    // set the key of each thread as the (internal) value of the option and use the thread name as the display text
+    sortedThreadMap.forEach((value, key) => {
         let option1 = document.createElement("option");
         option1.value = key;
         option1.text = value;
