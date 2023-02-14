@@ -1,0 +1,3 @@
+websocket
+dataclasses_json
+numpy
