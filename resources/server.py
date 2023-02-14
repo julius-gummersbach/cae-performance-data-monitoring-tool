@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import asyncio
+import json
+
 import websockets
 import argparse
 from dataclasses_json import dataclass_json
