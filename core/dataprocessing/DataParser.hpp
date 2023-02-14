@@ -19,12 +19,12 @@ namespace CAEMonitoringTool::DataProcessing {
 	public:
 
 		/**
-		 * documentation, edit me later
-		 *
-		 * @param object
-		 * @param dManager
-		 * @param gManager
-		 * @return
+		 * method to take the incoming data from the websocket as a json string representation, parse it and distribute it
+		 * to the datamanager and graphmanager
+		 * @param object string representation of a json object of all information of a single thread
+		 * @param dManager reference to a datamanager object to add the information of the thread to
+		 * @param gManager reference to a graphmanager object to add the information of the thread to
+		 * @return boolean if this was the last sent object from the websocket
 		 */
 		static bool parseThreadInfo(const std::string& jsonContent,
 			DataStore::DataManager& dManager,
