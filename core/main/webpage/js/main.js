@@ -16,7 +16,9 @@ updateGui = function (threadInfo) {
         let moduleTable = document.getElementById("ModuleTable");
         moduleTable.style.visibility = "visible"
         let newModuleTbody = document.createElement('tbody');
-        threadInfo.modules.forEach(module => {
+        // sort modules by module name
+        let sortedModules = threadInfo.modules.sort((a, b) => a.name.localeCompare(b.name));
+        sortedModules.forEach(module => {
             let newRow = document.createElement("tr");
             Object.values(module).forEach((moduleValue) => {
                 let cell = document.createElement("td");
