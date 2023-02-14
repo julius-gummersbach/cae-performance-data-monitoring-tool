@@ -100,6 +100,7 @@ socket.onmessage = function (event) {
                     threadMap.set(thread.tid, thread.name);
                 });
                 updateDropdown();
+                document.getElementById("submit").addEventListener("click",submitOperation);
                 break;
             case "provideData":
                 updateGui(message.payload);
@@ -133,10 +134,8 @@ submitOperation = function() {
             "resultingGraphName": resultingGraphName
         }
     }
+    threadMap.set(resultingGraphName, resultingGraphName);
     socket.send(JSON.stringify(message));
-    return false;
-}
-
-window.onload = function () {
     updateDropdown();
+    return false;
 }

@@ -12,10 +12,11 @@ parser = argparse.ArgumentParser(
     prog='Script to simulate a server',
     description='Generate a JSON-File per Thread',
     epilog='Created JSON-Files script ended')
-parser.add_argument("-min", "--minValue", action="store", default=int(62))  # one second
-parser.add_argument("-max", "--maxValue", action="store", default=int(258492))  # 3 sid. days
+# At least 9 values are needed for the graph to render
+parser.add_argument("-min", "--minValue", action="store", default=int(16))  # 62 = one second
+parser.add_argument("-max", "--maxValue", action="store", default=int(32))  # 258492 = 3 sid. days
 parser.add_argument("-f", "--Frequency", action="store", default=float(62.5))
-parser.add_argument("-i", "--Iteration", action="store", default=int(5))
+parser.add_argument("-i", "--Iteration", action="store", default=int(5))   # 5
 args = parser.parse_args()
 
 DATA_COUNT = random.randint(int(args.minValue), int(args.maxValue) + 1)
@@ -38,6 +39,15 @@ class CThreadData:  # equals Module
     sum_is: float  # [s]
 
 
+@dataclass
+class Point:
+    # tick (16ms)
+    x: int
+
+    # time (ms)
+    y: float
+
+
 @dataclass_json
 @dataclass
 class CThreadInfo:
@@ -47,8 +57,9 @@ class CThreadInfo:
     iterations: int
     overruns: int
     sum_rt: float  # [s]
-    data: List[CThreadData]
-    graph: List[tuple[int, float]]
+    modules: List[CThreadData]
+    graph: List[Point]
+    isDone: bool
 
 
 def calc_data(thread):
@@ -64,31 +75,38 @@ def calc_data(thread):
     return data
 
 
-def fill_data(thread):
+def fill_data(thread, last):
     tid = TID[thread]
     name = T_NAME[thread]
     freq = T_FREQUENCY
     iterations = T_ITERATIONS
     overruns = 0
     sum_rt = 0
-    data = []
-    graph: list[tuple[int, float]] = []
+    modules = []
+    graph: list[Point] = []
 
     expected_val = random.uniform(8, 12)
     for i in range(0, DATA_COUNT):
         y: float = abs(random.normal(expected_val, expected_val / 4, 1)[0])
         x = i * iterations
-        graph.append((x, y))
+        graph.append(Point(x, y))
         sum_rt += y
-        data.append(calc_data(thread))
+        modules.append(calc_data(thread))
 
-    info = CThreadInfo(tid, name, freq, iterations, overruns, sum_rt, data, graph)
+    info = CThreadInfo(tid, name, freq, iterations, overruns, sum_rt, modules, graph, last)
     return info
 
 
 async def send_info(websocket, path):
+    print("Sending a message each for " + str(NUMBER_OF_THREADS) + " threads...")
     for i in range(NUMBER_OF_THREADS):
-        info = fill_data(i)
+        if i != (NUMBER_OF_THREADS - 1):
+            info = fill_data(i, False)
+        else:
+            info = fill_data(i, True)
+        print("Thread " + str(i+1))
+        print(info.to_json())
+        print()
         await websocket.send(info.to_json())
         await asyncio.sleep(0.2)
 

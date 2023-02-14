@@ -5,7 +5,7 @@ namespace CAEMonitoringTool::DataStore {
   bool DataManager::addData(const json &object) {
 
     auto infoObject{ThreadInfo::make(object["tid"], object["name"], object["freq"],
-                                     object["iterations"], object["overruns"], object["sum_rt"].at(0),
+                                     object["iterations"], object["overruns"], object["sum_rt"],
                                      object.dump())};
 
     if(!infoObject.first) {
@@ -13,6 +13,7 @@ namespace CAEMonitoringTool::DataStore {
     }
 
     auto& info{infoObject.second};
+
 
     for (auto &x: object["modules"]) {
       auto moduleObject{Module::make(x["name"], x["sum_rt"], x["max_rt"],

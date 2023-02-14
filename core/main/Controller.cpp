@@ -39,9 +39,9 @@ namespace CAEMonitoringTool {
             // If it equals true, that means that this was the last message to be received and the loop can be stopped.
             string mes = endpoint.getMessage(dataConId);
             if (!mes.empty()) {
-                std::cout << "received message " << ++i << std::endl;
+                std::cout << "Received message " << ++i << std::endl;
                 isDone = DataProcessing::DataParser::parseThreadInfo(mes, dataManager, graphManager);
-                std::cout << "parsed message " << i << std::endl;
+                std::cout << "Parsed message " << i << std::endl;
             } else {
                 // If the message content is empty, that means the next message has not been received yet,
                 // and we need to wait for that.
@@ -49,7 +49,7 @@ namespace CAEMonitoringTool {
             }
         }
 
-        //guiServer.set_message_handler(&on_message);
+        std::cout << "Finished receiving and parsing data!" << std::endl;
 
         server guiServer;
         websocketpp::connection_hdl guiHdl{};
@@ -65,7 +65,7 @@ namespace CAEMonitoringTool {
                     }
                     json msg{{"sender","server"},
                              {"topic","startup"},
-                             {"payload", payload.dump()}};
+                             {"payload", payload}};
                     guiConnection->send(msg.dump());
                 });
         // This method gets called for both incoming and outgoing messages
@@ -76,6 +76,7 @@ namespace CAEMonitoringTool {
                     if(messageJson.at("sender") == "gui"){
                         if(messageJson.at("topic") == "requestData"){
                             string threadId = messageJson.at("payload").at("tid");
+                            std::cout << "Data request received for thread " << threadId << std::endl;
 
                             string payloadString = dataManager.getThreadInfo(threadId);
                             json payload;
@@ -91,7 +92,11 @@ namespace CAEMonitoringTool {
                                         {"topic", "provideData"},
                                         {"payload",payload}};
                             guiServer.get_con_from_hdl(guiHdl)->send(answer.dump());
-                        } else if(messageJson.at("topic") == "operation"){
+                        } else if(messageJson.at("topic") == "operation") {
+                            std::cout << "Request for new Graph received: " << messageJson.at("payload").at("lhs") << " "
+                                      << messageJson.at("payload").at("operation") << " "
+                                      << messageJson.at("payload").at("rhs") << " as "
+                                      << messageJson.at("payload").at("resultingGraphName") << std::endl;
                             graphManager.addGraphfromCombination(messageJson.at("payload"));
                         }
                     }
