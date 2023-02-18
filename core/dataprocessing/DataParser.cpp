@@ -7,6 +7,7 @@ namespace CAEMonitoringTool::DataProcessing {
                                    DataStore::DataManager &dManager,
                                    GraphManager &gManager) {
 
+    //TODO this does not seem to avoid graph with its points, as that is returned when calling getThreadInfo
     std::string threadInfo = jsonContent.substr(0, jsonContent.find("graph") - 2)
             .append(jsonContent.substr(jsonContent.find("iterations") - 2));
     json object = json::parse(jsonContent);

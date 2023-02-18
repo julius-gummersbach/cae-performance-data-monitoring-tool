@@ -14,7 +14,6 @@ using std::make_unique;
 namespace CAEMonitoringTool::DataProcessing {
 
 	void ImageGenerator::plotIt(PPlot& ioPPlot, const vector<pair<int, double>>& points) {
-		ioPPlot.mPlotBackground.mTitle = "Our beautiful graph";
 		auto* xValues = new PlotData();
 		auto* yValues = new PlotData();
 		xValues->push_back(0);
@@ -24,7 +23,6 @@ namespace CAEMonitoringTool::DataProcessing {
 			yValues->push_back(pair.second);
                 }
 		auto *legend = new LegendData();
-		legend->mName = "Our sample data";
 		legend->mColor = PColor(41, 105, 242);
 
 		ioPPlot.mPlotDataContainer.AddXYPlot(xValues, yValues, legend);
@@ -34,8 +32,8 @@ namespace CAEMonitoringTool::DataProcessing {
 		ioPPlot.mMargins.mBottom = 140;
 		ioPPlot.mMargins.mRight = 50;
 
-		ioPPlot.mXAxisSetup.mLabel = "Time in Milliseconds";
-		ioPPlot.mYAxisSetup.mLabel = "Runtime in Milliseconds";
+		ioPPlot.mXAxisSetup.mLabel = "Time (ms)";
+		ioPPlot.mYAxisSetup.mLabel = "Runtime (ms)";
 		ioPPlot.mGridInfo.mYGridOn = true;
 	}
 

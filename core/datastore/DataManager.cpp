@@ -18,6 +18,7 @@ namespace CAEMonitoringTool::DataStore {
     for (auto &x: object["modules"]) {
       auto moduleObject{Module::make(x["name"], x["sum_rt"], x["max_rt"],
                                      x["avg_rt"], x["sum_vs"], x["sum_is"])};
+      //TODO this leads to a whole Thread being discarded when one module contains one wrong value - maybe adjust
       if(!moduleObject.first) {
         return false;
       }
