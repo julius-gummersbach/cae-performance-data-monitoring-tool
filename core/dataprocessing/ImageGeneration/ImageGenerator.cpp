@@ -28,8 +28,8 @@ namespace CAEMonitoringTool::DataProcessing {
 		ioPPlot.mPlotDataContainer.AddXYPlot(xValues, yValues, legend);
 
 		ioPPlot.mMargins.mLeft = 75;
-		ioPPlot.mMargins.mTop = 50;
-		ioPPlot.mMargins.mBottom = 140;
+		ioPPlot.mMargins.mTop = 25;
+		ioPPlot.mMargins.mBottom = 200;
 		ioPPlot.mMargins.mRight = 50;
 
 		ioPPlot.mXAxisSetup.mLabel = "Time (ms)";
