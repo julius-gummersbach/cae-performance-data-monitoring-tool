@@ -32,6 +32,12 @@ namespace CAEMonitoringTool::DataProcessing
 		*/
 		void addGraphfromCombination(const json& jsonObject);
 
+		/**
+		* Generates a SVG-file and returns the path of this file.
+		* 
+		* @param string threadId
+		* @return string that specifies the path to the generated svg-file
+		*/
 		const std::string& getImage(const std::string& threadID);
 	};
 }
