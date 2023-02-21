@@ -5,6 +5,7 @@
 #include "ThreadInfo.hpp"
 #include <unordered_map>
 #include <vector>
+#include <iostream>
 
 namespace CAEMonitoringTool::DataStore {
 
@@ -27,9 +28,8 @@ namespace CAEMonitoringTool::DataStore {
     /**
      * method to add a new thread to the map
      * @param object json representation of all the data in a thread as well as their modules
-     * @return boolean value weather the given data is valid and got stored in the map
      */
-    bool addData(const json &object);
+    void addData(const json &object);
 
     /**
      * method to get all keys in the map

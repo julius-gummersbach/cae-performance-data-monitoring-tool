@@ -2,31 +2,30 @@
 
 namespace CAEMonitoringTool::DataStore {
 
-  bool DataManager::addData(const json &object) {
+  void DataManager::addData(const json &object) {
 
     auto infoObject{ThreadInfo::make(object["tid"], object["name"], object["freq"],
                                      object["iterations"], object["overruns"], object["sum_rt"],
                                      object.dump())};
 
     if(!infoObject.first) {
-      return false;
+      std::cout << "A Thread with invalid data was detected." << std::endl;
+      return;
     }
 
     auto& info{infoObject.second};
 
-
     for (auto &x: object["modules"]) {
       auto moduleObject{Module::make(x["name"], x["sum_rt"], x["max_rt"],
                                      x["avg_rt"], x["sum_vs"], x["sum_is"])};
-      //TODO this leads to a whole Thread being discarded when one module contains one wrong value - maybe adjust
       if(!moduleObject.first) {
-        return false;
+        std::cout << "A Module with invalid data was detected." << std::endl;
+        continue;
       }
       info.m_modules.push_back(std::make_shared<Module>(moduleObject.second));
     }
 
     this->m_threadsInfos.emplace(info.m_threadId, info);
-    return true;
   }
 
   std::vector<std::string> DataManager::getThreadIds() const {
