@@ -16,7 +16,9 @@ updateGui = function (threadInfo) {
         let moduleTable = document.getElementById("ModuleTable");
         moduleTable.style.visibility = "visible"
         let newModuleTbody = document.createElement('tbody');
-        threadInfo.modules.forEach(module => {
+        // sort modules by module name
+        let sortedModules = threadInfo.modules.sort((a, b) => a.name.localeCompare(b.name));
+        sortedModules.forEach(module => {
             let newRow = document.createElement("tr");
             Object.values(module).forEach((moduleValue) => {
                 let cell = document.createElement("td");
@@ -58,7 +60,11 @@ updateDropdown = function () {
     while (rhsDropdown.options.length > 1) {
         rhsDropdown.remove(1);
     }
-    threadMap.forEach((value, key) => {
+    // sort the map by thread name
+    let sortedThreadMap = new Map([...threadMap.entries()].sort((a, b) => a[1].localeCompare(b[1])));
+
+    // set the key of each thread as the (internal) value of the option and use the thread name as the display text
+    sortedThreadMap.forEach((value, key) => {
         let option1 = document.createElement("option");
         option1.value = key;
         option1.text = value;
@@ -135,7 +141,21 @@ submitOperation = function() {
         }
     }
     threadMap.set(resultingGraphName, resultingGraphName);
+    // send operation to server
     socket.send(JSON.stringify(message));
     updateDropdown();
+
+    // automatically select and request data for the new thread
+    document.getElementById("lhsThread").value = resultingGraphName;
+    document.getElementById("rhsThread").value = "";
+    document.getElementById("operation").value = "";
+    document.getElementById("threadName").value = "";
+    socket.send(JSON.stringify({
+        "sender": "gui",
+        "topic": "requestData",
+        "payload": {
+            "tid": resultingGraphName
+        }
+    }));
     return false;
 }
