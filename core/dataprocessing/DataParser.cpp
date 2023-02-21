@@ -7,21 +7,24 @@ namespace CAEMonitoringTool::DataProcessing {
                                    DataStore::DataManager &dManager,
                                    GraphManager &gManager) {
 
-    //TODO this does not seem to avoid graph with its points, as that is returned when calling getThreadInfo
-    std::string threadInfo = jsonContent.substr(0, jsonContent.find("graph") - 2)
-            .append(jsonContent.substr(jsonContent.find("iterations") - 2));
+    json graph, data;
     json object = json::parse(jsonContent);
 
-    if(dManager.addData(json::parse(threadInfo))) {
-      std::string id{object["tid"]};
-      std::string points;
-      points.append(R"({ "tid": ")")
-              .append(id)
-              .append(R"(", "graph" :)")
-              .append(object["graph"].dump())
-              .append("}");
-      gManager.addGraphFromPoints(json::parse(points));
+    for(auto itr = object.begin(); itr != object.end() ;++itr) {
+      if(itr.key() == "tid") {
+        graph["tid"] = itr.value();
+        data["tid"] = itr.value();
+      } else if (itr.key() == "isDone") {
+        continue;
+      } else if (itr.key() == "graph") {
+          graph["graph"] = itr.value();
+      } else {
+        data[itr.key()] = itr.value();
+      }
     }
+
+    dManager.addData(data);
+    gManager.addGraphFromPoints(graph);
 
     return object["isDone"];
   }
