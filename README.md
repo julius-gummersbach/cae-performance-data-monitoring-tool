@@ -20,7 +20,7 @@ Install Websocketpp:
 
 Install Boost:
 1. Download the zip file from `https://www.boost.org/users/history/version_1_81_0.html`
-2. Unpack it in the same directory as the project folder.
+2. Unpack it in a folder called `boostlibrary` in the same directory as the project folder.
 
 Install nlohmann/json:
 1. Clone `https://github.com/nlohmann/json` repository in the same directory as the project folder
