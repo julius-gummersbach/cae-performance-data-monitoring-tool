@@ -70,6 +70,9 @@ updateGui = function (threadInfo) {
     }
     //update graph
     document.getElementById('graph_svg').innerHTML = threadInfo.graphSvg;
+    // get width of graph svg and set it as width of the svg element
+    let bBox = document.getElementById('graph_svg').getBBox();
+    document.getElementById('graph_svg').style.width = bBox.width;
 }
 
 /**
