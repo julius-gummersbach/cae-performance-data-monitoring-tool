@@ -21,8 +21,6 @@ add_subdirectory(main)
 add_subdirectory(dataprocessing)
 add_subdirectory(datastore)
 
-set(CMAKE_CXX_STANDARD 20)
-
 add_library(websocket
         websocket/WebsocketEndpoint.cpp
         websocket/ConnectionMetadata.cpp
