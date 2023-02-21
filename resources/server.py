@@ -24,13 +24,15 @@ NUMBER_OF_THREADS = 5
 NUMBER_OF_DATA_BLOCKS = 3
 TID = ["A32VG9", "B93OP0", "C91JA7", "D02UI6", "E11PM9"]
 T_NAME = ["Thread01", "Thread02", "Thread03", "Thread04", "Thread05"]
+MODULE_NAME = ["Weather", "Light", "Aerodynamics", "Trees", "Clouds", "Water", "Cockpit", "Airstream",
+               "Sound", "Bandits", "Fuel", "Damages"]
 T_FREQUENCY = args.Frequency
 T_ITERATIONS = args.Iteration
 
 
 @dataclass_json
 @dataclass
-class CThreadData:  # equals Module
+class Module:
     name: str
     sum_rt: float  # [s]
     max_rt: float  # [ms]
@@ -41,11 +43,8 @@ class CThreadData:  # equals Module
 
 @dataclass
 class Point:
-    # tick (16ms)
-    x: int
-
-    # time (ms)
-    y: float
+    x: int      # tick (16ms)
+    y: float    # time (ms)
 
 
 @dataclass_json
@@ -57,21 +56,22 @@ class CThreadInfo:
     iterations: int
     overruns: int
     sum_rt: float  # [s]
-    modules: List[CThreadData]
+    modules: List[Module]
     graph: List[Point]
     isDone: bool
 
 
-def calc_data(thread):
+# Calculates Module info for one singular module
+def calc_data(total_runtime, module_index):
     iterations = T_ITERATIONS
-    normal_runtime = 1000.0 / T_FREQUENCY
-    name = T_NAME[thread]
-    sum_rt = 0.0
-    max_rt = 0.0
-    sum_vs = 0.0
-    sum_is = 0.0
-    avg_rt = (sum_rt * 1000.0) / iterations
-    data = CThreadData(name, sum_rt, max_rt, avg_rt, sum_vs, sum_is)
+    name = MODULE_NAME[module_index]
+    # sum_rt minimum runtime: Time for one run in ms (1000 / T_Frequency) * number of iterations
+    sum_rt = round(total_runtime, 2)
+    avg_rt = round(sum_rt / iterations, 2)
+    max_rt = round(random.uniform(avg_rt, sum_rt), 2)
+    sum_vs = random.randint(0, 100)
+    sum_is = random.randint(0, 100)
+    data = Module(name, sum_rt, max_rt, avg_rt, sum_vs, sum_is)
     return data
 
 
@@ -80,7 +80,7 @@ def fill_data(thread, last):
     name = T_NAME[thread]
     freq = T_FREQUENCY
     iterations = T_ITERATIONS
-    overruns = 0
+    overruns = random.randint(0, iterations)
     sum_rt = 0
     modules = []
     graph: list[Point] = []
@@ -91,8 +91,20 @@ def fill_data(thread, last):
         x = i * iterations
         graph.append(Point(x, y))
         sum_rt += y
-        modules.append(calc_data(thread))
-
+    sum_rt = round(sum_rt, 2)
+    # Adding Module info
+    module_count = random.randint(3, 12)
+    temp = sum_rt
+    modules_left = module_count
+    for k in range(0, module_count):
+        if k != module_count - 1:
+            mu = temp / modules_left
+            module_sum_rt = round(random.uniform(mu * 1/2, mu * 3/2), 2)
+            temp -= module_sum_rt
+            modules_left -= 1
+            modules.append(calc_data(module_sum_rt, k))
+        else:
+            modules.append(calc_data(temp, k))
     info = CThreadInfo(tid, name, freq, iterations, overruns, sum_rt, modules, graph, last)
     return info
 

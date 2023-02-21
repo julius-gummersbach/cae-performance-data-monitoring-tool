@@ -20,11 +20,35 @@ updateGui = function (threadInfo) {
         let sortedModules = threadInfo.modules.sort((a, b) => a.name.localeCompare(b.name));
         sortedModules.forEach(module => {
             let newRow = document.createElement("tr");
-            Object.values(module).forEach((moduleValue) => {
-                let cell = document.createElement("td");
-                cell.innerText = moduleValue;
-                newRow.appendChild(cell);
-            })
+
+            let nameCell = document.createElement("td");
+            let sum_rtCell = document.createElement("td");
+            let max_rtCell = document.createElement("td");
+            let avg_rtCell = document.createElement("td");
+            let sum_vsCell = document.createElement("td");
+            let sum_isCell = document.createElement("td");
+            // jsonObject.dump() does not keep "order" in the json string for nlohmann/json!
+            for(const [moduleKey, moduleValue] of Object.entries(module)){
+                if(moduleKey === "name"){
+                    nameCell.innerText = moduleValue;
+                } else if (moduleKey === "sum_rt"){
+                    sum_rtCell.innerText = moduleValue;
+                } else if (moduleKey === "max_rt"){
+                    max_rtCell.innerText = moduleValue;
+                } else if (moduleKey === "avg_rt"){
+                    avg_rtCell.innerText = moduleValue;
+                } else if (moduleKey === "sum_vs"){
+                    sum_vsCell.innerText = moduleValue;
+                } else if (moduleKey === "sum_is"){
+                    sum_isCell.innerText = moduleValue;
+                }
+            }
+            newRow.appendChild(nameCell);
+            newRow.appendChild(sum_rtCell);
+            newRow.appendChild(max_rtCell);
+            newRow.appendChild(avg_rtCell);
+            newRow.appendChild(sum_vsCell);
+            newRow.appendChild(sum_isCell);
             newModuleTbody.appendChild(newRow);
         });
         let oldModuleTbody = moduleTable.childNodes[1].getElementsByTagName('tbody')[0];
