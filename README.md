@@ -31,10 +31,22 @@ Install all dependencies from `resources/requirements.txt` with pip
 
 1. Start the dummy-server script with `python3 resources/server.py`
 2. Build and run the "run" configuration of the outermost CMakeLists.txt file
-3. Open the `core/main/webpage/index.html` file in the browser
+3. Open the `core/main/webpage/index.html` file in a browser (tested with edge and chrome)
+
+## About this Tool 
+
+This tool is used to display data about threads that ran in a simulation instance.  
+On startup, the tool connects to a websocket server and receives a JSON object containing the data.  
+The data is then validated and stored in the graph- and data manager.  
+When the user selects a thread to be displayed on the webpage, the webpage requests the graph and other data from the 
+controller. The controller creates a svg of the graph on demand and provides the data to the webpage.  
+The webpage then displays the data in a graph and a table.  
+The user can select two threads and perform a mathematical operation on them. The result of that operation is stored as 
+a new graph and can itself be used in further operations. This feature can be used to compare the performance of 
+multiple threads.
 
 
-## About the Project
+## Project Timeline
 
 During the SWT Project all [MATSE](https://de.wikipedia.org/wiki/Mathematisch-technischer_Softwareentwickler) students 
 form groups to work on a software project for one of the companies that take part in the [MATSE trainee program]
@@ -66,3 +78,11 @@ partially because the CAE GmbH was not allowed to share the original, confidenti
 We quickly came up with a new design for the software. We were reusing and simplifying some of our initial ideas, as the
 new requirements were of course much simpler to implement. You can find the new class diagrams [here](TODO).  
 On January 22nd 2023 we presented the project at the MATSE Softwaretechnik fair.
+
+
+## Lessons Learned
+
+Apart from the obvious lessons learned about C++ and developing a website, we also gained a lot of experience in the
+process of developing a software and working in a team.
+The big misunderstanding about the requirements showed us how important it is to make sure everybody is on the same page
+before investing a lot of time into an idea.
