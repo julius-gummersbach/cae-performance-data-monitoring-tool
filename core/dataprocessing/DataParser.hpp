@@ -22,9 +22,9 @@ namespace CAEMonitoringTool::DataProcessing {
     std::thread m_graphThread;
     std::thread m_parseThread;
 
-    std::queue<json> m_dataToAdd;
-    std::queue<json> m_graphsToAdd;
-    std::queue<json> m_dataToPrepare;
+    std::queue<json*> m_dataToAdd;
+    std::queue<json*> m_graphsToAdd;
+    std::queue<json*> m_dataToPrepare;
 
     bool m_gotLastMessage;
 
