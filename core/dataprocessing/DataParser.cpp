@@ -1,13 +1,16 @@
 #include "DataParser.hpp"
 
-
 namespace CAEMonitoringTool::DataProcessing {
 
   bool DataParser::parseThreadInfo(const std::string &jsonContent) {
     json object = json::parse(jsonContent);
-    m_dataToPrepare.push(&object);
+    m_dataToPrepare.push(object);
     bool isDone = object["isDone"];
     if (isDone) {
+      {
+        std::lock_guard<std::mutex> lg{m_mMutex};
+        m_gotLastMessage = isDone;
+      }
       m_parseThread.join();
       m_dataThread.join();
       m_graphThread.join();
@@ -32,35 +35,21 @@ namespace CAEMonitoringTool::DataProcessing {
   }
 
   void DataParser::prepareData() {
-    json *object{m_dataToPrepare.front()};
+    json object{m_dataToPrepare.front()};
 
     json graph, data;
 
-    for (auto itr = (*object).begin(); itr != (*object).end(); ++itr) {
-      if (itr.key() == "tid") {
-        graph["tid"] = itr.value();
-        data["tid"] = itr.value();
-      } else if (itr.key() == "isDone") {
-        std::lock_guard<std::mutex> lg{m_mMutex};
-        m_gotLastMessage = (itr.value() == "1");
-      } else if (itr.key() == "graph") {
-        graph["graph"] = itr.value();
-      } else {
-        if(!itr.key().empty()) {
-          data[itr.key()] = itr.value();
-        }
-      }
-    }
+    graph["tid"] = object["tid"];
+    graph["graph"] = object["graph"];
+    data = object;
+    data.erase("graph");
+    data.erase("isDone");
 
     {
       std::lock_guard<std::mutex> lg{m_mMutex};
       m_dataToPrepare.pop();
-    }
-
-    {
-      std::lock_guard<std::mutex> lg{m_mMutex};
-      m_dataToAdd.push(&data);
-      m_graphsToAdd.push(&graph);
+      m_dataToAdd.push(data);
+      m_graphsToAdd.push(graph);
     }
   }
 
@@ -73,7 +62,7 @@ namespace CAEMonitoringTool::DataProcessing {
   }
 
   void DataParser::addData(DataStore::DataManager &dManager) {
-    dManager.addData(*m_dataToAdd.front());
+    dManager.addData(m_dataToAdd.front());
     {
       std::lock_guard<std::mutex> lg{m_mMutex};
       m_dataToAdd.pop();
@@ -89,7 +78,7 @@ namespace CAEMonitoringTool::DataProcessing {
   }
 
   void DataParser::addGraph(GraphManager &gManager) {
-    gManager.addGraphFromPoints(*m_graphsToAdd.front());
+    gManager.addGraphFromPoints(m_graphsToAdd.front());
     {
       std::lock_guard<std::mutex> lg{m_mMutex};
       m_graphsToAdd.pop();
