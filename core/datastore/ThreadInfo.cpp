@@ -32,10 +32,10 @@ namespace CAEMonitoringTool::DataStore {
     if (name.empty()) {
       return std::pair<bool, ThreadInfo>{false, ThreadInfo()};
     }
-    if (iterations < 0 || isinf(iterations) || isnan(iterations)) {
+    if (iterations < 0 ) {
       return std::pair<bool, ThreadInfo>{false, ThreadInfo()};
     }
-    if (overruns < 0 || isinf(overruns) || isnan(overruns)) {
+    if (overruns < 0 ) {
       return std::pair<bool, ThreadInfo>{false, ThreadInfo()};
     }
     if (sumRt < 0 || isinf(sumRt) || isnan(sumRt)) {
