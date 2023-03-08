@@ -1,8 +1,8 @@
 ### Webpage ###
-main/webpage/node_modules
-main/webpage/dist
-main/webpage/.cache
-main/webpage/.idea
+core/main/webpage/node_modules
+core/main/webpage/dist
+core/main/webpage/.cache
+core/main/webpage/.idea
 
 ### C++ ###
 # Prerequisites
